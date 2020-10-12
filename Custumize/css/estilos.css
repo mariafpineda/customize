@@ -1,0 +1,12 @@
+body{
+    background-color: #00bbee;
+    margin: 0;
+}
+
+nav{
+    background-color: transparent !important;
+}
+
+.items{
+    min-height: 100vh;
+}
