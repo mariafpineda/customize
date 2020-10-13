@@ -10,29 +10,31 @@
 <body>
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">
+          <img src="img/logo-white.png" id="logo">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="#inicio">Inicio<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#inicio">INICIO<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#vende">Vende</a>
+              <a class="nav-link" href="#vende">VENDE</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#compra">Compra</a>
+              <a class="nav-link" href="#compra">COMPRA</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#acercaDe" tabindex="-1" aria-disabled="true">Acerca de</a>
+              <a class="nav-link" href="#acercaDe" tabindex="-1">ACERCA DE</a>
             </li>
             <li class="nav-item">
-              <a id="login" class="nav-link" href="" tabindex="-1" aria-disabled="true">Inicia sesión</a>
+              <a id="login" class="nav-link" href="" tabindex="-1">INICIA SESIÓN</a>
             </li>
             <li class="nav-item">
-              <a id="register"class="nav-link" href="" tabindex="-1" aria-disabled="true">Registro</a>
+              <a id="register"class="nav-link" href="" tabindex="-1">REGISTRARSE</a>
             </li>
           </ul>
         </div>
@@ -40,8 +42,31 @@
 
     <!--Sections-->
 
-    <section id="inicio" class="items"></section>
-    <section id="vende" class="items"></section>
+    <section id="inicio" class="items">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6 texto-inicio">
+            <section>
+              <span>CREA TU PROPIO ECOMMERCE</span> <br>
+              <span style="font-size: 1.8rem;">Y ABRE UN MUNDO DE POSIBILIDADES</span> <br>
+              <span>PARA TU NEGOCIO</span>
+            </section>
+            <div class=" botones-inicio">
+              <a class="boton">Crea una tienda</a> 
+              o
+              <a id="accede-tienda">Accede a tu tienda</a>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <img id="img-inicio"src="img/custom-web2.png">
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <section id="vende" class="items">
+      
+    </section>
     <section id="compra" class="items"></section>
     <section id="acercaDe" class="items"></section>
 
