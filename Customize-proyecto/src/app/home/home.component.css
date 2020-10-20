@@ -111,5 +111,6 @@ a{
 }
 
 #acercaDe{
-    /*background-image: url("../img/decos4.png");*/
+    background-image: url("/assets/img/decos4.png");
+    background-position: bottom;
 }
