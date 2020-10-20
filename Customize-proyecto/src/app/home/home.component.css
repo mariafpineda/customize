@@ -100,13 +100,14 @@ a{
 }
 
 #vende{
-    position: relative;
-    min-height: 100vh;
-    background-image: url("/assets/img/decos.png");
+    background-image: url("/assets/img/decos5.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
 }
 
 #compra{
-    /*background-image: url("../img/decos3.png");*/
+    background-position: top;
+    background-image: url("/assets/img/decos3.png");
 }
 
 #acercaDe{
