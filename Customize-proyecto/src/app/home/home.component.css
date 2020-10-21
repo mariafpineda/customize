@@ -1,27 +1,3 @@
-@font-face{
-    font-family: "Raleway medium";
-    src: url('/assets/fonts/Raleway/static/Raleway-Medium.ttf')
-}
-
-@font-face{
-    font-family: "Raleway bold";
-    src: url('/assets/fonts/Raleway/static/Raleway-Bold.ttf')
-}
-
-@font-face{
-    font-family: "Raleway semibold";
-    src: url('/assets/fonts/Raleway/static/Raleway-SemiBold.ttf')
-}
-
-@font-face{
-    font-family: "Raleway black";
-    src: url('/assets/fonts/Raleway/static/Raleway-Black.ttf')
-}
-
-@font-face{
-    font-family: "Roboto";
-    src: url('/assets/fonts/Roboto/Roboto-Regular.ttf')
-}
 
 body{
     background-color: #00bbee;
@@ -57,9 +33,13 @@ a{
     width: 200px;
 }
 
-#img-inicio{
+#img-inicio, #img-vende, #img-compra{
     width: 100%;
-    margin-top: 10%;
+    margin-top: 5%;
+}
+
+#img-compra{
+    bottom: 0;
 }
 
 #register{
@@ -70,8 +50,7 @@ a{
 }
 
 .texto-inicio{
-    margin-top: auto;
-    margin-bottom: auto;
+    margin:auto;
 }
 
 .texto-inicio section{
@@ -105,12 +84,42 @@ a{
     background-position: bottom;
 }
 
+.texto-vende, .texto-compra{
+    margin:auto;
+    font-family: "Raleway medium";
+    font-size: x-large;
+    color: white;
+}
+
+.texto-vende h1, .texto-compra h1{
+    font-family: "Raleway bold";
+    font-size: 50px;
+}
 #compra{
     background-position: top;
     background-image: url("/assets/img/decos3.png");
+    background-repeat: no-repeat;
 }
 
 #acercaDe{
     background-image: url("/assets/img/decos4.png");
     background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.ver-mas-btn{
+    background-color: #94d12e;
+    padding: 10px 30px;
+    text-decoration: none;
+    color: white;
+    border-radius: 30px;
+}
+
+#logo-color{
+    width: 100%;
+}
+
+#slogan{
+    margin-top: auto;
+    bottom: 0;
 }
