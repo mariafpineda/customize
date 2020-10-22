@@ -119,7 +119,19 @@ a{
     width: 100%;
 }
 
+#desc-acercaDe{
+    padding-left: 5%;
+    margin-top: 15%;
+    color: white;
+    font-family: 'Raleway medium';
+    font-size: 25px;
+}
 #slogan{
-    margin-top: auto;
-    bottom: 0;
+    color: white;
+    font-family: "Raleway semibold";
+    font-size: 35px;
+    position: fixed;
+    bottom: 7%;
+    width: 25%;
+    right: 7%;
 }
