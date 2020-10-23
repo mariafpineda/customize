@@ -38,6 +38,10 @@ a{
     margin-top: 5%;
 }
 
+#img-vende{
+    margin-left: 7%;
+}
+
 #img-compra{
     bottom: 0;
 }
@@ -45,31 +49,34 @@ a{
 #register{
     background-color: white;
     color: #94d12e !important;
-    padding: 6px 12px;
+    padding: 8px 15px;
     border-radius: 30px;
 }
 
 .texto-inicio{
     margin:auto;
+    padding-left: 5%;
 }
 
 .texto-inicio section{
     color: white;
     font-family: "Raleway medium";
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .botones-inicio{
     margin-top: 15px;
     color: white;
+    font-size: 1.3rem;
 }
 
 .boton{
     background-color: #94d12e;
     color: white !important;
     font-family: "Raleway semibold";
+    
     border: none;
-    padding: 8px 15px;
+    padding: 10px 25px;
     border-radius: 30px;
 }
 
@@ -89,7 +96,9 @@ a{
     font-family: "Raleway medium";
     font-size: x-large;
     color: white;
+    padding-left: 5%;
 }
+
 
 .texto-vende h1, .texto-compra h1{
     font-family: "Raleway bold";
@@ -132,7 +141,7 @@ a{
     font-size: 35px;
     position: static;
     margin-left: auto;
-    margin-top: 7%;
+    margin-top: 10%;
     margin-right: 7%;
     width: 25%;
 }

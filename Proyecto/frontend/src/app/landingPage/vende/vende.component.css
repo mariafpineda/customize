@@ -1,0 +1,29 @@
+body{
+    background-color: #00bbee;
+    margin: 0;
+}
+
+.items{
+    min-height: 100vh;
+    padding: 4rem 2rem;
+}
+
+.navbar-nav{
+    margin-left: auto !important;
+}
+
+.nav-link{
+    color: white !important;
+    font-family: "Roboto";
+}
+
+#logo{
+    width: 200px;
+}
+
+#register{
+    background-color: white;
+    color: #94d12e !important;
+    padding: 8px 15px;
+    border-radius: 30px;
+}
