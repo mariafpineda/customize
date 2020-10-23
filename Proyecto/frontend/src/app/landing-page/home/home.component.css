@@ -130,8 +130,9 @@ a{
     color: white;
     font-family: "Raleway semibold";
     font-size: 35px;
-    position: fixed;
-    bottom: 7%;
+    position: static;
+    margin-left: auto;
+    margin-top: 7%;
+    margin-right: 7%;
     width: 25%;
-    right: 7%;
 }
