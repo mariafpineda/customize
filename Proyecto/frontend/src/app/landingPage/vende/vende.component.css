@@ -1,10 +1,29 @@
 a{
     cursor: pointer;
 }
-
+.arrow{
+    width: 20px;
+    color: #94d12e;
+    font-weight: 700;
+    font-family: 'Raleway black';
+}
 body{
     background-color: #00bbee;
     margin: 0;
+}
+
+
+.btn-adquirir-ya{
+    text-decoration: none;
+    background-color: #94d12e;
+    color: white;
+    font-family: 'Raleway semibold';
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+
+.container{
+    margin-top: 2rem;
 }
 
 .items{
@@ -25,9 +44,14 @@ body{
     width: 200px;
 }
 
+.header-item{
+    color: white;
+    font-family: 'Raleway bold';
+}
+
 .items{
     min-height: 100vh;
-    padding: 4rem 2rem;
+    padding: 3rem 2rem;
 }
 
 #img-inicio, #img-vende, #img-compra{
@@ -43,10 +67,52 @@ body{
     bottom: 0;
 }
 
+.nota{
+    margin-top: 20px;
+    color: white;
+}
+
 #planes{
     background-image: url("/assets/img/decos4.png");
     background-position: bottom;
     background-repeat: no-repeat;
+    text-align: center;
+    font-family: 'Raleway medium';
+}
+
+.plan{
+    background-color: white;
+    border-radius: 30px;
+    border: transparent;
+    padding: 25px 15px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: 'Raleway medium';
+}
+
+.plan h1{
+    color: #94d12e;
+    font-family: 'Raleway black';
+    font-size: 1.7rem;
+}
+
+.plan section{
+    height: 200px;
+    margin: 15px 5px;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+
+.precio{
+    font-family: 'Raleway medium';
+    font-size: 2rem;
+}
+
+.precio strong{
+    font-family: 'Raleway black';
+    font-size: 3rem;
 }
 
 #register{
@@ -60,6 +126,10 @@ body{
     background-position: top;
     background-image: url("/assets/img/decos3.png");
     background-repeat: no-repeat;
+}
+
+.text{
+    width: 150px
 }
 
 .texto-vende{
