@@ -1,3 +1,7 @@
+a{
+    cursor: pointer;
+}
+
 body{
     background-color: #00bbee;
     margin: 0;
@@ -21,9 +25,67 @@ body{
     width: 200px;
 }
 
+.items{
+    min-height: 100vh;
+    padding: 4rem 2rem;
+}
+
+#img-inicio, #img-vende, #img-compra{
+    width: 100%;
+    margin-top: 5%;
+}
+
+#img-vende{
+    margin-left: 7%;
+}
+
+#img-compra{
+    bottom: 0;
+}
+
+#planes{
+    background-image: url("/assets/img/decos4.png");
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
 #register{
     background-color: white;
     color: #94d12e !important;
     padding: 8px 15px;
+    border-radius: 30px;
+}
+
+#servicios, #afiliados{
+    background-position: top;
+    background-image: url("/assets/img/decos3.png");
+    background-repeat: no-repeat;
+}
+
+.texto-vende{
+    margin:auto;
+    font-family: "Raleway medium";
+    font-size: x-large;
+    color: white;
+    padding-left: 5%;
+}
+
+
+.texto-vende h1{
+    font-family: "Raleway bold";
+    font-size: 50px;
+}
+
+#vende{
+    background-image: url("/assets/img/decos5.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.ver-mas-btn{
+    background-color: #94d12e;
+    padding: 10px 30px;
+    text-decoration: none;
+    color: white;
     border-radius: 30px;
 }

@@ -9,6 +9,7 @@ import { CompraComponent } from './landingPage/compra/compra.component';
 import { LoginComponent } from './landingPage/login/login.component';
 import { RegisterComponent } from './landingPage/register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavbarComponent } from './navbar/navbar.component';
 /*import { RouterModule } from '@angular/router'; */
 
 @NgModule({
@@ -18,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     VendeComponent,
     CompraComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
