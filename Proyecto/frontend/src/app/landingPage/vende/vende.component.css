@@ -22,8 +22,15 @@ body{
     border-radius: 30px;
 }
 
+.card{
+    color: white;
+    font-family: 'Raleway semibold';
+    border:none !important;
+    background-color: transparent !important;
+}
+
 .container{
-    margin-top: 2rem;
+    margin-top: 4rem;
 }
 
 .items{
@@ -49,10 +56,10 @@ body{
     font-family: 'Raleway bold';
 }
 
-.items{
+/*.items{
     min-height: 100vh;
     padding: 3rem 2rem;
-}
+}*/
 
 #img-inicio, #img-vende, #img-compra{
     width: 100%;
@@ -73,6 +80,7 @@ body{
 }
 
 #planes{
+    padding-top: 10rem;
     background-image: url("/assets/img/decos4.png");
     background-position: bottom;
     background-repeat: no-repeat;
@@ -122,10 +130,27 @@ body{
     border-radius: 30px;
 }
 
+.service-icon{
+    width: 100%;
+    text-align: center;
+    font-size: 6rem;
+}
+
 #servicios, #afiliados{
     background-position: top;
     background-image: url("/assets/img/decos3.png");
     background-repeat: no-repeat;
+}
+
+#servicios{
+    padding-top: 10rem;
+    text-align: center;
+}
+
+.servicios-item .card{
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .text{
