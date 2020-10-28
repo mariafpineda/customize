@@ -1,0 +1,29 @@
+body{
+    background-color: #00bbee;
+    margin: 0px;
+}
+
+#img-inicio, #img-vende, #img-compra{
+    width: 100%;
+    margin-top: 10%;
+}
+
+.texto-vende, .texto-compra{
+    margin:auto;
+    font-family: "Raleway medium";
+    font-size: x-large;
+    color: white;
+    padding-left: 5%;
+}
+
+
+.texto-vende h1, .texto-compra h1{
+    font-family: "Raleway bold";
+    font-size: 50px;
+}
+
+#compra{
+    background-position: top;
+    background-image: url("/assets/img/decos3.png");
+    background-repeat: no-repeat;
+}

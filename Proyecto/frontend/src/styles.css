@@ -23,3 +23,11 @@
     font-family: "Roboto";
     src: url('/assets/fonts/Roboto/Roboto-Regular.ttf')
 }
+
+.ver-mas-btn{
+    background-color: #94d12e;
+    padding: 10px 30px;
+    text-decoration: none;
+    color: white;
+    border-radius: 30px;
+}
