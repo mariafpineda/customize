@@ -22,6 +22,12 @@ body{
     border-radius: 30px;
 }
 
+.btn-adquirir-ya:hover{
+    background-color: transparent;
+    border: 2px solid #94d12e;
+    color: #94D12E !important;
+}
+
 .card{
     color: white;
     font-family: 'Raleway semibold';

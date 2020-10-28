@@ -9,6 +9,9 @@ nav{
     width: 100%;
     z-index: 100;
 }
+.show{
+    background-color: #00bbee !important;
+}
 
 .navbar-nav{
     margin-left: auto !important;
