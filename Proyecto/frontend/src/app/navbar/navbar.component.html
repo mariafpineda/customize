@@ -19,11 +19,28 @@
         <li class="nav-item">
           <a class="nav-link" href="#acercaDe" tabindex="-1">ACERCA DE</a>
         </li>
-        <li class="nav-item">
-          <a id="login" class="nav-link" routerLink="/login" tabindex="-1">INICIA SESIÓN</a>
+        <li class="nav-item"><div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+          <button id="login" class="btn nav-link" ngbDropdownToggle>INICIAR SESIÓN</button>
+          <div class="dropdown-menu" ngbDropdownMenu>
+            <button ngbDropdownItem>
+              <a class="nav-link" href="/loginUser">Comprador</a>
+            </button>
+            <button ngbDropdownItem>
+              <a class="nav-link" href="/loginBrand">Vendedor</a>
+            </button>
+          </div>
+          </div>
+         <!-- <a id="login" class="nav-link"  tabindex="-1">INICIA SESIÓN</a> -->
         </li>
         <li class="nav-item">
-          <a id="register"class="nav-link" routerLink="/register" tabindex="-1">REGISTRARSE</a>
+          <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+            <button id="register" class="btn nav-link" ngbDropdownToggle>REGISTRARSE</button>
+            <div class="dropdown-menu" ngbDropdownMenu>
+              <button ngbDropdownItem>Comprador</button>
+              <button ngbDropdownItem>Vendedor</button>
+            </div>
+          </div>
+           <!-- <a id="register"class="nav-link"  tabindex="-1">REGISTRARSE</a> -->
         </li>
       </ul>
     </div>

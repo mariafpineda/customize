@@ -6,11 +6,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './landingPage/home/home.component';
 import { VendeComponent } from './landingPage/vende/vende.component';
 import { CompraComponent } from './landingPage/compra/compra.component';
-import { LoginComponent } from './landingPage/login/login.component';
-import { RegisterComponent } from './landingPage/register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RegisterUserComponent } from './landingPage/register-user/register-user.component';
+import { RegisterBrandComponent } from './landingPage/register-brand/register-brand.component';
+import { LoginBrandComponent } from './landingPage/login-brand/login-brand.component';
+import { LoginUserComponent } from './landingPage/login-user/login-user.component';
+import { LoginAdminComponent } from './landingPage/login-admin/login-admin.component';
 /*import { RouterModule } from '@angular/router'; */
 
 @NgModule({
@@ -19,9 +22,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeComponent,
     VendeComponent,
     CompraComponent,
-    LoginComponent,
-    RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    RegisterUserComponent,
+    RegisterBrandComponent,
+    LoginBrandComponent,
+    LoginUserComponent,
+    LoginAdminComponent
   ],
   imports: [
     BrowserModule,
