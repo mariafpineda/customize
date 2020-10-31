@@ -1,0 +1,58 @@
+a{
+    color: #00bbEE !important;
+}
+
+a:hover{
+    color: #94d12e !important;
+}
+
+h1{
+    color: #00bbEE;
+    font-family: 'Raleway black';
+}
+
+form{
+    margin-top: 2rem;
+}
+
+.forgot-password{
+    text-align: end;
+    margin-bottom: 2rem;
+}
+
+.login-btn{
+    background-color: #94d12e;
+    color: white;
+    font-family: 'Raleway semibold';
+    padding: 0.5rem 3rem;
+    border: 3px solid transparent;
+    border-radius: 30px;
+    font-size: 1.4rem;
+}
+
+.login-btn:hover{
+    background-color: transparent;
+    border: 3px solid #94d12e;
+    color: #94d12e
+}
+
+.login-btn-div{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.login-section{
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Raleway medium';
+}
+
+.login-section h1{
+    text-align: center;
+}
+
+.row{
+    padding-top: 4rem;
+    padding-bottom: 4rem;   
+}
+

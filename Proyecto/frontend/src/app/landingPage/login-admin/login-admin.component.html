@@ -1,1 +1,29 @@
-<p>login-admin works!</p>
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href='/'>
+      <img src="/assets/img/logo-color.png" id="logo">
+    </a>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 login-section">
+            <h1>Inicio de sesión</h1>
+            <form [formGroup]="formularioLoginAdmin">
+                <div class="form-group">
+                    <label class="form-label">Correo electrónico</label>
+                    <input  class="form-control" type="text" placeholder="Correo electrónico" formControlName="email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"  for="">Contraseña</label>
+                    <input  class="form-control" type="password" placeholder="Contraseña" formControlName="password" required>
+                </div>
+            </form>
+            <div class="forgot-password">
+                <a>¿Olvidaste tu contraseña?</a>
+            </div>
+            <div class="login-btn-div">
+                <button class="login-btn" (click)="guardarAdmin()">Iniciar sesión</button>
+            </div>
+        </div>
+    </div>
+</div>

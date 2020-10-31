@@ -14,6 +14,7 @@ import { RegisterBrandComponent } from './landingPage/register-brand/register-br
 import { LoginBrandComponent } from './landingPage/login-brand/login-brand.component';
 import { LoginUserComponent } from './landingPage/login-user/login-user.component';
 import { LoginAdminComponent } from './landingPage/login-admin/login-admin.component';
+import { ReactiveFormsModule } from '@angular/forms';
 /*import { RouterModule } from '@angular/router'; */
 
 @NgModule({
@@ -33,7 +34,8 @@ import { LoginAdminComponent } from './landingPage/login-admin/login-admin.compo
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
