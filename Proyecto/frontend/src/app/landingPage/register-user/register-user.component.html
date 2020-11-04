@@ -1,1 +1,80 @@
-<p>register-user works!</p>
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href='/'>
+      <img src="/assets/img/logo-color-resize.png" id="logo">
+    </a>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-6 register-section">
+            <h1>Registro</h1>
+                <form [formGroup]="formularioRegistroUsers">
+                    <div class="div-media" style="display: flex;">
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <label class="form-label">Nombre</label>
+                            <input  class="form-control" type="text" placeholder="Nombre" formControlName="name" required>
+                        </div>
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <label class="form-label">Apellido</label>
+                            <input  class="form-control" type="text" placeholder="Apellido" formControlName="lastname" required>
+                        </div>
+                    </div>
+                    <div class="div-media" style="display: flex;">
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <label class="form-label">País</label>
+                            <input  class="form-control" type="text" placeholder="País" formControlName="country" required>
+                        </div>
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <label class="form-label">Fecha de nacimiento</label>
+                            <input  class="form-control" type="date" placeholder="Fecha de nacimiento" formControlName="birthday" required>
+                        </div>
+                    </div>
+                    <div class="div-media" style="display: flex;">
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <label class="form-label">Correo electrónico</label>
+                            <input  class="form-control" type="text" placeholder="Correo electrónico" formControlName="email" required>
+                        </div>
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <label class="form-label">Confirmar correo electrónico</label>
+                            <input  class="form-control" type="text" placeholder="Confirmar correo electrónico" formControlName="confirmEmail" required>
+                        </div>
+                    </div>
+                    <div class="div-media" style="display: flex;">
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <label class="form-label">Contraseña</label>
+                            <input  class="form-control" type="password" placeholder="Contraseña" formControlName="password" required>
+                        </div>
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <label class="form-label">Confirmar contraseña</label>
+                            <input  class="form-control" type="password" placeholder="Confirmar contraseña" formControlName="confirmPassword" required>
+                        </div>
+                    </div>
+                    <div style="display: flex;">
+                        <div class="form-group col-3">
+                            <label class="form-label">Género</label>
+                        </div>
+                        <div class="form-group col-3">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="man" value="man">
+                            <label class="form-check-label" for="man">
+                              Masculino
+                            </label>
+                        </div>
+                        <div class="form-group col-3">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="woman" value="woman">
+                            <label class="form-check-label" for="woman">
+                              Femenino
+                            </label>
+                        </div>
+                    </div>          
+                </form>
+                <div class="register-section-btn col-xl-12">
+                    <div>
+                        <button class="register-btn">Registrarme</button>
+                    </div>
+                    <div>
+                        <span>¿Ya tiene una cuenta? <a href="/loginUser">Inicia sesión</a></span>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

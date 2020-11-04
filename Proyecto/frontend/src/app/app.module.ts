@@ -15,7 +15,6 @@ import { LoginBrandComponent } from './landingPage/login-brand/login-brand.compo
 import { LoginUserComponent } from './landingPage/login-user/login-user.component';
 import { LoginAdminComponent } from './landingPage/login-admin/login-admin.component';
 import { ReactiveFormsModule } from '@angular/forms';
-/*import { RouterModule } from '@angular/router'; */
 
 @NgModule({
   declarations: [
