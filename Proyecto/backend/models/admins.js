@@ -5,7 +5,8 @@ var esquema = new mongoose.Schema(
         nombreAdmin : String,
         apellidoAdmin : String,
         correoAdmin : String,
-        contraseniaAdmin : String
+        contraseniaAdmin : String,
+        estado: String
     }
 );
 

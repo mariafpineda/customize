@@ -81,6 +81,9 @@ var bcrypt = require('bcrypt');
         });
     });
 
+// --------------- //
+
+
 //Get user
     router.get('/:idUser', function(req, res){
         usuarios.find({_id:  req.params.idUser})
