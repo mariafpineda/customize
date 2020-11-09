@@ -5,7 +5,27 @@
         fechaNacimiento : '19/09/1998',
         correoUsuario: 'mpineda@prueba.com',
         contraseniaUsuario : 'prueba.456',
-        genero : 'Femenino'
+        genero : 'Femenino',
+        compras: [
+            {
+                idCompra : 1
+                articulos: [
+                    {
+                        idProducto: '1',
+                        nombreProducto: 'Producto 1',
+                        cantidad : 1,
+                        precio: 15.5
+                    },
+                    {
+                        idProducto: '2',
+                        nombreProducto: 'Producto 2',
+                        cantidad : 4,
+                        precio: 20
+                    }
+                ],
+                totalCompra : 95.5
+            }
+        ]
     },
     { nombreUsuario: 'Juan',
         apellidoUsuairo: 'Perez',
@@ -13,7 +33,25 @@
         fechaNacimiento : '12/12/2000',
         correoUsuario: 'jperez@prueba.com',
         contraseniaUsuario : 'prueba.456',
-        genero : 'Masculino'
+        genero : 'Masculino',
+        compras: [
+                    articulos: [
+                    {
+                        idProducto: '1',
+                        nombreProducto: 'Producto 1',
+                        cantidad : 1,
+                        precio: 15.5
+                    },
+                    {
+                        idProducto: '2',
+                        nombreProducto: 'Producto 2',
+                        cantidad : 4,
+                        precio: 20
+                    }
+                ],
+                totalCompra : 95.5
+            }
+        ]
     },  
     { nombreUsuario: 'Jorge',
         apellidoUsuairo: 'Valle',
@@ -21,7 +59,8 @@
         fechaNacimiento : '12/12/2000',
         correoUsuario: 'jvalle@prueba.com',
         contraseniaUsuario : 'prueba.456',
-        genero : 'Masculino'
+        genero : 'Masculino',
+        compras : []
     },
     { nombreUsuario: 'Ana',
         apellidoUsuairo: 'Juarez',
@@ -29,6 +68,7 @@
         fechaNacimiento : '12/12/2000',
         correoUsuario: 'ajuarez@prueba.com',
         contraseniaUsuario : 'prueba.456',
-        genero : 'Femenino'
+        genero : 'Femenino',
+        compras: []
     }
 ]

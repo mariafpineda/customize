@@ -8,7 +8,8 @@ var esquema = new mongoose.Schema(
         fechaNacimiento : String,
         correoUsuario:String,
         contraseniaUsuario: String,
-        genero : String
+        genero : String,
+        compras : Array
     }
 )
 
