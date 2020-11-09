@@ -6,7 +6,6 @@ var usuariosRouter= require('./routers/usuarios-router');
 var adminsRouter= require('./routers/admins-router');
 var empresasRouter= require('./routers/empresas-router');
 var planesRouter= require('./routers/planes-router');
-var comprasRouter= require('./routers/compras-router');
 var plantillasRouter= require('./routers/plantillas-router');
 var shortcutsRouter= require('./routers/shortcuts-router');
 
@@ -21,8 +20,7 @@ app.use('/usuarios', usuariosRouter);
 app.use('/admins', adminsRouter);
 //app.use('/empresas', empresasRouter);
 app.use('/planes', planesRouter);
-/*app.use('/compras', comprasRouter);
-app.use('/plantillas', plantillasRouter);
+/*app.use('/plantillas', plantillasRouter);
 app.use('/shortcuts', shortcutsRouter);*/
 
 app.listen(8888, function(){
