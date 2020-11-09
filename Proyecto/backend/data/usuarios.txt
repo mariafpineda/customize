@@ -1,3 +1,4 @@
+
 [
     { nombreUsuario: 'María',
         apellidoUsuairo: 'Pineda',
@@ -7,26 +8,26 @@
         contraseniaUsuario : 'prueba.456',
         genero : 'Femenino',
         compras: [
+        {
+            idCompra : 1,
+            artículos : [
             {
-                idCompra : 1
-                articulos: [
-                    {
-                        idProducto: '1',
-                        nombreProducto: 'Producto 1',
-                        cantidad : 1,
-                        precio: 15.5
-                    },
-                    {
-                        idProducto: '2',
-                        nombreProducto: 'Producto 2',
-                        cantidad : 4,
-                        precio: 20
-                    }
-                ],
-                totalCompra : 95.5
+                idProducto: '1',
+                nombreProducto: 'Producto 1',
+                cantidad : 1,
+                precio: 15.5
+            },
+            {
+                idProducto: '2',
+                nombreProducto: 'Producto 2',
+                cantidad : 4,
+                precio: 20
             }
+            ],
+            totalCompra : 95.5
+        }
         ]
-    },
+    }, 
     { nombreUsuario: 'Juan',
         apellidoUsuairo: 'Perez',
         pais: 'Honduras',
@@ -35,23 +36,27 @@
         contraseniaUsuario : 'prueba.456',
         genero : 'Masculino',
         compras: [
-                    articulos: [
-                    {
-                        idProducto: '1',
-                        nombreProducto: 'Producto 1',
-                        cantidad : 1,
-                        precio: 15.5
-                    },
-                    {
-                        idProducto: '2',
-                        nombreProducto: 'Producto 2',
-                        cantidad : 4,
-                        precio: 20
-                    }
+            {
+                idCompra : 1,
+                artículos : [
+                {
+                    idProducto: '1',
+                    nombreProducto: 'Producto 1',
+                    cantidad : 1,
+                    precio: 15.5
+                },
+                {
+                    idProducto: '2',
+                    nombreProducto: 'Producto 2',
+                    cantidad : 4,
+                    precio: 20
+                }
                 ],
                 totalCompra : 95.5
             }
+            
         ]
+           
     },  
     { nombreUsuario: 'Jorge',
         apellidoUsuairo: 'Valle',
