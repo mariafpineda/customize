@@ -5,9 +5,9 @@ var esquema = new mongoose.Schema(
         nombreUsuario: String,
         apellidoUsuairo: String,
         pais: String,
-        fechaNacimiento : Date,
-        correoUsuario: String,
-        contraseniaUsuario : String,
+        fechaNacimiento : String,
+        correoUsuario:String,
+        contraseniaUsuario: String,
         genero : String
     }
 )
