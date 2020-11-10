@@ -1,4 +1,4 @@
-[
+db.admins.insertMany([
     {
         nombreAdmin : 'María',
         apellidoAdmin : 'Pineda',
@@ -6,4 +6,4 @@
         contraseniaAdmin : 'admin.456',
         estado: 'activo'
     }
-]
+]);

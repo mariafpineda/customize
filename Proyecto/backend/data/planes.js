@@ -1,4 +1,6 @@
-[
+const { db } = require("../models/admins");
+
+db.planes.insertMany([
     {
         nombrePlan : 'Plan básico',
         cantidadPaginas: 1,
@@ -17,4 +19,4 @@
         cantidadProductos : 10,
         precioPlan : 950
     }    
-]
+]);
