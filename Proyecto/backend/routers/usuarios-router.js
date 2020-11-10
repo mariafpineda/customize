@@ -3,7 +3,6 @@ var router = express.Router();
 var usuarios = require('../models/usuarios');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-const { route } = require('./admins-router');
 
 //Create user
     router.post('/', async (req, res) => {
@@ -139,7 +138,7 @@ const { route } = require('./admins-router');
             {
                 $push: {
                     "compras":{
-                        _id: req.body._id,
+                        _id: new mongoose.Types.ObjectId().toHexString(),
                         articulos: JSON.parse(req.body.articulos),
                         totalCompra: req.body.totalCompra
                     }
