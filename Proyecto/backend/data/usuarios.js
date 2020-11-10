@@ -1,6 +1,5 @@
-
-[
-    { nombreUsuario: 'María',
+db.usuarios.insertMany([
+    {   nombreUsuario: 'María',
         apellidoUsuairo: 'Pineda',
         pais: 'Honduras',
         fechaNacimiento : '19/09/1998',
@@ -9,20 +8,18 @@
         genero : 'Femenino',
         compras: [
         {
-            idCompra : 1,
-            artículos : [
-            {
-                idProducto: '1',
-                nombreProducto: 'Producto 1',
-                cantidad : 1,
-                precio: 15.5
-            },
-            {
-                idProducto: '2',
-                nombreProducto: 'Producto 2',
-                cantidad : 4,
-                precio: 20
-            }
+            _id : ObjectId(),
+            "articulos" : [
+                {
+                    nombreProducto: 'Producto 1',
+                    cantidad : 1,
+                    precio: 15.5
+                },
+                {
+                    nombreProducto: 'Producto 2',
+                    cantidad : 4,
+                    precio: 20
+                }
             ],
             totalCompra : 95.5
         }
@@ -37,16 +34,14 @@
         genero : 'Masculino',
         compras: [
             {
-                idCompra : 1,
-                artículos : [
+                _id : ObjectId(),
+                "articulos" : [
                 {
-                    idProducto: '1',
                     nombreProducto: 'Producto 1',
                     cantidad : 1,
                     precio: 15.5
                 },
                 {
-                    idProducto: '2',
                     nombreProducto: 'Producto 2',
                     cantidad : 4,
                     precio: 20
@@ -76,4 +71,4 @@
         genero : 'Femenino',
         compras: []
     }
-]
+])

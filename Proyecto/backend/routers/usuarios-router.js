@@ -3,6 +3,7 @@ var router = express.Router();
 var usuarios = require('../models/usuarios');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+const { route } = require('./admins-router');
 
 //Create user
     router.post('/', async (req, res) => {
@@ -96,5 +97,64 @@ var bcrypt = require('bcrypt');
         });
     });
 
+//Get purchases
+    router.get('/:idUser/compras', function(req, res){
+        usuarios.find(
+            { _id : mongoose.Types.ObjectId(req.params.idUser)},
+            {compras:true}
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        })
+    })
 
+//Get purchase
+    router.get('/:idUser/compras/:idCompra', function(req, res){
+        usuarios.find(
+            {
+                _id: req.params.idUser,
+                "compras._id": mongoose.Types.ObjectId(req.params.idCompra)
+            },
+            {"compras.$":true}
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        })
+    })
+
+// Add purchase 
+
+    router.post('/:idUser/nuevaCompra', function(req, res){
+        console.log(JSON.parse(req.body.articulos));
+        usuarios.update(
+            {
+                _id: mongoose.Types.ObjectId(req.params.idUser)
+            },
+            {
+                $push: {
+                    "compras":{
+                        _id: req.body._id,
+                        articulos: JSON.parse(req.body.articulos),
+                        totalCompra: req.body.totalCompra
+                    }
+                }
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        })
+    });
+
+    let prueba = '{"nombreProducto": "Producto 1","cantidad": 1,"precio": 15.5}';
+    let prueba2= JSON.parse(prueba)
+    console.log(prueba2)
 module.exports = router;
