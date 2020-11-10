@@ -7,3 +7,4 @@ var esquema = new mongoose.Schema(
     }
 );
 
+module.exports = mongoose.model('shortcuts', esquema);

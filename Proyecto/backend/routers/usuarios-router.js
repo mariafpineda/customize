@@ -130,7 +130,6 @@ var bcrypt = require('bcrypt');
 // Add purchase 
 
     router.post('/:idUser/nuevaCompra', function(req, res){
-        console.log(JSON.parse(req.body.articulos));
         usuarios.update(
             {
                 _id: mongoose.Types.ObjectId(req.params.idUser)
