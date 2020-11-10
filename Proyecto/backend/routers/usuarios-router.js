@@ -154,7 +154,4 @@ const { route } = require('./admins-router');
         })
     });
 
-    let prueba = '{"nombreProducto": "Producto 1","cantidad": 1,"precio": 15.5}';
-    let prueba2= JSON.parse(prueba)
-    console.log(prueba2)
 module.exports = router;
