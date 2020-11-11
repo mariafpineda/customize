@@ -20,7 +20,7 @@ app.use('/usuarios', usuariosRouter);
 app.use('/admins', adminsRouter);
 //app.use('/empresas', empresasRouter);
 app.use('/planes', planesRouter);
-//app.use('/plantillas', plantillasRouter);
+app.use('/plantillas', plantillasRouter);
 app.use('/shortcuts', shortcutsRouter);
 
 app.listen(8888, function(){
