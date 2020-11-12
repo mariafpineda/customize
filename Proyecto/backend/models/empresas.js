@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var esquema = new mongoose.Schema(
     {
         nombreEmpresa : String,
-        nombreDomino : String,
+        nombreDominio : String,
         rubro : String,
         pais :  String,
         correoEmpresa : String,
