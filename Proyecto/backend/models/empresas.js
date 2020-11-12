@@ -11,7 +11,11 @@ var esquema = new mongoose.Schema(
         planActual : String,
         productos : Array,
         categorias: Array,
-        estado : String
+        estado : String,
+        imagenes : Array,
+        video: Array,
+        archivos : Array
+
     }
 )
 

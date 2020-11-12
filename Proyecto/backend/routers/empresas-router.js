@@ -3,6 +3,7 @@ var router = express.Router();
 var empresas = require('../models/empresas');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+const usuarios = require('../models/usuarios');
 
 //Create brand
     router.post('/', async (req, res) => {
@@ -19,7 +20,11 @@ var bcrypt = require('bcrypt');
                 planActual : req.body.idPlan,
                 productos : [],
                 categorias: [],
-                estado : 'activo'
+                imagenes : [],
+                videos : [],
+                archivos : [],
+                estado : 'activo',
+                paginas : []
             }
         );
         
@@ -89,15 +94,47 @@ var bcrypt = require('bcrypt');
 
 
 //Get brand
-    
+    router.get('/:idBrand', function(req, res){
+        empresas.find(
+            {
+                _id: req.params.idBrand
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        });
+    })
 
 //Update plan
+    router.post('/:idBrand/plan/:idPlan', function(req, res){
+        empresas.update(
+            {
+                _id: req.params.idBrand,
+                planActual : req.params.idPlan
+            },
+            {
+                planActual : req.body.plan
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.send();
+        })
+    });
+
+
+//Add products
 
 
 //Update products
 
 
-//Update category
+//Add category
 
 
 //Update state

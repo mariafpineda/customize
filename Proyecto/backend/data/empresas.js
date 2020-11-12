@@ -17,7 +17,39 @@ db.empresas.insertMany(
                 }
             ],
             categorias: ['Joyería'],
-            estado : 'activo'
+            estado : 'activo',
+            imagenes : [
+                {
+                    _id: ObjectId(),
+                    rutaImg : ""
+                }
+            ],
+            videos : [
+                {
+                    _id: ObjectId(),
+                    rutaVideo : ""
+                }
+            ],
+            archivos : [
+                {
+                    _id: ObjectId(),
+                    rutaFile : ""
+                }
+            ],
+            paginas : [
+                {
+                    _id: ObjectId(),
+                    encabezadoGenerico : "",
+                    piePaginaGenerico : "",
+                    favicon: "",
+                    logitipo : "",
+                    tituloSitio : "",
+                    descripcion : "",
+                    palabrasClave : [],
+                    cssExtra : "",
+                    jsExtra : ""
+                }
+            ]
         }
     ]
 )
