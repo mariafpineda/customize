@@ -92,21 +92,58 @@ const usuarios = require('../models/usuarios');
 
 // ---------------- //
 
-
 //Get brand
     router.get('/:idBrand', function(req, res){
-        empresas.find(
-            {
-                _id: req.params.idBrand
-            }
-        ).then(result => {
-            res.send(result);
-            res.end();
-        }).catch(error => {
-            res.send(error);
-            res.end();
-        });
-    })
+    empresas.find(
+        {
+            _id: req.params.idBrand
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
+})
+
+//Add products
+
+//Update products
+
+//Delete product
+
+//Add category
+
+//Add image/images
+
+//Update image
+
+//Delete image
+
+//Add video/videos
+
+//Update video
+
+//Delete video
+
+//Add files
+
+//Update file
+
+//Delete file
+
+//Add page
+
+// Update page
+
+// Delete page
+
+//Add source code to page
+
+//Update source code
+
+//Delete source code
 
 //Update plan
     router.post('/:idBrand/plan/:idPlan', function(req, res){
@@ -128,20 +165,9 @@ const usuarios = require('../models/usuarios');
     });
 
 
-//Add products
-
-
-//Update products
-
-
-//Add category
-
-
 //Update state
 
 
-
-//Delete product
 
 
 

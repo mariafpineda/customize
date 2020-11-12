@@ -46,6 +46,7 @@ db.empresas.insertMany(
                     tituloSitio : "",
                     descripcion : "",
                     palabrasClave : [],
+                    codigo:"",
                     cssExtra : "",
                     jsExtra : ""
                 }
