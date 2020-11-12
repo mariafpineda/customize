@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended : true}));
 
 app.use('/usuarios', usuariosRouter);
 app.use('/admins', adminsRouter);
-//app.use('/empresas', empresasRouter);
+app.use('/empresas', empresasRouter);
 app.use('/planes', planesRouter);
 app.use('/plantillas', plantillasRouter);
 app.use('/shortcuts', shortcutsRouter);

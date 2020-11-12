@@ -49,25 +49,59 @@ var bcrypt = require('bcrypt');
     router.put('/:idBrand', async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(req.body.contrasenia, salt);
-        await 
+        await empresas.update(
+            {
+                _id : req.params.idBrand
+            },
+            {
+                nombreEmpresa : req.body.nombre,
+                nombreDominio : req.body.dominio,
+                rubro : req.body.rubro,
+                pais :  req.body.pais,
+                correoEmpresa : req.body.correo,
+                contraseniaEmpresa : hash
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        })
     })
 
 //Delete brand
-
+    router.delete('/:idBrand', function (req, res){
+        empresas.remove(
+            {
+                _id : req.params.idBrand
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        });
+    });
 
 // ---------------- //
 
 
 //Get brand
+    
 
-
-//Update state
+//Update plan
 
 
 //Update products
 
 
 //Update category
+
+
+//Update state
+
 
 
 //Delete product
