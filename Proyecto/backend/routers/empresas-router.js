@@ -108,10 +108,66 @@ const usuarios = require('../models/usuarios');
 })
 
 //Add products
+    router.post('/:idBrand/nuevoProducto', function(req, res){
+        empresas.update(
+            {
+                _id: mongoose.Types.ObjectId(req.params.idBrand)
+            },
+            {
+                $push : {
+                    "productos" : {
+                        _id: new mongoose.Types.ObjectId().toHexString(),
+                        nombreProducto: req.body.nombreProducto,
+                        precio: req.body.precio,
+                        categoria :  req.body.categoria
+                    }
+                }
+            }
+        ).then(result => {
+            res.send(result);
+            res.end()
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        });
+    });
 
 //Update products
+    router.put('/:idBrand/productos/:idProduct', function (req, res) {
+        empresas.update(
+            {
+                _id: mongoose.Types.ObjectId(req.params.idBrand),
+                "productos._id": mongoose.Types.ObjectId(req.params.idProduct)
+            },
+            {
+                nombreProducto: req.body.nombreProducto,
+                precio: req.body.precio,
+                categoria :  req.body.categoria
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        });
+    });
 
 //Delete product
+    router.delete('/:idBrand/productos/:idProduct', function (req, res){
+        empresas.remove(
+            {
+                _id: mongoose.Types.ObjectId(req.params.idBrand),
+                "productos._id" : mongoose.Types.ObjectId(req.params.idProduct)
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        })
+    })
 
 //Add category
 
@@ -135,9 +191,9 @@ const usuarios = require('../models/usuarios');
 
 //Add page
 
-// Update page
+//Update page
 
-// Delete page
+//Delete page
 
 //Add source code to page
 
