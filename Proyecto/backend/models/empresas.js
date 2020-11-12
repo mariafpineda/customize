@@ -14,7 +14,8 @@ var esquema = new mongoose.Schema(
         estado : String,
         imagenes : Array,
         video: Array,
-        archivos : Array
+        archivos : Array,
+        paginas :  Array
 
     }
 )
