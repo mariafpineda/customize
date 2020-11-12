@@ -9,7 +9,8 @@ var esquema = new mongoose.Schema(
         correoEmpresa : String,
         contraseniaEmpresa : String,
         planActual : String,
-        productos : Array
+        productos : Array,
+        categorias: Array
     }
 )
 
