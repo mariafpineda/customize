@@ -133,16 +133,16 @@ const usuarios = require('../models/usuarios');
     });
 
 //Update products
-    router.put('/:idBrand/productos/:idProduct', function (req, res) {
+    router.post('/:idBrand/productos/:idProduct', function (req, res) {
         empresas.update(
             {
-                _id: mongoose.Types.ObjectId(req.params.idBrand),
-                "productos._id": mongoose.Types.ObjectId(req.params.idProduct)
+                _id: req.params.idBrand,
+                "productos._id": req.params.idProduct
             },
             {
-                nombreProducto: req.body.nombreProducto,
-                precio: req.body.precio,
-                categoria :  req.body.categoria
+                "productos.$.nombreProducto": req.body.nombreProducto,
+                "productos.$.precio" : req.body.precio,
+                "productos.$.categoria" :  req.body.categoria
             }
         ).then(result => {
             res.send(result);
@@ -154,22 +154,27 @@ const usuarios = require('../models/usuarios');
     });
 
 //Delete product
-    router.delete('/:idBrand/productos/:idProduct', function (req, res){
-        empresas.remove(
+ //utilizar un get para obtener los productos, se saca del array con un splice y luego se vuelve a subir con un update
+
+//Get products
+    router.get('/:idBrand/productos', function(req, res){
+        empresas.find(
             {
-                _id: mongoose.Types.ObjectId(req.params.idBrand),
-                "productos._id" : mongoose.Types.ObjectId(req.params.idProduct)
+                _id: req.params.idBrand
+            },
+            {
+                productos:true
             }
         ).then(result => {
             res.send(result);
             res.end();
         }).catch(error => {
             res.send(error);
-            res.end();
+            res.end()
         })
     })
 
-//Add category
+ //Add category
 
 //Add image/images
 
