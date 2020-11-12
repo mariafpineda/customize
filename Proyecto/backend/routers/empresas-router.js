@@ -228,7 +228,22 @@ const usuarios = require('../models/usuarios');
 
 //Update state
 
-
+router.post('/:idBrand/estado/:estado', function(req, res){
+    empresas.update(
+        {
+            _id: req.params.idBrand,
+        },
+        {
+            estado: req.params.estado
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.send();
+    })
+});
 
 
 
