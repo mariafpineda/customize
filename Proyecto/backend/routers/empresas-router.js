@@ -291,6 +291,43 @@ const usuarios = require('../models/usuarios');
     });
 
 //Delete image
+    router.delete('/:idBrand/eliminarImagen/:idImagen', function (req, res) {
+        let imagenes; 
+        empresas.find(
+            {
+                _id: req.params.idBrand
+            },
+            {
+                "imagenes":true,
+                _id: false
+            }
+        ).then(result => {
+            res.send(result);
+            imagenes = result[0].imagenes;
+            for(let i in imagenes){
+                if(imagenes[i]._id==req.params.idImagen){
+                    imagenes.splice(i, 1);
+                }
+            }
+                empresas.update(
+                    {
+                        _id: req.params.idBrand
+                    },
+                    {
+                        imagenes : imagenes
+                    }
+                ).then(
+
+                ).catch(error2 => {
+                    res.send(error2);
+                    res.end();
+                })
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        });
+    })
 
 //Get images
     router.get('/:idBrand/imagenes', function(req, res){
