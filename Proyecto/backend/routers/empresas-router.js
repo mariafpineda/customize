@@ -21,7 +21,7 @@ const usuarios = require('../models/usuarios');
                 productos : [],
                 categorias: [],
                 imagenes : [],
-                video : [],
+                videos : [],
                 archivos : [],
                 estado : 'activo',
                 paginas : []
@@ -349,12 +349,104 @@ const usuarios = require('../models/usuarios');
     });
 
 //Add video
-
-//Get videos
+    router.post('/:idBrand/nuevoVideo', function(req, res){
+        empresas.update(
+            {
+                _id: req.params.idBrand
+            },
+            {
+                $push: {
+                    "videos" : {
+                        _id : new mongoose.Types.ObjectId(),
+                        rutaVideo : req.body.rutaVideo
+                    }
+                }
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        });
+    });
 
 //Update video
+    router.post('/:idBrand/videos/:idVideo', function (req, res) {
+        empresas.update(
+            {
+                _id: req.params.idBrand,
+                "videos._id": mongoose.Types.ObjectId(req.params.idVideo)
+            },
+            {
+                "videos.$.rutaVideo": req.body.ruta
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        });
+    });
 
 //Delete video
+router.delete('/:idBrand/eliminarVideo/:idVideo', function (req, res) {
+    let videos; 
+    empresas.find(
+        {
+            _id: req.params.idBrand
+        },
+        {
+            "videos":true,
+            _id: false
+        }
+    ).then(result => {
+        res.send(result);
+        videos = result[0].videos;
+        for(let i in videos){
+            if(videos[i]._id==req.params.idVideo){
+                videos.splice(i, 1);
+            }
+        }
+            empresas.update(
+                {
+                    _id: req.params.idBrand
+                },
+                {
+                    videos : videos
+                }
+            ).then(
+
+            ).catch(error2 => {
+                res.send(error2);
+                res.end();
+            })
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
+})
+
+//Get videos
+router.get('/:idBrand/videos', function(req, res){
+    empresas.find(
+        {
+            _id: req.params.idBrand
+        },
+        {
+            videos: true,
+            _id: false
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(result => {
+        res.send(error);
+        res.end();
+    });
+});
 
 //Add files
 

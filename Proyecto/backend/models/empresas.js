@@ -13,7 +13,7 @@ var esquema = new mongoose.Schema(
         categorias: Array,
         estado : String,
         imagenes : Array,
-        video: Array,
+        videos: Array,
         archivos : Array,
         paginas :  Array
 
