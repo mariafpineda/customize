@@ -21,7 +21,7 @@ const usuarios = require('../models/usuarios');
                 productos : [],
                 categorias: [],
                 imagenes : [],
-                videos : [],
+                video : [],
                 archivos : [],
                 estado : 'activo',
                 paginas : []
@@ -209,23 +209,59 @@ const usuarios = require('../models/usuarios');
         })
     })
 
- //Add category
+//Add category
+    router.post('/:idBrand/nuevaCategoria/:categoria', function(req, res){
+        empresas.update(
+            {
+                _id: req.params.idBrand
+            },
+            {
+                $push: {
+                    "categorias" : req.params.categoria
+                }
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        });
+    });
+
+//Get categories
+    router.get('/:idBrand/categorias', function(req, res){
+        empresas.find(
+            {
+                _id: req.params.idBrand
+            },
+            {
+                categorias: true,
+                _id: false
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(result => {
+            res.send(error);
+            res.end();
+        });
+    });
 
 //Add image/images
 
-//Update image
+//Get images
 
-//Delete image
 
 //Add video/videos
 
-//Update video
+//Get videos
 
 //Delete video
 
 //Add files
 
-//Update file
+//Get files
 
 //Delete file
 
@@ -235,11 +271,12 @@ const usuarios = require('../models/usuarios');
 
 //Delete page
 
+//Get page
+
 //Add source code to page
 
 //Update source code
 
-//Delete source code
 
 //Update plan
     router.post('/:idBrand/plan/:idPlan', function(req, res){
@@ -260,10 +297,8 @@ const usuarios = require('../models/usuarios');
         })
     });
 
-
 //Update state
-
-router.post('/:idBrand/estado/:estado', function(req, res){
+    router.post('/:idBrand/estado/:estado', function(req, res){
     empresas.update(
         {
             _id: req.params.idBrand,
