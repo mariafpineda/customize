@@ -155,7 +155,24 @@ const usuarios = require('../models/usuarios');
 
 //Delete product
     router.delete('/:idBrand/productos/:idProducto', function(req, res){
-        
+        let productos;
+        empresas.find(
+            {
+                _id: req.params.idBrand,
+                "productos._id": req.params.idProduct
+            },
+            {
+                "productos.$":true
+            }
+        ).then(result => {
+            res.send(result);
+            productos = result;
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        })
+        console.log(productos);
     })
 
 //Get products
