@@ -27,7 +27,6 @@ const usuarios = require('../models/usuarios');
                 paginas : []
             }
         );
-        console.log(typeof(brand));
         await brand.save().then(result => {
             res.send(result);
             res.end();
@@ -179,10 +178,9 @@ const usuarios = require('../models/usuarios');
                     {
                         productos : productos
                     }
-                ).then(/*result2 => {
-                    res.send(result2);
-                    res.end();
-                }*/).catch(error2 => {
+                ).then(
+
+                ).catch(error2 => {
                     res.send(error2);
                     res.end();
                 })
