@@ -27,7 +27,7 @@ const usuarios = require('../models/usuarios');
                 paginas : []
             }
         );
-        
+        console.log(typeof(brand));
         await brand.save().then(result => {
             res.send(result);
             res.end();
@@ -154,8 +154,8 @@ const usuarios = require('../models/usuarios');
     });
 
 //Delete product
-    router.delete('/:idBrand/eliminarProductos/:idProducto', function(req, res){
-        let productos;
+    router.delete('/:idBrand/eliminarProductos/:idProducto', function (req, res) {
+        let productos; 
         empresas.find(
             {
                 _id: req.params.idBrand
@@ -166,10 +166,26 @@ const usuarios = require('../models/usuarios');
             }
         ).then(result => {
             res.send(result);
-            productos = JSON.stringify(result);
-            productos.forEach(function (producto, index){
-                console.log(producto, index);
-            });
+            productos = result[0].productos;
+            for(let i in productos){
+                if(productos[i]._id==req.params.idProducto){
+                    productos.splice(i, 1);
+                }
+            }
+                empresas.update(
+                    {
+                        _id: req.params.idBrand
+                    },
+                    {
+                        productos : productos
+                    }
+                ).then(/*result2 => {
+                    res.send(result2);
+                    res.end();
+                }*/).catch(error2 => {
+                    res.send(error2);
+                    res.end();
+                })
             res.end();
         }).catch(error => {
             res.send(error);
