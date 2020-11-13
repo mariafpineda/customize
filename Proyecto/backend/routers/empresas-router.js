@@ -154,25 +154,27 @@ const usuarios = require('../models/usuarios');
     });
 
 //Delete product
-    router.delete('/:idBrand/productos/:idProducto', function(req, res){
+    router.delete('/:idBrand/eliminarProductos/:idProducto', function(req, res){
         let productos;
         empresas.find(
             {
-                _id: req.params.idBrand,
-                "productos._id": req.params.idProduct
+                _id: req.params.idBrand
             },
             {
-                "productos.$":true
+                "productos":true,
+                _id: false
             }
         ).then(result => {
             res.send(result);
-            productos = result;
+            productos = JSON.stringify(result);
+            productos.forEach(function (producto, index){
+                console.log(producto, index);
+            });
             res.end();
         }).catch(error => {
             res.send(error);
             res.end();
-        })
-        console.log(productos);
+        });
     })
 
 //Get products
