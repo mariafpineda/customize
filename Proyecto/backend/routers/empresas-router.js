@@ -248,10 +248,48 @@ const usuarios = require('../models/usuarios');
         });
     });
 
-//Add image/images
+//Add image
+    router.post('/:idBrand/nuevaImagen', function(req, res){
+        empresas.update(
+            {
+                _id: req.params.idBrand
+            },
+            {
+                $push: {
+                    "imagenes" : {
+                        _id : new mongoose.Types.ObjectId().toHexString(),
+                        rutaImg : req.body.rutaImg
+                    }
+                }
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        });
+});
+
 
 //Get images
-
+    router.get('/:idBrand/images', function(req, res){
+        empresas.find(
+            {
+                _id: req.params.idBrand
+            },
+            {
+                imagenes: true,
+                _id: false
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(result => {
+            res.send(error);
+            res.end();
+        });
+    });
 
 //Add video/videos
 
