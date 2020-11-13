@@ -115,7 +115,7 @@ const usuarios = require('../models/usuarios');
             {
                 $push : {
                     "productos" : {
-                        _id: new mongoose.Types.ObjectId().toHexString(),
+                        _id: new mongoose.Types.ObjectId(),
                         nombreProducto: req.body.nombreProducto,
                         precio: req.body.precio,
                         categoria :  req.body.categoria
@@ -136,7 +136,7 @@ const usuarios = require('../models/usuarios');
         empresas.update(
             {
                 _id: req.params.idBrand,
-                "productos._id": req.params.idProduct
+                "productos._id": mongoose.Types.ObjectId(req.params.idProduct)
             },
             {
                 "productos.$.nombreProducto": req.body.nombreProducto,
@@ -257,7 +257,7 @@ const usuarios = require('../models/usuarios');
             {
                 $push: {
                     "imagenes" : {
-                        _id : new mongoose.Types.ObjectId().toHexString(),
+                        _id : new mongoose.Types.ObjectId(),
                         rutaImg : req.body.rutaImg
                     }
                 }
@@ -271,9 +271,29 @@ const usuarios = require('../models/usuarios');
         });
 });
 
+//Update image
+    router.post('/:idBrand/imagenes/:idImage', function (req, res) {
+        empresas.update(
+            {
+                _id: req.params.idBrand,
+                "imagenes._id": mongoose.Types.ObjectId(req.params.idImage)
+            },
+            {
+                "imagenes.$.rutaImg": req.body.ruta
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        });
+    });
+
+//Delete image
 
 //Get images
-    router.get('/:idBrand/images', function(req, res){
+    router.get('/:idBrand/imagenes', function(req, res){
         empresas.find(
             {
                 _id: req.params.idBrand
@@ -291,15 +311,19 @@ const usuarios = require('../models/usuarios');
         });
     });
 
-//Add video/videos
+//Add video
 
 //Get videos
+
+//Update video
 
 //Delete video
 
 //Add files
 
 //Get files
+
+//Update file 
 
 //Delete file
 

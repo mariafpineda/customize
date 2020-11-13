@@ -105,4 +105,5 @@ router.put('/:idTemplate/imagenes', function(req, res){
 })
 
 
+
 module.exports = router;

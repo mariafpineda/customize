@@ -110,6 +110,7 @@ var bcrypt = require('bcrypt');
         })
     })
 
+    
 //Get purchase
     router.get('/:idUser/compras/:idCompra', function(req, res){
         usuarios.find(
@@ -137,7 +138,7 @@ var bcrypt = require('bcrypt');
             {
                 $push: {
                     "compras":{
-                        _id: new mongoose.Types.ObjectId().toHexString(),
+                        _id: new mongoose.Types.ObjectId(),
                         articulos: JSON.parse(req.body.articulos),
                         totalCompra: req.body.totalCompra
                     }
