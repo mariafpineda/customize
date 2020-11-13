@@ -154,7 +154,9 @@ const usuarios = require('../models/usuarios');
     });
 
 //Delete product
- //utilizar un get para obtener los productos, se saca del array con un splice y luego se vuelve a subir con un update
+    router.delete('/:idBrand/productos/:idProducto', function(req, res){
+        
+    })
 
 //Get products
     router.get('/:idBrand/productos', function(req, res){
