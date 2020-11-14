@@ -42,7 +42,7 @@ db.empresas.insertMany(
                     encabezadoGenerico : "",
                     piePaginaGenerico : "",
                     favicon: "",
-                    logitipo : "",
+                    logotipo : "",
                     tituloSitio : "",
                     descripcion : "",
                     palabrasClave : [],

@@ -547,18 +547,164 @@ router.post('/:idBrand/archivos/:idFile', function (req, res) {
     });
     });
 
-//Add page
+//Add pages
 
-//Update page
+    router.post('/:idBrand/nuevaPagina', function(req, res){
+        empresas.update(
+            {
+                _id: req.params.idBrand
+            },
+            {
+                $push: {
+                    "paginas" : {
+                        _id : new mongoose.Types.ObjectId(),
+                        encabezadoGenerico: req.body.encabezado,
+                        piePaginaGenerico: req.body.footer,
+                        favicon: req.body.favicon,
+                        logotipo: req.body.logotipo,
+                        tituloSitio: req.body.titulo,
+                        descripcion: req.body.descripcion,
+                        palabrasClave: req.body.palabrasClave,
+                        codigo: req.body.codigo,
+                        cssExtra: req.body.css,
+                        jsExtra: req.body.js
+                    }
+                }
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        });
+    });
 
-//Delete page
+//Update pages
+
+router.post('/:idBrand/paginas/:idPage', function (req, res) {
+    empresas.update(
+        {
+            _id: req.params.idBrand,
+            "paginas._id": mongoose.Types.ObjectId(req.params.idPage)
+        },
+        {
+            "paginas.$.encabezadoGenerico": req.body.encabezado,
+            "paginas.$.piePaginaGenerico": req.body.footer,
+            "paginas.$.favicon": req.body.favicon,
+            "paginas.$.logotipo": req.body.logotipo,
+            "paginas.$.tituloSitio": req.body.titulo,
+            "paginas.$.descripcion": req.body.descripcion,
+            "paginas.$.palabrasClave": req.body.palabrasClave
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
+});
+
+//Delete pages
+    router.delete('/:idBrand/eliminarPagina/:idPage', function (req, res) {
+    let paginas; 
+    empresas.find(
+        {
+            _id: req.params.idBrand
+        },
+        {
+            "paginas":true,
+            _id: false
+        }
+    ).then(result => {
+        paginas = result[0].paginas;
+        for(let i in paginas){
+            if(paginas[i]._id==req.params.idPage){
+                paginas.splice(i, 1);
+            }
+        }
+            empresas.update(
+                {
+                    _id: req.params.idBrand
+                },
+                {
+                    paginas : paginas
+                }
+            ).then(
+
+            ).catch(error2 => {
+                res.send(error2);
+                res.end();
+            })
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
+    })
+
+//Get pages
+
+    router.get('/:idBrand/paginas', function(req, res){
+    empresas.find(
+        {
+            _id: req.params.idBrand
+        },
+        {
+            paginas: true,
+            _id: false
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(result => {
+        res.send(error);
+        res.end();
+    });
+    });
 
 //Get page
+    router.get('/:idBrand/paginas/:idPage', function(req, res){
+        empresas.find(
+            {
+                _id: req.params.idBrand,
+                "paginas._id" : mongoose.Types.ObjectId(req.params.idPage)
+            },
+            {
+                "paginas.$": true,
+                _id: false
+            }
+        ).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(result => {
+            res.send(error);
+            res.end();
+        });
+    });
 
-//Add source code to page
 
 //Update source code
-
+router.post('/:idBrand/paginas/:idPage/codigo', function (req, res) {
+    empresas.update(
+        {
+            _id: req.params.idBrand,
+            "paginas._id": mongoose.Types.ObjectId(req.params.idPage)
+        },
+        {
+            "paginas.$.codigo": req.body.codigo,
+            "paginas.$.cssExtra": req.body.css,
+            "paginas.$.jsExtra": req.body.js
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
+});
 
 //Update plan
     router.post('/:idBrand/plan/:idPlan', function(req, res){
