@@ -3,7 +3,6 @@ var router = express.Router();
 var empresas = require('../models/empresas');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-const usuarios = require('../models/usuarios');
 
 //Create brand
     router.post('/', async (req, res) => {
@@ -47,7 +46,6 @@ const usuarios = require('../models/usuarios');
             res.end();
         });
     });
-
 
 //Update brand
     router.put('/:idBrand', async (req, res) => {
@@ -391,7 +389,7 @@ const usuarios = require('../models/usuarios');
     });
 
 //Delete video
-router.delete('/:idBrand/eliminarVideo/:idVideo', function (req, res) {
+    router.delete('/:idBrand/eliminarVideo/:idVideo', function (req, res) {
     let videos; 
     empresas.find(
         {
@@ -430,7 +428,7 @@ router.delete('/:idBrand/eliminarVideo/:idVideo', function (req, res) {
 })
 
 //Get videos
-router.get('/:idBrand/videos', function(req, res){
+    router.get('/:idBrand/videos', function(req, res){
     empresas.find(
         {
             _id: req.params.idBrand
@@ -449,7 +447,7 @@ router.get('/:idBrand/videos', function(req, res){
 });
 
 //Add files
-router.post('/:idBrand/nuevoArchivo', function(req, res){
+    router.post('/:idBrand/nuevoArchivo', function(req, res){
     empresas.update(
         {
             _id: req.params.idBrand
@@ -472,7 +470,7 @@ router.post('/:idBrand/nuevoArchivo', function(req, res){
 });
 
 //Update files
-router.post('/:idBrand/archivos/:idFile', function (req, res) {
+    router.post('/:idBrand/archivos/:idFile', function (req, res) {
     empresas.update(
         {
             _id: req.params.idBrand,
@@ -582,7 +580,7 @@ router.post('/:idBrand/archivos/:idFile', function (req, res) {
 
 //Update pages
 
-router.post('/:idBrand/paginas/:idPage', function (req, res) {
+    router.post('/:idBrand/paginas/:idPage', function (req, res) {
     empresas.update(
         {
             _id: req.params.idBrand,
@@ -684,9 +682,8 @@ router.post('/:idBrand/paginas/:idPage', function (req, res) {
         });
     });
 
-
 //Update source code
-router.post('/:idBrand/paginas/:idPage/codigo', function (req, res) {
+    router.post('/:idBrand/paginas/:idPage/codigo', function (req, res) {
     empresas.update(
         {
             _id: req.params.idBrand,
