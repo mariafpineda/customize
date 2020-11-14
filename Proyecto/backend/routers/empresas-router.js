@@ -449,12 +449,103 @@ router.get('/:idBrand/videos', function(req, res){
 });
 
 //Add files
+router.post('/:idBrand/nuevoArchivo', function(req, res){
+    empresas.update(
+        {
+            _id: req.params.idBrand
+        },
+        {
+            $push: {
+                "archivos" : {
+                    _id : new mongoose.Types.ObjectId(),
+                    rutaFile : req.body.rutaFile
+                }
+            }
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
+});
+
+//Update files
+router.post('/:idBrand/archivos/:idFile', function (req, res) {
+    empresas.update(
+        {
+            _id: req.params.idBrand,
+            "archivos._id": mongoose.Types.ObjectId(req.params.idFile)
+        },
+        {
+            "archivos.$.rutaFile": req.body.ruta
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
+});
+
+//Delete files
+    router.delete('/:idBrand/eliminarArchivo/:idFile', function (req, res) {
+    let archivos; 
+    empresas.find(
+        {
+            _id: req.params.idBrand
+        },
+        {
+            "archivos":true,
+            _id: false
+        }
+    ).then(result => {
+        archivos = result[0].archivos;
+        for(let i in archivos){
+            if(archivos[i]._id==req.params.idFile){
+                archivos.splice(i, 1);
+            }
+        }
+            empresas.update(
+                {
+                    _id: req.params.idBrand
+                },
+                {
+                    archivos : archivos
+                }
+            ).then(
+
+            ).catch(error2 => {
+                res.send(error2);
+                res.end();
+            })
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
+    })
 
 //Get files
-
-//Update file 
-
-//Delete file
+    router.get('/:idBrand/archivos', function(req, res){
+    empresas.find(
+        {
+            _id: req.params.idBrand
+        },
+        {
+            archivos: true,
+            _id: false
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(result => {
+        res.send(error);
+        res.end();
+    });
+    });
 
 //Add page
 
