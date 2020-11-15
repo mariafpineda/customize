@@ -1,9 +1,19 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
 
-  constructor() { }
+  private url = 'http://localhost:8888/usuarios';
+
+  constructor(private httpClient:HttpClient) { }
+
+  signUp(user):Observable<any>{
+    return this.httpClient.post(this.url+'/signup', user);
+  }
+
+
 }

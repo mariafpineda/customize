@@ -41,16 +41,10 @@ router.post("/signin", async (req, res) => {
                 estado: 'activo'
             }
         );
-        await admin.save()/*.then(result => {
-            res.send(result);
-            res.end();
-        }).catch(error => {
-            res.send(error);
-            res.end();
-        });*/
+        await admin.save()
 
         const token = jwt.sign({_id: admin._id}, 'secretkey');
-        res.status(200).json({"message": "ok"})
+        res.status(200).json({"message": "ok"});
     });
 
 //Read admins
@@ -135,6 +129,6 @@ function verifyToken(req, res, next){
 
     const payload = jwt.verify(token, 'secretkey')
     console.log(payload);
-    req.userId = payload._id;
+    req.adminId = payload._id;
     next();
 }

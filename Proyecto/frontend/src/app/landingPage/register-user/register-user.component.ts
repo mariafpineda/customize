@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-register-user',
@@ -9,22 +10,36 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 export class RegisterUserComponent implements OnInit {
 
   formularioRegistroUsers = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    lastname: new FormControl('', [Validators.required]),
-    country: new FormControl('', [Validators.required]),
-    birthday: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    confirmEmail: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('', [Validators.required])
+    nombreUsuario: new FormControl('', [Validators.required]),
+    apellidoUsuario: new FormControl('', [Validators.required]),
+    pais: new FormControl('', [Validators.required]),
+    fechaNacimiento: new FormControl('', [Validators.required]),
+    correoUsuario: new FormControl('', [Validators.required, Validators.email]),
+    contraseniaUsuario: new FormControl('', [Validators.required]),
+    genero : new FormControl('', [Validators.required])
   });
-  constructor() { }
+
+  genero = '';
+  onItemChange(value){
+    this.genero = value;
+  }
+
+  constructor(private usuariosService : UsuariosService) { }
 
   ngOnInit(): void {
   }
 
+  
   registrarUsuario(){
-    console.log(this.formularioRegistroUsers.value);
+    this.usuariosService.signUp(this.formularioRegistroUsers.value)
+    .subscribe(
+      res => {
+        console.log(res)
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }

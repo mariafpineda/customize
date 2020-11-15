@@ -3,33 +3,52 @@ var router = express.Router();
 var usuarios = require('../models/usuarios');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken')
+
+
+//Login user
+    router.post("/signin", async (req, res) => {
+        const correo = req.body.correo;
+        const password = req.body.contrasenia;
+        const user = await usuarios.findOne({'correoUsuario':correo})
+
+        if(!user){
+            return res.status(401).send("User not found");
+        }
+
+        if(!bcrypt.compareSync(password, user.contraseniaUsuario)){
+            return res.status(401).send('Wrong password');
+        }
+        
+        const token = jwt.sign({_id: user._id}, 'secretkey');
+        return res.status(200).json({token});
+    })
+
+//------------//
 
 //Create user
-    router.post('/', async (req, res) => {
-        const salt = await bcrypt.genSalt(10)
-        const hash = await  bcrypt.hash(req.body.contrasenia, salt)
+    router.post('/signup', async (req, res) => {
+        const salt = 10;
+        const hash = await bcrypt.hashSync(req.body.contraseniaUsuario, salt)
         let user = new usuarios(
             {
-                nombreUsuario: req.body.nombre,
-                apellidoUsuairo: req.body.apellido,
+                nombreUsuario: req.body.nombreUsuario,
+                apellidoUsuairo: req.body.apellidoUsuario,
                 pais: req.body.pais,
-                fechaNacimiento : req.body.fecha,
-                correoUsuario: req.body.correo,
+                fechaNacimiento : req.body.fechaNacimiento,
+                correoUsuario: req.body.correoUsuario,
                 contraseniaUsuario : hash,
-                genero : req.body.genero
+                genero : req.body.genero,
+                compras : []
             }
         );
-        await user.save().then(result=>{
-            res.send(result);
-            res.end();
-        }).catch(error => {
-            res.send(error);
-            res.end();
-        });
+        await user.save()
+        const token = jwt.sign({_id: user._id}, 'secretkey');
+        res.status(200).json({token});
     });
 
 //Read user
-    router.get('/', function(req, res){
+    router.get('/', verifyToken, function(req, res){
         usuarios.find({}, {})
         .then(result => {
             res.send(result);
@@ -41,7 +60,7 @@ var bcrypt = require('bcrypt');
     });
 
 //Update user
-    router.put('/:idUser', async (req, res) => {
+    router.put('/:idUser', verifyToken, async (req, res) => {
         const salt = await bcrypt.genSalt(10)
         const hash = await  bcrypt.hash(req.body.contrasenia, salt)
         await usuarios.update(
@@ -67,7 +86,7 @@ var bcrypt = require('bcrypt');
     });
 
 //Delete user
-    router.delete('/:idUser', function(req, res){
+    router.delete('/:idUser', verifyToken, function(req, res){
         usuarios.remove(
             {
                 _id: req.params.idUser
@@ -85,7 +104,7 @@ var bcrypt = require('bcrypt');
 
 
 //Get user
-    router.get('/:idUser', function(req, res){
+    router.get('/:idUser', verifyToken, function(req, res){
         usuarios.find({_id:  req.params.idUser})
         .then(result =>{
             res.send(result);
@@ -97,7 +116,7 @@ var bcrypt = require('bcrypt');
     });
 
 //Get purchases
-    router.get('/:idUser/compras', function(req, res){
+    router.get('/:idUser/compras',verifyToken, function(req, res){
         usuarios.find(
             { _id : mongoose.Types.ObjectId(req.params.idUser)},
             {compras:true}
@@ -112,7 +131,7 @@ var bcrypt = require('bcrypt');
 
     
 //Get purchase
-    router.get('/:idUser/compras/:idCompra', function(req, res){
+    router.get('/:idUser/compras/:idCompra', verifyToken, function(req, res){
         usuarios.find(
             {
                 _id: req.params.idUser,
@@ -130,7 +149,7 @@ var bcrypt = require('bcrypt');
 
 // Add purchase 
 
-    router.post('/:idUser/nuevaCompra', function(req, res){
+    router.post('/:idUser/nuevaCompra', verifyToken, function(req, res){
         usuarios.update(
             {
                 _id: mongoose.Types.ObjectId(req.params.idUser)
@@ -154,3 +173,18 @@ var bcrypt = require('bcrypt');
     });
 
 module.exports = router;
+
+function verifyToken(req, res, next){
+    if(!req.headers.authorization){
+    }
+
+    const token = req.headers.authorization.split(' ')[1];
+    if(token === 'null'){
+        return res.status(401).send('Unauthorized request');
+    }
+
+    const payload = jwt.verify(token, 'secretkey')
+    console.log(payload);
+    req.userId = payload._id;
+    next();
+}
