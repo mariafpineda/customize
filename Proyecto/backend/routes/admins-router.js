@@ -1,16 +1,16 @@
+require('../dotenv').config();
+
 var express = require('express');
 var router = express.Router();
 var admins = require('../models/admins');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
-
 //Login admin
 
 router.post("/signin", async (req, res) => {
     const correo = req.body.correo;
     const password = req.body.contrasenia;
-    console.log(correo);
     const admin = await admins.findOne({'correoAdmin':correo})
 
     if(!admin){
@@ -21,7 +21,7 @@ router.post("/signin", async (req, res) => {
         return res.status(401).send('Wrong password');
     }
     
-    const token = jwt.sign({_id: admin._id}, 'secretKey');
+    const token = jwt.sign({_id: admin._id}, 'secretkey');
     return res.status(200).json({token});
 })
 
@@ -50,7 +50,7 @@ router.post("/signin", async (req, res) => {
             res.end();
         });*/
 
-        const token = jwt.sign({_id: admin._id}, 'secretKey');
+        const token = jwt.sign({_id: admin._id}, 'secretkey');
         res.status(200).json({"message": "ok"})
     });
 
@@ -110,7 +110,7 @@ router.post("/signin", async (req, res) => {
 
 
 //Get admin
-    router.get('/:idAdmin', function(req, res){
+    router.get('/:idAdmin', verifyToken, function(req, res){
         admins.find(
             {_id: req.params.idAdmin}
         ).then(result => {
@@ -124,3 +124,18 @@ router.post("/signin", async (req, res) => {
 
 
 module.exports = router;
+
+function verifyToken(req, res, next){
+    if(!req.headers.authorization){
+    }
+
+    const token = req.headers.authorization.split(' ')[1];
+    if(token === 'null'){
+        return res.status(401).send('Unauthorized request');
+    }
+
+    const payload = jwt.verify(token, 'secretkey')
+    console.log(payload);
+    req.userId = payload._id;
+    next();
+}
