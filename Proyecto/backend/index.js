@@ -23,6 +23,6 @@ app.use('/planes', planesRouter);
 app.use('/plantillas', plantillasRouter);
 app.use('/shortcuts', shortcutsRouter);
 
-app.listen(8888, function(){
+app.listen(4200, function(){
     console.log('Servidor levantado');
 })
