@@ -8,6 +8,7 @@ import { LoginBrandComponent } from './landingPage/login-brand/login-brand.compo
 import { LoginAdminComponent } from './landingPage/login-admin/login-admin.component';
 import { RegisterUserComponent } from './landingPage/register-user/register-user.component';
 import { RegisterBrandComponent } from './landingPage/register-brand/register-brand.component';
+import { UsersHomeComponent } from './usuarios/users-home/users-home.component'
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path:'loginBrand', component: LoginBrandComponent},
   {path:'customize-admin', component: LoginAdminComponent},
   {path:'registerUser', component: RegisterUserComponent},
-  {path:'registerBrand', component: RegisterBrandComponent}
+  {path:'registerBrand', component: RegisterBrandComponent},
+  {path: 'usersHome', component: UsersHomeComponent}
 ];
 
 @NgModule({

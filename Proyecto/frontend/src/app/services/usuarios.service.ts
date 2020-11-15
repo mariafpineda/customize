@@ -15,5 +15,9 @@ export class UsuariosService {
     return this.httpClient.post(this.url+'/signup', user);
   }
 
+  signIn(user):Observable<any>{
+    return this.httpClient.post(this.url+'/signin', user);
+  }
+
 
 }

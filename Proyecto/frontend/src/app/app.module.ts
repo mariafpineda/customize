@@ -15,7 +15,8 @@ import { LoginBrandComponent } from './landingPage/login-brand/login-brand.compo
 import { LoginUserComponent } from './landingPage/login-user/login-user.component';
 import { LoginAdminComponent } from './landingPage/login-admin/login-admin.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { UsersHomeComponent } from './usuarios/users-home/users-home.component'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http'
     RegisterBrandComponent,
     LoginBrandComponent,
     LoginUserComponent,
-    LoginAdminComponent
+    LoginAdminComponent,
+    UsersHomeComponent
   ],
   imports: [
     BrowserModule,
