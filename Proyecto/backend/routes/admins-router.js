@@ -1,11 +1,10 @@
-require('../dotenv').config();
-
 var express = require('express');
 var router = express.Router();
 var admins = require('../models/admins');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
+
 //Login admin
 
 router.post("/signin", async (req, res) => {
@@ -55,7 +54,7 @@ router.post("/signin", async (req, res) => {
     });
 
 //Read admins
-    router.get('/', function(req, res){
+    router.get('/', verifyToken, function(req, res){
         admins.find({},{})
         .then(result => {
             res.send(result);
@@ -67,7 +66,7 @@ router.post("/signin", async (req, res) => {
     })
 
 //Update admin
-    router.put('/:idAdmin', async (req, res) => {
+    router.put('/:idAdmin', verifyToken, async (req, res) => {
         const salt = await bcrypt.genSalt(10)
         const hash = await bcrypt.hash(req.body.contrasenia, salt)
         await admins.update(
@@ -91,7 +90,7 @@ router.post("/signin", async (req, res) => {
     });
 
 //Delete admin
-    router.delete('/:idAdmin', function(req, res){
+    router.delete('/:idAdmin', verifyToken, function(req, res){
         admins.remove(
             {
                 _id: req.params.idAdmin
