@@ -2,12 +2,12 @@ var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
 var database = require('./modules/database');
-var usuariosRouter= require('./routers/usuarios-router');
-var adminsRouter= require('./routers/admins-router');
-var empresasRouter= require('./routers/empresas-router');
-var planesRouter= require('./routers/planes-router');
-var plantillasRouter= require('./routers/plantillas-router');
-var shortcutsRouter= require('./routers/shortcuts-router');
+var usuariosRouter= require('./routes/usuarios-router');
+var adminsRouter= require('./routes/admins-router');
+var empresasRouter= require('./routes/empresas-router');
+var planesRouter= require('./routes/planes-router');
+var plantillasRouter= require('./routes/plantillas-router');
+var shortcutsRouter= require('./routes/shortcuts-router');
 
 
 var app = express();

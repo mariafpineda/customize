@@ -3,11 +3,36 @@ var router = express.Router();
 var admins = require('../models/admins');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
+
+//Login admin
+
+router.post("/signin", async (req, res) => {
+    const correo = req.body.correo;
+    const password = req.body.contrasenia;
+    console.log(correo);
+    const admin = await admins.findOne({'correoAdmin':correo})
+
+    if(!admin){
+        return res.status(401).send("Admin not found");
+    }
+
+    if(!bcrypt.compareSync(password, admin.contraseniaAdmin)){
+        return res.status(401).send('Wrong password');
+    }
+    
+    const token = jwt.sign({_id: admin._id}, 'secretKey');
+    return res.status(200).json({token});
+})
+
+
+// --------------//
 
 //Create admin
-    router.post('/', async (req, res) => {
-        const salt = await bcrypt.genSalt(10)
-        const hash = await bcrypt.hash(req.body.contrasenia, salt)
+    router.post('/signup', async (req, res) => {
+        const salt = 10;
+        const hash = bcrypt.hashSync(req.body.contrasenia, salt)
+
         let admin = new admins(
             {
                 nombreAdmin : req.body.nombre,
@@ -17,13 +42,16 @@ var bcrypt = require('bcrypt');
                 estado: 'activo'
             }
         );
-        await admin.save().then(result => {
+        await admin.save()/*.then(result => {
             res.send(result);
             res.end();
         }).catch(error => {
             res.send(error);
             res.end();
-        });
+        });*/
+
+        const token = jwt.sign({_id: admin._id}, 'secretKey');
+        res.status(200).json({"message": "ok"})
     });
 
 //Read admins
@@ -78,6 +106,8 @@ var bcrypt = require('bcrypt');
     });
 
 // ------------ //
+
+
 
 //Get admin
     router.get('/:idAdmin', function(req, res){
