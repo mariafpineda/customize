@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
+import { EmpresasService } from 'src/app/services/empresas.service';
 
 @Component({
   selector: 'app-login-brand',
@@ -9,17 +11,23 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 export class LoginBrandComponent implements OnInit {
 
   formularioLoginBrands = new FormGroup({
-    email : new FormControl('', [Validators.required, Validators.email]),
-    password : new FormControl('', [Validators.required])
+    correo : new FormControl('', [Validators.required, Validators.email]),
+    contrasenia : new FormControl('', [Validators.required])
   });
 
-  constructor() { }
+  constructor(private empresasService:EmpresasService,
+    private router:Router) { }
 
   ngOnInit(): void {
   }
 
   guardarEmpresa(){
-    console.log(this.formularioLoginBrands.valid);
+    this.empresasService.signIn(this.formularioLoginBrands.value)
+    .subscribe(res => {
+      localStorage.setItem('token', res.token);
+      this.router.navigate(['/companiesHome']);
+    }, error => console.log(error)
+    )
   }
 
 }
