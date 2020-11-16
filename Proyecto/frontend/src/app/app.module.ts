@@ -16,7 +16,9 @@ import { LoginUserComponent } from './landingPage/login-user/login-user.componen
 import { LoginAdminComponent } from './landingPage/login-admin/login-admin.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { UsersHomeComponent } from './usuarios/users-home/users-home.component'
+import { UsersHomeComponent } from './usuarios/users-home/users-home.component';
+import { AdminsComponent } from './usuarios/admins/admins.component';
+import { EmpresasComponent } from './usuarios/empresas/empresas.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { UsersHomeComponent } from './usuarios/users-home/users-home.component'
     LoginBrandComponent,
     LoginUserComponent,
     LoginAdminComponent,
-    UsersHomeComponent
+    UsersHomeComponent,
+    AdminsComponent,
+    EmpresasComponent
   ],
   imports: [
     BrowserModule,
