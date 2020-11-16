@@ -20,11 +20,6 @@ export class RegisterUserComponent implements OnInit {
     genero : new FormControl('', [Validators.required])
   });
 
-  genero = '';
-  onItemChange(value){
-    this.genero = value;
-  }
-
   constructor(private usuariosService : UsuariosService,
     private router : Router) { }
 

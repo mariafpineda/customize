@@ -12,41 +12,41 @@
                     <div class="div-media" style="display: flex;">
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <label class="form-label">Nombre de la empresa</label>
-                            <input  class="form-control" type="text" placeholder="Nombre de la empresa" formControlName="company" required>
+                            <input  class="form-control" type="text" placeholder="Nombre de la empresa" formControlName="nombreEmpresa" required>
                         </div>
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <label class="form-label">Nombre de dominio</label>
-                            <input  class="form-control" type="text" placeholder="Nombre de dominio" formControlName="domain" required>
+                            <input  class="form-control" type="text" placeholder="Nombre de dominio" formControlName="nombreDominio" required>
                         </div>
                     </div>
                     <div class="div-media" style="display: flex;">
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <label class="form-label">Rubro</label>
-                            <input  class="form-control" type="text" placeholder="Rubro" formControlName="market" required>
+                            <input  class="form-control" type="text" placeholder="Rubro" formControlName="rubro" required>
                         </div>
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <label class="form-label">País</label>
-                            <input  class="form-control" type="text" placeholder="País" formControlName="country" required>
+                            <input  class="form-control" type="text" placeholder="País" formControlName="pais" required>
                         </div>
                     </div>
                     <div class="div-media" style="display: flex;">
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <label class="form-label">Correo electrónico</label>
-                            <input  class="form-control" type="text" placeholder="Correo electrónico" formControlName="email" required>
+                            <input  class="form-control" type="text" placeholder="Correo electrónico" formControlName="correoEmpresa" required>
                         </div>
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <label class="form-label">Confirmar correo electrónico</label>
-                            <input  class="form-control" type="text" placeholder="Confirmar correo electrónico" formControlName="confirmEmail" required>
+                            <input  class="form-control" type="text" placeholder="Confirmar correo electrónico" required>
                         </div>
                     </div>
                     <div class="div-media" style="display: flex;">
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <label class="form-label">Contraseña</label>
-                            <input  class="form-control" type="password" placeholder="Contraseña" formControlName="password" required>
+                            <input  class="form-control" type="password" placeholder="Contraseña" formControlName="contraseniaEmpresa" required>
                         </div>
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <label class="form-label">Confirmar contraseña</label>
-                            <input  class="form-control" type="password" placeholder="Confirmar contraseña" formControlName="confirmPassword" required>
+                            <input  class="form-control" type="password" placeholder="Confirmar contraseña"  required>
                         </div>
                     </div>
                     <div style="display: flex;">
@@ -54,19 +54,19 @@
                             <label class="form-label">Plan de pago</label>
                         </div>
                         <div class="form-group col-3">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="basic" value="basic">
+                            <input class="form-check-input" type="radio" name="planActual" id="basic" value="basic" formControlName="planActual">
                             <label class="form-check-label" for="basic">
                               Plan básico
                             </label>
                         </div>
                         <div class="form-group col-3">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="premium" value="premium">
+                            <input class="form-check-input" type="radio" name="planActual" id="premium" value="premium" formControlName="planActual">
                             <label class="form-check-label" for="premium">
                               Plan premium
                             </label>
                         </div>
                         <div class="form-group col-3">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="deluxe" value="deluxe">
+                            <input class="form-check-input" type="radio" name="planActual" id="deluxe" value="deluxe" formControlName="planActual">
                             <label class="form-check-label" for="deluxe">
                               Plan deluxe
                             </label>
@@ -74,8 +74,8 @@
                     </div>          
                 </form>
                 <div class="register-section-btn col-xl-12">
-                    <div>
-                        <button class="register-btn">Registrarme</button>
+                    <div> 
+                        <button class="register-btn" (click)="registrarEmpresa()">Registrarme</button>
                     </div>
                     <div>
                         <span>¿Ya tienes tu tienda? <a href="/loginUser">Inicia sesión</a></span>

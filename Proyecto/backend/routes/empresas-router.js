@@ -3,20 +3,42 @@ var router = express.Router();
 var empresas = require('../models/empresas');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
+
+//Login 
+    router.post('/signin', async (req, res) => {
+        const correo = req.body.correo;
+        const password = req.body.contrasenia;
+        const company = await empresas.findOne({'correoEmpresa':correo});
+
+        if(!company){
+            return res.status.send('Email not found');
+        }
+
+        if(!bcrypt.compareSync(password, company.contraseniaEmpresa)){
+            return res.status.send('Wrong password');
+        }
+
+        const token = jwt.sign({_id: company._id}, 'secretkey');
+        return res.status(200).json({token});
+    })
+
+// ----------------- //
+
 
 //Create brand
-    router.post('/', async (req, res) => {
-        const salt = await bcrypt.genSalt(10);
-        const hash = await bcrypt.hash(req.body.contrasenia, salt);
+    router.post('/signup', async (req, res) => {
+        const salt = 10;
+        const hash =  bcrypt.hashSync(req.body.contraseniaEmpresa, salt);
         let brand = new empresas(
             {
-                nombreEmpresa : req.body.nombre,
-                nombreDominio : req.body.dominio,
+                nombreEmpresa : req.body.nombreEmpresa,
+                nombreDominio : req.body.nombreDominio,
                 rubro : req.body.rubro,
                 pais :  req.body.pais,
-                correoEmpresa : req.body.correo,
+                correoEmpresa : req.body.correoEmpresa,
                 contraseniaEmpresa : hash,
-                planActual : req.body.idPlan,
+                planActual : req.body.planActual,
                 productos : [],
                 categorias: [],
                 imagenes : [],
@@ -26,13 +48,10 @@ var bcrypt = require('bcrypt');
                 paginas : []
             }
         );
-        await brand.save().then(result => {
-            res.send(result);
-            res.end();
-        }).catch(error => {
-            res.send(error);
-            res.end();
-        });
+        await brand.save();
+
+        const token = jwt.sign({_id: brand._id}, 'secretkey');
+        res.status(200).json({token});
     })
 
 //Read brands
@@ -49,8 +68,8 @@ var bcrypt = require('bcrypt');
 
 //Update brand
     router.put('/:idBrand', async (req, res) => {
-        const salt = await bcrypt.genSalt(10);
-        const hash = await bcrypt.hash(req.body.contrasenia, salt);
+        const salt = 10;
+        const hash =  bcrypt.hashSync(req.body.contrasenia, salt);
         await empresas.update(
             {
                 _id : req.params.idBrand

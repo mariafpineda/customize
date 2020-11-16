@@ -61,8 +61,8 @@ router.post("/signin", async (req, res) => {
 
 //Update admin
     router.put('/:idAdmin', verifyToken, async (req, res) => {
-        const salt = await bcrypt.genSalt(10)
-        const hash = await bcrypt.hash(req.body.contrasenia, salt)
+        const salt = 10
+        const hash = bcrypt.hashSync(req.body.contrasenia, salt)
         await admins.update(
             {
                 _id: req.params.idAdmin
