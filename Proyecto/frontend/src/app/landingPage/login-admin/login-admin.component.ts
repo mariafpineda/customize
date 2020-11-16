@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
+import { AdminsService } from 'src/app/services/admins.service';
+
 
 @Component({
   selector: 'app-login-admin',
@@ -9,17 +12,24 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 export class LoginAdminComponent implements OnInit {
 
   formularioLoginAdmin = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
+    correo: new FormControl('', [Validators.required, Validators.email]),
+    contrasenia: new FormControl('', [Validators.required])
   });
 
-  constructor() { }
+  constructor(private adminsService:AdminsService,
+    private router:Router) { }
 
   ngOnInit(): void {
   }
 
   guardarAdmin(){
-    console.log(this.formularioLoginAdmin.valid);
+    this.adminsService.signIn(this.formularioLoginAdmin.value)
+    .subscribe(res => {
+      console.log(res);
+      localStorage.setItem('token', res.token);
+      this.router.navigate(['/adminsHome']);
+    }, error => console.log(error)
+    )
   }
 
 

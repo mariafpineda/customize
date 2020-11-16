@@ -17,8 +17,6 @@ import { LoginAdminComponent } from './landingPage/login-admin/login-admin.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersHomeComponent } from './usuarios/users-home/users-home.component';
-import { AdminsComponent } from './usuarios/admins/admins.component';
-import { EmpresasComponent } from './usuarios/empresas/empresas.component';
 import { AdminsHomeComponent } from './admins/admins-home/admins-home.component';
 import { CompaniesHomeComponent } from './empresas/companies-home/companies-home.component'
 
@@ -35,8 +33,6 @@ import { CompaniesHomeComponent } from './empresas/companies-home/companies-home
     LoginUserComponent,
     LoginAdminComponent,
     UsersHomeComponent,
-    AdminsComponent,
-    EmpresasComponent,
     AdminsHomeComponent,
     CompaniesHomeComponent
   ],
