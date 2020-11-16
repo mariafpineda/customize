@@ -27,6 +27,7 @@ export class RegisterBrandComponent implements OnInit {
   }
 
   registrarEmpresa(){
+    console.log(this.formularioRegistroBrands.value)
     this.empresasService.signUp(this.formularioRegistroBrands.value)
     .subscribe(
       res=> {
