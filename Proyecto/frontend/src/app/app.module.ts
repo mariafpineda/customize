@@ -20,6 +20,8 @@ import { UsersHomeComponent } from './usuarios/users-home/users-home.component';
 import { AdminsHomeComponent } from './admins/admins-home/admins-home.component';
 import { CompaniesHomeComponent } from './empresas/companies-home/companies-home.component'
 
+import { AuthGuard } from './auth.guard'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,9 @@ import { CompaniesHomeComponent } from './empresas/companies-home/companies-home
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,5 +19,7 @@ export class UsuariosService {
     return this.httpClient.post(this.url+'/signin', user);
   }
 
-
+  loggedIn(){
+    return !!localStorage.getItem('token');
+  }
 }

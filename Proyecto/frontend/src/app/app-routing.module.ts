@@ -12,6 +12,8 @@ import { UsersHomeComponent } from './usuarios/users-home/users-home.component';
 import { AdminsHomeComponent } from './admins/admins-home/admins-home.component';
 import { CompaniesHomeComponent } from "./empresas/companies-home/companies-home.component";
 
+import { AuthGuard } from './auth.guard'
+
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'vende', component: VendeComponent},
@@ -21,7 +23,7 @@ const routes: Routes = [
   {path:'customize-admin', component: LoginAdminComponent},
   {path:'registerUser', component: RegisterUserComponent},
   {path:'registerBrand', component: RegisterBrandComponent},
-  {path: 'usersHome', component: UsersHomeComponent},
+  {path: 'usersHome', component: UsersHomeComponent, canActivate: [AuthGuard]},
   {path: 'adminsHome', component: AdminsHomeComponent},
   {path: 'companiesHome', component: CompaniesHomeComponent}
 ];
