@@ -15,12 +15,13 @@ import { LoginBrandComponent } from './landingPage/login-brand/login-brand.compo
 import { LoginUserComponent } from './landingPage/login-user/login-user.component';
 import { LoginAdminComponent } from './landingPage/login-admin/login-admin.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UsersHomeComponent } from './usuarios/users-home/users-home.component';
 import { AdminsHomeComponent } from './admins/admins-home/admins-home.component';
 import { CompaniesHomeComponent } from './empresas/companies-home/companies-home.component'
 
-import { AuthGuard } from './auth.guard'
+import { AuthGuard } from './auth.guard';
+import { TokenService } from "./services/token.service";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,12 @@ import { AuthGuard } from './auth.guard'
     HttpClientModule
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: TokenService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
