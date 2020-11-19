@@ -1,3 +1,24 @@
+@media only screen and (max-width:700px){
+    #slogan{
+        width:50% !important;
+    }
+}
+
+@media only screen and (max-width:450px){
+    #slogan{
+        width:70% !important;
+    }
+
+   
+}
+
+@media only screen and (max-width:  520px){
+   .botones-inicio{
+    display: block !important;
+    text-align: center;
+   }
+}
+
 
 body{
     background-color: #00bbee;
@@ -42,24 +63,33 @@ a{
 
 .texto-inicio section{
     color: white;
-    font-family: "Raleway medium";
-    font-size: 3rem;
+    font-family: "Raleway semibold";
+    font-size: 2.5rem;
 }
 
 .botones-inicio{
     margin-top: 15px;
     color: white;
     font-size: 1.3rem;
+    display: flex;
 }
 
 .boton{
     background-color: #94d12e;
     color: white !important;
     font-family: "Raleway semibold";
-    
-    border: none;
+    border: 3px solid transparent;
     padding: 10px 25px;
     border-radius: 30px;
+}
+
+.boton:hover{
+    background-color: transparent;
+    border: 3px solid #94d12e;
+}
+
+.accede-tienda{
+    padding: 10px 25px;
 }
 
 #accede-tienda{
@@ -114,10 +144,12 @@ a{
 #slogan{
     color: white;
     font-family: "Raleway semibold";
-    font-size: 35px;
+    font-size: 2rem;
     position: static;
     margin-left: auto;
-    margin-top: 10%;
-    margin-right: 7%;
+    margin-top: 200px;
+    margin-right: 7px;
+    bottom: 0;
     width: 25%;
+    box-sizing: border-box;
 }
