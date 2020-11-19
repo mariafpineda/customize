@@ -53,50 +53,18 @@
         <h1 class="header-item">Conoce los planes de suscripción que tenemos para ti</h1>
         <div class="container">
           <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8 plan">
-              <h1> Plan <br> Básico </h1>
-              <span class="precio"> <strong>L 250</strong>/mes </span>
+            <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8 plan" *ngFor="let plan of planes">
+              <h1> Plan <br> {{plan.nombrePlan}} </h1>
+              <span class="precio"> <strong>L {{plan.precioPlan}}</strong>/mes </span>
               <section>
                 <span>Incluye:</span> <br>
                 <div style="display: flex">
                   <span class="arrow col-2"> > </span>
-                  <p class="text">1 página web personalizable</p>
+                  <p class="text">{{plan.cantidadPaginas}} páginas web personalizables</p>
                 </div>
                 <div style="display:flex">
                   <span class="arrow col-2"> > </span>
-                  <p class="text">5 productos</p>
-                </div>
-              </section>
-              <a class="btn-adquirir-ya" href="/registerBrand">Adquirir ya</a>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8 plan">
-              <h1> Plan <br> Premium </h1>
-              <span class="precio"> <strong>L 600</strong>/mes </span>
-              <section>
-                <span>Incluye:</span> <br>
-                <div style="display: flex">
-                  <span class="arrow col-2"> > </span>
-                  <p class="text">3 páginas web personalizables</p>
-                </div>
-                <div style="display:flex">
-                  <span class="arrow col-2"> > </span>
-                  <p class="text">8 productos c/u</p>
-                </div>
-              </section>
-              <a class="btn-adquirir-ya" href="/registerBrand">Adquirir ya</a>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8 plan">
-              <h1> Plan <br> Deluxe </h1>
-              <span class="precio"> <strong>L 950</strong>/mes </span>
-              <section>
-                <span>Incluye:</span> <br>
-                <div style="display: flex">
-                  <span class="arrow col-2"> > </span>
-                  <p class="text">5 páginas web personalizables</p>
-                </div>
-                <div style="display:flex">
-                  <span class="arrow col-2"> > </span>
-                  <p class="text">10 productos c/u</p>
+                  <p class="text">{{plan.cantidadProductos}} productos c/u </p>
                 </div>
               </section>
               <a class="btn-adquirir-ya" href="/registerBrand">Adquirir ya</a>
