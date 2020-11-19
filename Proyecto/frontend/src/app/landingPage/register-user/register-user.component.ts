@@ -10,13 +10,18 @@ import { Router } from '@angular/router'
 })
 export class RegisterUserComponent implements OnInit {
 
+  errorMessage:String;
+  errorBool:Boolean;
+
   formularioRegistroUsers = new FormGroup({
     nombreUsuario: new FormControl('', [Validators.required]),
     apellidoUsuario: new FormControl('', [Validators.required]),
     pais: new FormControl('', [Validators.required]),
     fechaNacimiento: new FormControl('', [Validators.required]),
     correoUsuario: new FormControl('', [Validators.required, Validators.email]),
+    confirmarCorreo: new FormControl('', [Validators.required, Validators.email]),
     contraseniaUsuario: new FormControl('', [Validators.required]),
+    confirmarContrasenia: new FormControl('', [Validators.required]),
     genero : new FormControl('', [Validators.required])
   });
 
@@ -28,15 +33,32 @@ export class RegisterUserComponent implements OnInit {
 
   
   registrarUsuario(){
-    this.usuariosService.signUp(this.formularioRegistroUsers.value)
-    .subscribe(
+    if(!this.formularioRegistroUsers.valid){
+      this.errorMessage="Todos los campos son obligatorios";
+      this.errorBool=true;
+    } else if (this.formularioRegistroUsers.value.correoUsuario !=this.formularioRegistroUsers.value.confirmarCorreo){
+      this.errorMessage="Los correos electrónicos ingresados no coinciden";
+      this.errorBool=true;
+    } else if(this.formularioRegistroUsers.value.contraseniaUsuario !=this.formularioRegistroUsers.value.confirmarContrasenia){
+      this.errorMessage="Las contraseñas ingresadas no coinciden";
+      this.errorBool=true;
+    }
+    else{
+      this.usuariosService.signUp(this.formularioRegistroUsers.value)
+      .subscribe(
       res => {
         console.log(res);
         localStorage.setItem('token', res.token);
         this.router.navigate(['/usersHome']);
       },
-      error => console.log(error)
+      error => {
+        this.errorMessage=error.error.message;
+        this.errorBool=true;
+      }
     )
+    }
+    setTimeout(() => {
+      this.errorBool=false;
+    }, 5000);
   }
-
 }

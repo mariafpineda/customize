@@ -30,6 +30,12 @@ var jwt = require('jsonwebtoken')
     router.post('/signup', async (req, res) => {
         const salt = 10;
         const hash = await bcrypt.hashSync(req.body.contraseniaUsuario, salt)
+        const email= await usuarios.findOne({'correoUsuario':req.body.correoUsuario})
+
+        if(email){
+            return res.status(401).json({'message': 'El correo ingresado ya está registrado'});
+        }
+
         let user = new usuarios(
             {
                 nombreUsuario: req.body.nombreUsuario,
@@ -44,7 +50,7 @@ var jwt = require('jsonwebtoken')
         );
         await user.save()
         const token = jwt.sign({_id: user._id}, 'secretkey');
-        res.status(200).json({token});
+        res.status(200).json({token, 'idUser':user._id});
     });
 
 //Read user

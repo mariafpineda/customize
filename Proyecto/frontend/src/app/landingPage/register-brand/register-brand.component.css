@@ -21,6 +21,14 @@ form{
     margin-top: 1.5rem;
 }
 
+.error{
+    color: red;
+    font-family: 'Raleway medium';
+    text-align: center;
+    padding: 5px;
+    font-size: 15px;
+}
+
 .register-btn{
     background-color: #94d12e;
     color: white;

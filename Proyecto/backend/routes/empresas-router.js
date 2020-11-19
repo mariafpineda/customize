@@ -30,6 +30,12 @@ var jwt = require('jsonwebtoken');
     router.post('/signup', async (req, res) => {
         const salt = 10;
         const hash =  bcrypt.hashSync(req.body.contraseniaEmpresa, salt);
+        const email = empresas.findOne({'correoEmpresa':req.body.correoEmpresa});
+
+        if(email){
+            res.status(401).json({'message':'El correo ingresado ya está registrado'});
+        }
+        
         let brand = new empresas(
             {
                 nombreEmpresa : req.body.nombreEmpresa,
@@ -51,7 +57,7 @@ var jwt = require('jsonwebtoken');
         await brand.save();
 
         const token = jwt.sign({_id: brand._id}, 'secretkey');
-        res.status(200).json({token});
+        res.status(200).json({token, 'idBrand':brand.id});
     })
 
 //Read brands
