@@ -10,6 +10,9 @@ import { EmpresasService } from 'src/app/services/empresas.service';
 })
 export class LoginBrandComponent implements OnInit {
 
+  errorBool:Boolean;
+  errorMessage:String;
+
   formularioLoginBrands = new FormGroup({
     correo : new FormControl('', [Validators.required, Validators.email]),
     contrasenia : new FormControl('', [Validators.required])
@@ -22,12 +25,24 @@ export class LoginBrandComponent implements OnInit {
   }
 
   guardarEmpresa(){
-    this.empresasService.signIn(this.formularioLoginBrands.value)
-    .subscribe(res => {
-      localStorage.setItem('token', res.token);
-      this.router.navigate(['/companiesHome']);
-    }, error => console.log(error)
+    if(!this.formularioLoginBrands.valid){
+      this.errorMessage="Todos los campos son obligatorios";
+      this.errorBool=true;
+    } else {
+      this.empresasService.signIn(this.formularioLoginBrands.value)
+      .subscribe(res => {
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/companiesHome']);
+      }, error => {
+        this.errorMessage=error.error.message;
+        this.errorBool=true;
+      }
     )
+    }
+    setTimeout(() => {
+      this.errorBool=false;
+    }, 5000);
+    
   }
 
 }

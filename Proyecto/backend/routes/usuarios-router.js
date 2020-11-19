@@ -13,11 +13,11 @@ var jwt = require('jsonwebtoken')
         const user = await usuarios.findOne({'correoUsuario':correo})
 
         if(!user){
-            return res.status(401).send("User not found");
+            return res.status(401).json({"message":"No se encontró ningún usuario registrado con ese correo electrónico"});
         }
 
         if(!bcrypt.compareSync(password, user.contraseniaUsuario)){
-            return res.status(401).send('Wrong password');
+            return res.status(401).json({"message":'Contraseña incorrecta'});
         }
         
         const token = jwt.sign({_id: user._id}, 'secretkey');

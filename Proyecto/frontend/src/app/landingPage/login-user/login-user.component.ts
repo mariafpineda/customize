@@ -11,6 +11,9 @@ import { UsuariosService } from "../../services/usuarios.service";
 })
 export class LoginUserComponent implements OnInit {
 
+  errorMessage:String;
+  errorBool:Boolean;
+
   formularioLoginUsers = new FormGroup({
     correo : new FormControl('', [Validators.required, Validators.email]),
     contrasenia : new FormControl('', [Validators.required])
@@ -23,12 +26,22 @@ export class LoginUserComponent implements OnInit {
   }
 
   guardarUsuario(){
+    if(!this.formularioLoginUsers.valid){
+      this.errorMessage="Todos los campos son obligatorios";
+      this.errorBool=true;
+    } else {
     this.usuariosService.signIn(this.formularioLoginUsers.value)
     .subscribe(res => {
       localStorage.setItem('token', res.token);
       this.router.navigate(['/usersHome']);
-    }, error => console.log(error)
-    )
+    }, error => {
+        this.errorBool=true;
+        this.errorMessage=error.error.message
+    }
+    )}
+    setTimeout(() => {
+      this.errorBool=false;
+    }, 5000);
   }
 
 }

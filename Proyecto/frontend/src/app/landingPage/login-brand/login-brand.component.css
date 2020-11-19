@@ -20,6 +20,14 @@ form{
     margin-bottom: 2rem;
 }
 
+.error{
+    color: red;
+    font-family: 'Raleway medium';
+    text-align: center;
+    padding: 5px;
+    font-size: 15px;
+}
+
 .login-btn{
     background-color: #94d12e;
     color: white;

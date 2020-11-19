@@ -13,11 +13,11 @@ router.post("/signin", async (req, res) => {
     const admin = await admins.findOne({'correoAdmin':correo})
 
     if(!admin){
-        return res.status(401).send("Admin not found");
+        return res.status(401).json({'message':"No se encontró ningún administrador registrado con ese correo electrónico"});
     }
 
     if(!bcrypt.compareSync(password, admin.contraseniaAdmin)){
-        return res.status(401).send('Wrong password');
+        return res.status(401).json({'message':'Contraseña incorrecta'});
     }
     
     const token = jwt.sign({_id: admin._id}, 'secretkey');

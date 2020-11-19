@@ -11,6 +11,9 @@ import { AdminsService } from 'src/app/services/admins.service';
 })
 export class LoginAdminComponent implements OnInit {
 
+  errorMessage:String;
+  errorBool:Boolean;
+
   formularioLoginAdmin = new FormGroup({
     correo: new FormControl('', [Validators.required, Validators.email]),
     contrasenia: new FormControl('', [Validators.required])
@@ -23,13 +26,23 @@ export class LoginAdminComponent implements OnInit {
   }
 
   guardarAdmin(){
-    this.adminsService.signIn(this.formularioLoginAdmin.value)
-    .subscribe(res => {
-      console.log(res);
-      localStorage.setItem('token', res.token);
-      this.router.navigate(['/adminsHome']);
-    }, error => console.log(error)
-    )
+    if(!this.formularioLoginAdmin.valid){
+      this.errorMessage="Todos los campos son obligatorios";
+      this.errorBool=true;
+    } else {
+      this.adminsService.signIn(this.formularioLoginAdmin.value)
+      .subscribe(res => {
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/adminsHome']);
+      }, error => {
+        this.errorBool=true;
+        this.errorMessage=error.error.message
+    })
+    }
+    setTimeout(() => {
+      this.errorBool=false;
+    }, 5000);
+    
   }
 
 

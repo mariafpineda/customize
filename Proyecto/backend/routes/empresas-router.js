@@ -12,11 +12,11 @@ var jwt = require('jsonwebtoken');
         const company = await empresas.findOne({'correoEmpresa':correo});
 
         if(!company){
-            return res.status.send('Email not found');
+            return res.status(401).json({'message':'No se encontró ninguna empresa registrada con ese correo electrónico'});
         }
 
         if(!bcrypt.compareSync(password, company.contraseniaEmpresa)){
-            return res.status.send('Wrong password');
+            return res.status(401).json({'message':'Contraseña incorrecta'});
         }
 
         const token = jwt.sign({_id: company._id}, 'secretkey');
