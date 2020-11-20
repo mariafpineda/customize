@@ -1,0 +1,10 @@
+#content{
+    min-height: 100vh;
+    background-color: rgb(245, 244, 244);
+}
+
+
+#sidebar{
+    min-height: 100vh;
+    padding: 5.5rem 20px 0 40px;
+}

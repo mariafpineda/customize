@@ -1,5 +1,23 @@
-#sidebar{
-    min-height: 100vh;
-    width: 250px;
-    background-color: rgb(236, 236, 236);
+
+.custom-link{
+    font-family: 'Raleway medium' !important;
+    font-size: 1.2rem !important;
+    color: black !important;
 }
+
+.custom-link:hover{
+    color: #00bbee !important;
+}
+
+.icon{
+    text-align: center;
+    width: 30px;
+    font-size:1.3rem;
+    margin-right: 10px;
+}
+
+.nav-link{
+    display:flex;
+}
+
+
