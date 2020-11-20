@@ -20,7 +20,7 @@ var jwt = require('jsonwebtoken');
         }
 
         const token = jwt.sign({_id: company._id}, 'secretkey');
-        return res.status(200).json({token});
+        return res.status(200).json({token, 'idBrand':company._id});
     })
 
 // ----------------- //

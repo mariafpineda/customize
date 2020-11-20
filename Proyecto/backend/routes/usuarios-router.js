@@ -21,7 +21,7 @@ var jwt = require('jsonwebtoken')
         }
         
         const token = jwt.sign({_id: user._id}, 'secretkey');
-        return res.status(200).json({token});
+        return res.status(200).json({token, 'idUser':user._id});
     })
 
 //------------//
