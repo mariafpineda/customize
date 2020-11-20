@@ -52,8 +52,8 @@ export class RegisterBrandComponent implements OnInit {
       this.empresasService.signUp(this.formularioRegistroBrands.value)
       .subscribe(
         res=> {
-          console.log(res);
           localStorage.setItem('token', res.token);
+          localStorage.setItem('idBrand', res.idBrand);
           this.router.navigate(['/companiesHome']);
         },
         error => {

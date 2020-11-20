@@ -23,6 +23,12 @@ import { CompaniesHomeComponent } from './empresas/companies-home/companies-home
 
 import { AuthGuard } from './auth.guard';
 import { TokenService } from "./services/token.service";
+import { HeaderComponent } from './admins/header/header.component';
+import { SidebarComponent } from './admins/sidebar/sidebar.component';
+import { AdminsComponent } from './admins/admins/admins.component';
+import { EmpresasComponent } from './admins/empresas/empresas.component';
+import { PlanesComponent } from './admins/planes/planes.component';
+import { PlantillasComponent } from './admins/plantillas/plantillas.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,13 @@ import { TokenService } from "./services/token.service";
     LoginAdminComponent,
     UsersHomeComponent,
     AdminsHomeComponent,
-    CompaniesHomeComponent
+    CompaniesHomeComponent,
+    HeaderComponent,
+    SidebarComponent,
+    AdminsComponent,
+    EmpresasComponent,
+    PlanesComponent,
+    PlantillasComponent
   ],
   imports: [
     BrowserModule,

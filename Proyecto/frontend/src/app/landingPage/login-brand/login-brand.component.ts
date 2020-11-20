@@ -32,6 +32,7 @@ export class LoginBrandComponent implements OnInit {
       this.empresasService.signIn(this.formularioLoginBrands.value)
       .subscribe(res => {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('idBrand', res.idBrand);
         this.router.navigate(['/companiesHome']);
       }, error => {
         this.errorMessage=error.error.message;

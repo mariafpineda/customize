@@ -21,7 +21,7 @@ router.post("/signin", async (req, res) => {
     }
     
     const token = jwt.sign({_id: admin._id}, 'secretkey');
-    return res.status(200).json({token});
+    return res.status(200).json({token, 'idAdmin': admin._id});
 })
 
 

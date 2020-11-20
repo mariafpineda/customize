@@ -47,8 +47,8 @@ export class RegisterUserComponent implements OnInit {
       this.usuariosService.signUp(this.formularioRegistroUsers.value)
       .subscribe(
       res => {
-        console.log(res);
         localStorage.setItem('token', res.token);
+        localStorage.setItem('idUser', res.idUser);
         this.router.navigate(['/usersHome']);
       },
       error => {

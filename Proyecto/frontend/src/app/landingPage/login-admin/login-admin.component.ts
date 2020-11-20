@@ -33,6 +33,7 @@ export class LoginAdminComponent implements OnInit {
       this.adminsService.signIn(this.formularioLoginAdmin.value)
       .subscribe(res => {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('idAdmin', res.idAdmin);
         this.router.navigate(['/adminsHome']);
       }, error => {
         this.errorBool=true;
