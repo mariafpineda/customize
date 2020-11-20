@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { faUserShield, faClipboardList, faTools, faFileCode, faHandshake} from "@fortawesome/free-solid-svg-icons";
+import { Output } from "@angular/core";
 
 @Component({
   selector: 'app-sidebar',
@@ -7,6 +8,8 @@ import { faUserShield, faClipboardList, faTools, faFileCode, faHandshake} from "
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  @Output() onCatSeleccionada = new EventEmitter()
+
   faUserShield= faUserShield;
   faClipboard= faClipboardList;
   faTools=faTools;
@@ -17,4 +20,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  catSeleccionada(categoria){
+    this.onCatSeleccionada.emit(categoria);
+  }
 }

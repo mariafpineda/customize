@@ -11,6 +11,7 @@ import { RegisterBrandComponent } from './landingPage/register-brand/register-br
 import { UsersHomeComponent } from './usuarios/users-home/users-home.component';
 import { AdminsHomeComponent } from './admins/admins-home/admins-home.component';
 import { CompaniesHomeComponent } from "./empresas/companies-home/companies-home.component";
+import { AdminsComponent } from './admins/admins/admins.component'
 
 import { AuthGuard } from './auth.guard'
 
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path:'registerBrand', component: RegisterBrandComponent},
   {path: 'usersHome', component: UsersHomeComponent, canActivate: [AuthGuard]},
   {path: 'adminsHome', component: AdminsHomeComponent},
-  {path: 'companiesHome', component: CompaniesHomeComponent}
+  {path: 'companiesHome', component: CompaniesHomeComponent},
+  {path: 'adminsHome/administradores', component: AdminsComponent}
 ];
 
 @NgModule({

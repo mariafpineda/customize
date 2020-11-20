@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { SidebarComponent } from '../sidebar/sidebar.component'
 
 @Component({
   selector: 'app-admins-home',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminsHomeComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  categoriaSeleccionada(categoria){
+    console.log('Admins-home', categoria);
+  }
+
+
 
 }

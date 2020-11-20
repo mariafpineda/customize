@@ -2,11 +2,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xl-2" id="sidebar">
-            <app-sidebar></app-sidebar>
+            <app-sidebar (onCatSeleccionada)="categoriaSeleccionada($event)"></app-sidebar>
         </div>
         <div class="col-xl-10" id="content">
-
-            <router-outlet></router-outlet>
+            <app-admins></app-admins>
         </div>
     </div>
 </div>
