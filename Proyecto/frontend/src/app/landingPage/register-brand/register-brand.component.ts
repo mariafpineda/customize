@@ -39,16 +39,33 @@ export class RegisterBrandComponent implements OnInit {
   }
 
   registrarEmpresa(){
-    console.log(this.formularioRegistroBrands.value)
-    this.empresasService.signUp(this.formularioRegistroBrands.value)
-    .subscribe(
-      res=> {
-        console.log(res);
-        localStorage.setItem('token', res.token);
-        this.router.navigate(['/companiesHome']);
-      },
-      error => console.log(error)
-    )
+    if(!this.formularioRegistroBrands.valid){
+      this.errorMessage="Todos los campos son obligatorios";
+      this.errorBool=true;
+    } else if(this.formularioRegistroBrands.value.correoEmpresa != this.formularioRegistroBrands.value.confirmarCorreo){
+      this.errorMessage="Los correos electrónicos ingresados no coinciden";
+      this.errorBool=true;
+    } else if(this.formularioRegistroBrands.value.contraseniaEmpresa != this.formularioRegistroBrands.value.confirmarContrasenia){
+      this.errorMessage="Las contraseñas ingresadas no coinciden";
+      this.errorBool=true;
+    } else {
+      this.empresasService.signUp(this.formularioRegistroBrands.value)
+      .subscribe(
+        res=> {
+          console.log(res);
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/companiesHome']);
+        },
+        error => {
+          this.errorMessage=error.error.message;
+          this.errorBool = true;
+        }
+      )
+    }
+    setTimeout(() => {
+      this.errorBool = false;
+    }, 5000);
+    
   }
 
 }
