@@ -15,6 +15,8 @@ export class SidebarComponent implements OnInit {
   faTools=faTools;
   faCode=faFileCode;
   faHandshake=faHandshake;
+
+
   constructor() { }
 
   ngOnInit(): void {

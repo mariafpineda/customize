@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminsComponent } from '../admins/admins.component'
+import { faSignOutAlt, faBars } from "@fortawesome/free-solid-svg-icons";
 
 
 @Component({
@@ -10,7 +11,10 @@ import { AdminsComponent } from '../admins/admins.component'
 export class AdminsHomeComponent implements OnInit {
   @ViewChild('admins') adminsComponent:AdminsComponent;
 
+  faSignOutAlt=faSignOutAlt;
+  faBars=faBars;
   regionVisible:String='';
+  public isMenuCollapsed=false;
 
   constructor() { }
 
