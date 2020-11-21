@@ -1,2 +1,55 @@
+<div id="section-admins">
+    <div class="header-section">
+        <h3>Administradores</h3>
+        <button class="button" (click)="open(content)">
+            <fa-icon [icon]="faUserPlus"></fa-icon>
+            Agregar admin
+        </button>
+    </div>
+    <hr>
 
-<h1>Hola</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo electrónico</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let admin of admins">
+            <tr>
+                <td>{{admin._id}}</td>
+                <td>{{admin.nombreAdmin}} {{admin.apellidoAdmin}}</td>
+                <td>{{admin.correoAdmin}}</td>
+                <td>{{admin.estado}}</td>
+                <td> 
+                    <a class="button" title="Editar" (click)="editarAdmin(admin._id)">
+                        <fa-icon [icon]="faUserEdit"></fa-icon>
+                    </a>
+                </td>
+                <td>
+                    <a class="button" title="Eliminar" (click)="eliminarAdmin(admin._id)">
+                        <fa-icon [icon]="faUserTimes"></fa-icon>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+        <div>Hola mundo</div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+  </ng-template>

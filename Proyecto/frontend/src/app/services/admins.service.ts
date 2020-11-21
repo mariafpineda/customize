@@ -15,4 +15,8 @@ export class AdminsService {
   signIn(admin):Observable<any>{
     return this.httpClient.post(this.url+'/signin', admin);
   }
+
+  getAdmins():Observable<any>{
+    return this.httpClient.get(this.url+'/');
+  }
 }

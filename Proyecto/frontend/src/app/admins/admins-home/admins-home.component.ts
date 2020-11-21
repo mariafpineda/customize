@@ -15,11 +15,11 @@ export class AdminsHomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.regionVisible='administradores';
   }
 
   categoriaSeleccionada(categoria){
     this.regionVisible=categoria;
-    console.log('Admins-home', categoria);
   }
 
 
