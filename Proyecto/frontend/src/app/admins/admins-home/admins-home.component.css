@@ -35,7 +35,16 @@ nav{
 }
 
 #sidebar{
-    min-height: 100vh;
-    background-color: rgb(41, 41, 43);
-    padding: 2rem 20px 0 40px;
+    margin-left:-20rem;
+    padding-left: 0px !important;
+}
+
+.sidebarVisible{
+    margin-left:0px !important;
+    transition: ease-in-out !important;
+}
+
+.sidebarVisible{
+    margin-left:-20px !important;
+    transition: ease-in-out !important;
 }
