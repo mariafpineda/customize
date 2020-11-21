@@ -5,7 +5,9 @@
             <app-sidebar (onCatSeleccionada)="categoriaSeleccionada($event)"></app-sidebar>
         </div>
         <div class="col-xl-10" id="content">
-            <app-admins></app-admins>
+            <div id="vista-admins" [ngClass]="{'visible':'regionVisible=='administradores', 'noVisible':regionVisible!='administradores'}">
+                <app-admins #admins></app-admins>
+            </div>
         </div>
     </div>
 </div>

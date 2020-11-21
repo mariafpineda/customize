@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SidebarComponent } from '../sidebar/sidebar.component'
+import { AdminsComponent } from '../admins/admins.component'
+
 
 @Component({
   selector: 'app-admins-home',
@@ -7,7 +8,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component'
   styleUrls: ['./admins-home.component.css']
 })
 export class AdminsHomeComponent implements OnInit {
-
+  @ViewChild('admins') adminsComponent:AdminsComponent;
 
   constructor() { }
 

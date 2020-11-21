@@ -44,3 +44,11 @@ a{
 a:hover{
     color:white !important;
 }
+
+.visible{
+    display:block;
+}
+
+.noVisible{
+    display:none;
+}
