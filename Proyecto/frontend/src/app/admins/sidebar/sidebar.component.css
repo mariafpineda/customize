@@ -26,11 +26,9 @@
 }
 
 #sidebar{
-    position: absolute;
     background-color: rgb(41, 41, 43) !important;
     min-height: 100vh;
-    padding: 2rem 20px 0 40px;
-    z-index: 100;
+    padding: 3.5rem 20px 0 40px;
 }
 
 hr{

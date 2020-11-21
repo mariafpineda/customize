@@ -18,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UsersHomeComponent } from './usuarios/users-home/users-home.component';
 import { AdminsHomeComponent } from './admins/admins-home/admins-home.component';
-import { CompaniesHomeComponent } from './empresas/companies-home/companies-home.component'
+import { CompaniesHomeComponent } from './empresas/companies-home/companies-home.component';
+
 
 
 import { AuthGuard } from './auth.guard';

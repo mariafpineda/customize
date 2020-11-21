@@ -3,6 +3,7 @@ import { AdminsComponent } from '../admins/admins.component'
 import { faSignOutAlt, faBars } from "@fortawesome/free-solid-svg-icons";
 
 
+
 @Component({
   selector: 'app-admins-home',
   templateUrl: './admins-home.component.html',
@@ -14,7 +15,8 @@ export class AdminsHomeComponent implements OnInit {
   faSignOutAlt=faSignOutAlt;
   faBars=faBars;
   regionVisible:String='';
-  public isMenuCollapsed=false;
+  public isCollapsed = false;
+
 
   constructor() { }
 
