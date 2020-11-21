@@ -29,6 +29,7 @@ import { AdminsComponent } from './admins/admins/admins.component';
 import { EmpresasComponent } from './admins/empresas/empresas.component';
 import { PlanesComponent } from './admins/planes/planes.component';
 import { PlantillasComponent } from './admins/plantillas/plantillas.component';
+import { ConfiguracionesComponent } from './admins/configuraciones/configuraciones.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { PlantillasComponent } from './admins/plantillas/plantillas.component';
     AdminsComponent,
     EmpresasComponent,
     PlanesComponent,
-    PlantillasComponent
+    PlantillasComponent,
+    ConfiguracionesComponent
   ],
   imports: [
     BrowserModule,

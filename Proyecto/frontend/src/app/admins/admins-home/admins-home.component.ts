@@ -10,12 +10,15 @@ import { AdminsComponent } from '../admins/admins.component'
 export class AdminsHomeComponent implements OnInit {
   @ViewChild('admins') adminsComponent:AdminsComponent;
 
+  regionVisible:String='';
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   categoriaSeleccionada(categoria){
+    this.regionVisible=categoria;
     console.log('Admins-home', categoria);
   }
 
