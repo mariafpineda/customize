@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faUserTimes, faUserSlash, faUser } from '@fortawesome/free-solid-svg-icons'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EmpresasService } from 'src/app/services/empresas.service';
+import { isThisTypeNode } from 'typescript';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class EmpresasComponent implements OnInit {
     private modalService:NgbModal) { }
 
   ngOnInit(): void {
-    this.empresasService.getBrands()
+    this.empresasService.getCompany()
     .subscribe(res => {
       this.empresas=res;
     }, error => console.log(error)
@@ -35,20 +36,27 @@ export class EmpresasComponent implements OnInit {
   }
 
   bloquearEmpresa(){
-    this.empresasService.blockUser(this.empresaSeleccionada, 'bloqueado')
+    this.empresasService.stateCompany(this.empresaSeleccionada, 'bloqueado')
     .subscribe(res => {
-      console.log(res);
       this.ngOnInit()
       this.modalService.dismissAll();
     }, error => console.log(error))
   }
 
   desbloquearEmpresa(){
-    console.log((<HTMLInputElement>document.getElementById('block')).value);
+    this.empresasService.stateCompany(this.empresaSeleccionada, 'activo')
+    .subscribe(() => {
+      this.ngOnInit()
+      this.modalService.dismissAll();
+    }, error => console.log(error))
   }
 
   eliminarEmpresa(){
-    console.log("Eliminar empresa");
+    this.empresasService.deleteCompany(this.empresaSeleccionada)
+    .subscribe( () => {
+      this.ngOnInit();
+      this.modalService.dismissAll();
+    }, error => console.log(error))
   }
 
 }

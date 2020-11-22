@@ -19,12 +19,16 @@ export class EmpresasService {
     return this.httpClient.post(this.url+'/signup', company);
   }
 
-  getBrands():Observable<any>{
+  getCompany():Observable<any>{
     return this.httpClient.get(this.url+'/');
   }
 
-  blockUser(id, state){
+  stateCompany(id, state){
     return this.httpClient.post(this.url+`/${id}/estado/${state}`, {})
+  }
+
+  deleteCompany(id){
+    return this.httpClient.delete(this.url+`/${id}`)
   }
 
 }
