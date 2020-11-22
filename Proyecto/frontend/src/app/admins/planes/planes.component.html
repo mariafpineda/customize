@@ -8,5 +8,26 @@
     </div>
     <hr>
 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-4" *ngFor="let plan of planes">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Plan {{plan.nombrePlan}}</h5>
+                      <h6 class="card-subtitle mb-2">Precio: L {{plan.precioPlan}}</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">ID: {{plan._id}}</h6>
+                      
+                      <span class="card-text">Páginas: {{plan.cantidadPaginas}}</span> <br>
+                      <span class="card-text">Productos: {{plan.cantidadProductos}} por página</span><br>
+                      <div class="buttons-section">
+                        <button class="btn button2"> Editar </button>
+                        <button class="btn button2"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            
+        </div>
+    </div>
 
 </div>
