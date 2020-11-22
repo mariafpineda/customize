@@ -19,6 +19,8 @@ export class AdminsComponent implements OnInit {
 
   errorMessage:String;
   errorBool:Boolean;
+  successMessage:String;
+  successBool:Boolean;
 
   formularioRegistroAdmins = new FormGroup({
     nombreAdmin: new FormControl('', [Validators.required]),
@@ -45,7 +47,33 @@ export class AdminsComponent implements OnInit {
   }
 
   agregarAdmin(){
-    console.log('agregar admin');
+    if(!this.formularioRegistroAdmins.valid){
+      this.errorMessage="Todos los campos son obligatorios";
+      this.errorBool=true;
+    } else if(this.formularioRegistroAdmins.value.correoAdmin != this.formularioRegistroAdmins.value.confirmarCorreo){
+      this.errorMessage="Los correos electrónicos ingresados no coinciden."
+      this.errorBool=true;
+    } else if(this.formularioRegistroAdmins.value.contraseniaAdmin != this.formularioRegistroAdmins.value.confirmarContrasenia){
+      this.errorMessage="Las contraseñas ingresadas no coinciden."
+      this.errorBool=true;
+    } else{
+      this.adminsService.signUp(this.formularioRegistroAdmins.value)
+      .subscribe(
+        res=>{
+          this.successMessage=res.message;
+          this.successBool=true;
+          this.ngOnInit();
+        }, 
+        error => {
+          this.errorMessage=error.error.message;
+          this.errorBool=true;
+        }
+      )
+    }
+    setTimeout(() => {
+      this.errorBool=false;
+      this.successBool=false;
+    }, 5000);
   }
 
   editarAdmin(id){

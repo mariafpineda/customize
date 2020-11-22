@@ -45,6 +45,22 @@ a:hover{
     color:white !important;
 }
 
+.error{
+    color: red;
+    font-family: 'Raleway medium';
+    text-align: center;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.success{
+    color: rgb(17, 182, 17);
+    font-family: 'Raleway medium';
+    text-align: center;
+    padding: 5px;
+    font-size: 15px;
+}
+
 .visible{
     display:block;
 }

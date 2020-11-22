@@ -30,13 +30,18 @@ router.post("/signin", async (req, res) => {
 //Create admin
     router.post('/signup', async (req, res) => {
         const salt = 10;
-        const hash = bcrypt.hashSync(req.body.contrasenia, salt)
+        const hash = await bcrypt.hashSync(req.body.contraseniaAdmin, salt)
+        const email = await admins.findOne({'correoAdmin': req.body.correoAdmin})
 
+        if(email){
+            return res.status(401).json({'message':'El correo ingresado ya está registrado'});
+        }
+            
         let admin = new admins(
             {
-                nombreAdmin : req.body.nombre,
-                apellidoAdmin : req.body.apellido,
-                correoAdmin : req.body.correo,
+                nombreAdmin : req.body.nombreAdmin,
+                apellidoAdmin : req.body.apellidoAdmin,
+                correoAdmin : req.body.correoAdmin,
                 contraseniaAdmin : hash,
                 estado: 'activo'
             }
@@ -44,7 +49,7 @@ router.post("/signin", async (req, res) => {
         await admin.save()
 
         const token = jwt.sign({_id: admin._id}, 'secretkey');
-        res.status(200).json({"message": "ok"});
+        res.status(200).json({'message':'Nuevo administrador ingresado exitosamente.'});
     });
 
 //Read admins
@@ -127,8 +132,7 @@ function verifyToken(req, res, next){
         return res.status(401).send('Unauthorized request');
     }
 
-    const payload = jwt.verify(token, 'secretkey')
-    console.log(payload);
+    const payload = jwt.verify(token, 'secretkey');
     req.adminId = payload._id;
     next();
 }

@@ -39,7 +39,7 @@ var jwt = require('jsonwebtoken')
         let user = new usuarios(
             {
                 nombreUsuario: req.body.nombreUsuario,
-                apellidoUsuairo: req.body.apellidoUsuario,
+                apellidoUsuario: req.body.apellidoUsuario,
                 pais: req.body.pais,
                 fechaNacimiento : req.body.fechaNacimiento,
                 correoUsuario: req.body.correoUsuario,
