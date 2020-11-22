@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminsComponent } from '../admins/admins.component'
 import { faSignOutAlt, faBars } from "@fortawesome/free-solid-svg-icons";
+import { Router } from '@angular/router'
 
 
 
@@ -18,7 +19,7 @@ export class AdminsHomeComponent implements OnInit {
   public isCollapsed = false;
 
 
-  constructor() { }
+  constructor( private router:Router) { }
 
   ngOnInit(): void {
     this.regionVisible='administradores';
@@ -26,6 +27,12 @@ export class AdminsHomeComponent implements OnInit {
 
   categoriaSeleccionada(categoria){
     this.regionVisible=categoria;
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('idAdmin');
+    this.router.navigate(['/customize-admin']);
   }
 
 
