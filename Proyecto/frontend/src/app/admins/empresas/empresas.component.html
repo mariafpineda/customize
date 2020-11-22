@@ -1,1 +1,81 @@
-<p>empresas works!</p>
+<div id="section-empresas">
+    <div class="header-section">
+        <h3>Empresas</h3>
+    </div>
+    <hr>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo electrónico</th>
+                <th>Estado</th>
+                <th>Plan actual</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let empresa of empresas">
+            <tr>
+                <td>{{empresa.nombreEmpresa}}</td>
+                <td>{{empresa.correoEmpresa}}</td>
+                <td>{{empresa.estado}}</td>
+                <td>{{empresa.planActual}}</td>
+                <td *ngIf="empresa.estado == 'activo'"> 
+                    <a class="button" title="Bloquear">
+                        <fa-icon id="block" [icon]="faUserSlash" (click)="open(blockBrand, empresa._id)"></fa-icon>
+                    </a>
+                </td>
+                <td *ngIf="empresa.estado == 'bloqueado'"> 
+                    <a class="button" title="Desbloquear">
+                        <fa-icon id="block" [icon]="faUser" (click)="open(unblockBrand, empresa._id)"></fa-icon>
+                    </a>
+                </td>
+                <td>
+                    <a class="button" title="Eliminar">
+                        <fa-icon [icon]="faUserTimes" (click)="open(deleteBrand, empresa._id)"></fa-icon>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--Modal para bloquear empresa-->
+
+<ng-template #blockBrand let-modal>
+    <div class="modal-body">
+      ¿Está seguro de bloquear a esta empresa? <br>
+      Una vez bloqueado, no podrá realizar cambios en sus páginas hasta ser desbloqueado nuevamente.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="bloquearEmpresa()">Bloquear empresa</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+  </ng-template>
+
+  <!--Modal para desbloquear empresa-->
+
+<ng-template #unblockBrand let-modal>
+    <div class="modal-body">
+      ¿Está seguro de desbloquear a esta empresa? <br>
+      Una vez desbloqueado, podrá realizar cambios en sus páginas hasta ser bloqueado nuevamente.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="desbloquearEmpresa()">Desbloquear empresa</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+  </ng-template>
+
+
+
+  <!--Modal para eliminar empresa-->
+
+<ng-template #deleteBrand let-modal>
+    <div class="modal-body">
+      ¿Está seguro de eliminar a esta empresa? <br>
+      Una vez eliminado, todos sus datos se perderán.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="eliminar()">Eliminar empresa</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+  </ng-template>

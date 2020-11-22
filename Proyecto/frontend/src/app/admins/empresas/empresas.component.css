@@ -1,0 +1,54 @@
+table{
+    width: 100%;
+}
+
+.btn-outline-dark{
+    color: #00bbee !important;
+    border: 1px solid #00bbee !important;
+}
+
+.btn-outline-dark:hover{
+    background-color: #00bbee !important;
+    border: 1px solid #00bbee !important;
+    color:white !important;
+}
+
+.button{
+    margin-left: auto;
+    background-color: transparent;
+    color: black;
+    border: 0px solid #00bbee;
+}
+
+.button:hover{
+    color: #00bbee !important;
+}
+
+.header-section{
+    display: flex;
+}
+
+.header-section h3{
+    font-family: 'Raleway bold';
+}
+
+table{
+    width: 100%;
+}
+
+th, td{
+    padding:5px;
+}
+
+.modal-body, .modal-footer{
+    font-family: 'Raleway medium' !important;
+}
+
+.modal-header{
+    font-family: 'Raleway semibold' !important;
+}
+
+#section-empresas{
+    margin:10px;
+    font-family: 'Raleway medium';
+}
