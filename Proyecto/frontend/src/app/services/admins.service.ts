@@ -23,4 +23,12 @@ export class AdminsService {
   getAdmins():Observable<any>{
     return this.httpClient.get(this.url+'/');
   }
+
+  getAdmin(id):Observable<any>{
+    return this.httpClient.get(this.url+`/${id}`);
+  }
+
+  updateData(id, admin):Observable<any>{
+    return this.httpClient.put(this.url+`/${id}`, admin);
+  }
 }

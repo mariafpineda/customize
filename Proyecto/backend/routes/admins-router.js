@@ -64,23 +64,21 @@ router.post("/signin", async (req, res) => {
         })
     })
 
-//Update admin
+//Update admin without password
     router.put('/:idAdmin', verifyToken, async (req, res) => {
-        const salt = 10
-        const hash = bcrypt.hashSync(req.body.contrasenia, salt)
+
         await admins.update(
             {
                 _id: req.params.idAdmin
             },
             {
-                nombreAdmin : req.body.nombre,
-                apellidoAdmin : req.body.apellido,
-                correoAdmin : req.body.correo,
-                contraseniaAdmin : hash,
+                nombreAdmin : req.body.nombreAdmin,
+                apellidoAdmin : req.body.apellidoAdmin,
+                correoAdmin : req.body.correoAdmin,
                 estado: 'activo'
             }
         ).then(result => {
-            res.send(result);
+            res.status(200).json({'message':'Datos actualizados exitosamente.'})
             res.end();
         }).catch(error => {
             res.send(error);
@@ -120,6 +118,25 @@ router.post("/signin", async (req, res) => {
         });
     });
 
+//Update password
+router.put('/:idAdmin/password', verifyToken, async (req, res) => {
+    const salt=10;
+    const hash= await bcrypt.hashSync(req.body.contraseniaAdmin, salt);
+    await admins.update(
+        {
+            _id: req.params.idAdmin
+        },
+        {
+            contraseniaAdmin:hash
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
+});
 
 module.exports = router;
 
