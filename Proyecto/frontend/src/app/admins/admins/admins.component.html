@@ -27,7 +27,7 @@
                     </a>
                 </td>
                 <td>
-                    <a class="button" title="Eliminar" (click)="eliminarAdmin(admin._id)">
+                    <a class="button" title="Eliminar" (click)="eliminarAdmin(admin._id, deleteAdmin)">
                         <fa-icon [icon]="faUserTimes"></fa-icon>
                     </a>
                 </td>
@@ -126,5 +126,19 @@
               <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
             </div>
           </ng-template>
+
+
+           <!--Eliminar admin-->
+           <ng-template #deleteAdmin let-modal class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-10 centered" id="modal-addAdmin">
+            <div class="modal-body">
+                ¿Está seguro de querer eliminar a este usuario?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="confirmarEliminarAdmin(adminSeleccionado)">Eliminar</button>
+              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
+            </div>
+          </ng-template>
+
+
     </div>
 </div>

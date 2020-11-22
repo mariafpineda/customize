@@ -124,8 +124,20 @@ export class AdminsComponent implements OnInit {
     }, 5000);
   }
 
-  eliminarAdmin(id){
-    console.log(id);
+  eliminarAdmin(id, content){
+    this.open(content);
+    this.adminSeleccionado=id;
+  }
+
+  confirmarEliminarAdmin(id){
+    this.adminsService.deleteAdmin(this.adminSeleccionado)
+    .subscribe(
+      res=> {
+        console.log(res);
+        this.ngOnInit();
+        this.modalService.dismissAll();
+      }, error=> console.log(error)
+    )
   }
 
 }
