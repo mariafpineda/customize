@@ -11,22 +11,22 @@
     <table>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Correo electrónico</th>
-                <th>Estado</th>
             </tr>
         </thead>
         <tbody *ngFor="let admin of admins">
             <tr>
+                <td>{{admin._id}}</td>
                 <td>{{admin.nombreAdmin}} {{admin.apellidoAdmin}}</td>
                 <td>{{admin.correoAdmin}}</td>
-                <td>{{admin.estado}}</td>
-                <td> 
+                <td *ngIf="admin.estado == 'activo'"> 
                     <a class="button" title="Editar" (click)="obtenerAdmin(admin._id, editAdmin)">
                         <fa-icon [icon]="faUserEdit"></fa-icon>
                     </a>
                 </td>
-                <td>
+                <td *ngIf="admin.estado == 'activo'">
                     <a class="button" title="Eliminar" (click)="eliminarAdmin(admin._id, deleteAdmin)">
                         <fa-icon [icon]="faUserTimes"></fa-icon>
                     </a>
