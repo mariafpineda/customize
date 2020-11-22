@@ -7,15 +7,14 @@ var mongoose = require('mongoose');
     router.post('/', function (req, res) {
         let plan = new planes(
             {
-                nombrePlan : req.body.nombre,
-                cantidadPaginas: req.body.paginas,
-                cantidadProductos : req.body.productos,
-                precioPlan : req.body.precio
+                nombrePlan : req.body.nombrePlan,
+                cantidadPaginas: req.body.cantidadPaginas,
+                cantidadProductos : req.body.cantidadProductos,
+                precioPlan : req.body.precioPlan
             }
         );
         plan.save().then(result => {
-            res.send(result);
-            res.end();
+            res.status(200).json({'message':'Nuevo plan agregado exitosamente.'});
         }).catch(error => {
             res.send(error);
             res.end();
@@ -41,13 +40,13 @@ var mongoose = require('mongoose');
                 _id: req.params.idPlan
             },
             {
-                nombrePlan : req.body.nombre,
-                cantidadPaginas: req.body.paginas,
-                cantidadProductos : req.body.productos,
-                precioPlan : req.body.precio
+                nombrePlan : req.body.nombrePlan,
+                cantidadPaginas: req.body.cantidadPaginas,
+                cantidadProductos : req.body.cantidadProductos,
+                precioPlan : req.body.precioPlan
             }
         ).then(result => {
-            res.send(result);
+            res.status(200).json({'message':'Datos actualizados exitosamente.'});
             res.end();
         }).catch(error => {
             res.send(error);

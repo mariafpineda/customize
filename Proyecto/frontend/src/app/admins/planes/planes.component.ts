@@ -12,8 +12,19 @@ export class PlanesComponent implements OnInit {
   faPlus=faPlus;
   faTrashAlt=faTrashAlt;
 
+  plan:any={
+    nombrePlan : '',
+    cantidadPaginas: '',
+    cantidadProductos : '',
+    precioPlan : ''
+  }
+
   planes:any;
   planSeleccionado:String;
+  errorMessage:String;
+  errorBool:Boolean;
+  successMessage:String;
+  successBool:Boolean;
 
   constructor(private modalService:NgbModal,
     private planesService:PlanesService) { }
@@ -29,6 +40,61 @@ export class PlanesComponent implements OnInit {
   open(content, id){
     this.modalService.open(content, {centered: true});
     this.planSeleccionado=id;
+    if(id!=''){  
+      this.planesService.getPlan(id)
+      .subscribe(res => {
+        this.plan.nombrePlan=res[0].nombrePlan;
+        this.plan.precioPlan=res[0].precioPlan;
+        this.plan.cantidadPaginas=res[0].cantidadPaginas;
+        this.plan.cantidadProductos=res[0].cantidadProductos;
+      }, error => console.log(error));
+    }
+
+  }
+
+  agregarPlan(){
+    if(this.plan.nombrePlan == '' || this.plan.precioPlan=='' || this.plan.cantidadProductos== '' || this.plan.cantidadPaginas == ''){
+      this.errorMessage='Todos los campos son obligatorios.'
+      this.errorBool=true;
+    } else{
+      this.planesService.addPlan(this.plan)
+      .subscribe(res => {
+        this.successMessage=res.message;
+        this.successBool=true;
+        this.ngOnInit();
+      }, error => console.log(error));
+    }
+    setTimeout( () => {
+      this.errorBool=false;
+      this.successBool=false;
+    }, 5000);
+  }
+
+  actualizarPlan(){
+    if(this.plan.nombrePlan == '' || this.plan.precioPlan=='' || this.plan.cantidadProductos== '' || this.plan.cantidadPaginas == ''){
+      this.errorMessage='Todos los campos son obligatorios.'
+      this.errorBool=true;
+    } else{
+      this.planesService.updatePlan(this.planSeleccionado, this.plan)
+      .subscribe(res => {
+        this.successMessage=res.message;
+        this.successBool=true;
+        this.ngOnInit();
+      }, error => console.log(error));
+    }
+    setTimeout( () => {
+      this.errorBool=false;
+      this.successBool=false;
+    }, 5000);
+  }
+
+  eliminarPlan(){
+    this.planesService.deletePlan(this.planSeleccionado)
+    .subscribe( () => {
+      this.ngOnInit();
+      this.modalService.dismissAll();
+    }, error => console.log(error)
+    )
   }
   
 }

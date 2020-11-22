@@ -1,7 +1,7 @@
 <div id="section-planes">
     <div class="header-section">
         <h3>Planes de suscripción</h3>
-        <button class="button">
+        <button class="button" (click)="open(addPlan, '')">
             <fa-icon [icon]="faPlus"></fa-icon>
             Agregar plan
         </button>
@@ -10,18 +10,18 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-4" *ngFor="let plan of planes">
+            <div class="col-4 cards-div" *ngFor="let plan of planes">
                 <div class="card">
                     <div class="card-body">
                       <h5 class="card-title">Plan {{plan.nombrePlan}}</h5>
                       <h6 class="card-subtitle mb-2">Precio: L {{plan.precioPlan}}</h6>
-                      <h6 class="card-subtitle mb-2 text-muted">ID: {{plan._id}}</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">{{plan._id}}</h6>
                       
                       <span class="card-text">Páginas: {{plan.cantidadPaginas}}</span> <br>
                       <span class="card-text">Productos: {{plan.cantidadProductos}} por página</span><br>
                       <div class="buttons-section">
-                        <button class="btn button2"> Editar </button>
-                        <button class="btn button2"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+                        <button class="btn button2" (click)="open(editPlan, plan._id)"> Editar </button>
+                        <button class="btn button2" (click)="open(deletePlan, plan._id)"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
                       </div>
                     </div>
                   </div>
@@ -29,5 +29,94 @@
             
         </div>
     </div>
-
 </div>
+
+<!--Modal para editar plan-->
+<ng-template #addPlan let-modal class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-10" id="modal-addAdmin">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Agregar plan</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="error" *ngIf="errorBool">{{errorMessage}}</div>
+        <div class="success" *ngIf="successBool">{{successMessage}}</div>
+            <div class="div-media">
+                <div class="form-group col-12">
+                    <label class="form-label">Nombre del plan</label>
+                    <input class="form-control" type="text" placeholder="Nombre del plan" [(ngModel)]="plan.nombrePlan" [value]="plan.nombreAdmin">
+                </div>
+                <div class="form-group col-12">
+                    <label class="form-label">Precio</label>
+                    <input  class="form-control" type="text" placeholder="Precio" [(ngModel)]="plan.precioPlan" [value]="plan.precioPlan">
+                </div>
+            </div>
+            <div class="div-media" style="display:flex">
+                <div class="form-group col-6">
+                    <label class="form-label">Cantidad de páginas</label>
+                    <input  class="form-control" type="text" placeholder="Ej. 5" [(ngModel)]="plan.cantidadPaginas" [value]="plan.cantidadPaginas">
+                </div>
+                <div class="form-group col-6">
+                    <label class="form-label">Cantidad de productos</label>
+                    <input  class="form-control" type="text" placeholder="Ej. 10" [(ngModel)]="plan.cantidadProductos" [value]="plan.cantidadProductos">
+                </div>
+            </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="agregarPlan()">Guardar cambios</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+  </ng-template>
+
+
+
+<!--Modal para editar plan-->
+<ng-template #editPlan let-modal class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-10" id="modal-addAdmin">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Editar plan</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="error" *ngIf="errorBool">{{errorMessage}}</div>
+        <div class="success" *ngIf="successBool">{{successMessage}}</div>
+            <div class="div-media">
+                <div class="form-group col-12">
+                    <label class="form-label">Nombre del plan</label>
+                    <input class="form-control" type="text" placeholder="Nombre del plan" [(ngModel)]="plan.nombrePlan" [value]="plan.nombreAdmin">
+                </div>
+                <div class="form-group col-12">
+                    <label class="form-label">Precio</label>
+                    <input  class="form-control" type="text" placeholder="Precio" [(ngModel)]="plan.precioPlan" [value]="plan.precioPlan">
+                </div>
+            </div>
+            <div class="div-media" style="display:flex">
+                <div class="form-group col-6">
+                    <label class="form-label">Cantidad de páginas</label>
+                    <input  class="form-control" type="text" placeholder="Ej. 5" [(ngModel)]="plan.cantidadPaginas" [value]="plan.cantidadPaginas">
+                </div>
+                <div class="form-group col-6">
+                    <label class="form-label">Cantidad de productos</label>
+                    <input  class="form-control" type="text" placeholder="Ej. 10" [(ngModel)]="plan.cantidadProductos" [value]="plan.cantidadProductos">
+                </div>
+            </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="actualizarPlan()">Guardar cambios</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+  </ng-template>
+
+  <!--Modal para eliminar plan-->
+<ng-template #deletePlan let-modal class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-10" id="modal-addAdmin">
+    <div class="modal-body">
+        ¿Está seguro/a de eliminar este plan? <br>
+        Una vez eliminado, toda su información se borrara del sistema.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="eliminarPlan()">Eliminar plan</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+  </ng-template>
