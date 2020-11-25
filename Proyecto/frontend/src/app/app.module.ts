@@ -20,7 +20,7 @@ import { UsersHomeComponent } from './usuarios/users-home/users-home.component';
 import { AdminsHomeComponent } from './admins/admins-home/admins-home.component';
 import { CompaniesHomeComponent } from './empresas/companies-home/companies-home.component';
 import { FormsModule } from '@angular/forms';
-
+import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 
 import { AuthGuard } from './auth.guard';
 import { TokenService } from "./services/token.service";
@@ -30,6 +30,8 @@ import { EmpresasComponent } from './admins/empresas/empresas.component';
 import { PlanesComponent } from './admins/planes/planes.component';
 import { PlantillasComponent } from './admins/plantillas/plantillas.component';
 import { ConfiguracionesComponent } from './admins/configuraciones/configuraciones.component';
+
+
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { ConfiguracionesComponent } from './admins/configuraciones/configuracion
     FontAwesomeModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MonacoEditorModule.forRoot()
   ],
   providers: [
     AuthGuard,
