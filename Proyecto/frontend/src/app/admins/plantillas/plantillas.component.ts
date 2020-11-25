@@ -6,9 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plantillas.component.css']
 })
 export class PlantillasComponent  {
-  
+  editorOptions2:any;
   editorPreview:any;
-  editorOptions2 = {theme: 'vs-dark', language: 'html'};
   htmlEditor = (<HTMLInputElement>document.getElementById('html-part'));
   codeHTML: string= '';
 
@@ -18,16 +17,19 @@ export class PlantillasComponent  {
     monaco.editor.colorize(this.codeHTML, 'html', {})
   }
 
+  
+  
+  constructor() { }
+
+  ngOnInit(): void { 
+  this.editorOptions2 = {theme: 'vs-dark', language: 'html'};
+  }
+
   update(){
     this.editorPreview = (<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document;
     this.editorPreview.open();
     this.editorPreview.write(this.codeHTML);
     this.editorPreview.close();
   }
-  
-  /*constructor() { }
-
-  ngOnInit(): void {
-  }*/
 
 }
