@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MonacoEditorModule } from "ngx-monaco-editor";
 
 @Component({
   selector: 'app-plantillas',
@@ -8,12 +7,27 @@ import { MonacoEditorModule } from "ngx-monaco-editor";
 })
 export class PlantillasComponent  {
   
-  editorOptions = {theme: 'vs-dark', language: 'javascript'};
-  code= 'function x() {\nconsole.log("Hello world!");\n}';
+  editorPreview:any;
+  editorOptions2 = {theme: 'vs-dark', language: 'html'};
+  htmlEditor = (<HTMLInputElement>document.getElementById('html-part'));
+  codeHTML: string= '';
+
+  onInit(editor) {
+    let line = editor.getPosition();
+    console.log(line);
+    monaco.editor.colorize(this.codeHTML, 'html', {})
+  }
+
+  update(){
+    this.editorPreview = (<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document;
+    this.editorPreview.open();
+    this.editorPreview.write(this.codeHTML);
+    this.editorPreview.close();
+  }
   
-  constructor() { }
+  /*constructor() { }
 
   ngOnInit(): void {
-  }
+  }*/
 
 }
