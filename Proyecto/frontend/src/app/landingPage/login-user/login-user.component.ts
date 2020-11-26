@@ -33,7 +33,7 @@ export class LoginUserComponent implements OnInit {
     this.usuariosService.signIn(this.formularioLoginUsers.value)
     .subscribe(res => {
       localStorage.setItem('tokenUser', res.token);
-      this.router.navigate(['/usersHome']);
+      this.router.navigate(['/user/home']);
     }, error => {
         this.errorBool=true;
         this.errorMessage=error.error.message

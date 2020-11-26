@@ -33,7 +33,7 @@ export class LoginBrandComponent implements OnInit {
       .subscribe(res => {
         localStorage.setItem('tokenCompany', res.token);
         localStorage.setItem('idBrand', res.idBrand);
-        this.router.navigate(['/companiesHome']);
+        this.router.navigate(['/company/home']);
       }, error => {
         this.errorMessage=error.error.message;
         this.errorBool=true;

@@ -18,14 +18,14 @@ const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'vende', component: VendeComponent},
   {path:'compra', component: CompraComponent},
-  {path:'loginUser', component: LoginUserComponent},
-  {path:'loginBrand', component: LoginBrandComponent},
-  {path:'customize-admin', component: LoginAdminComponent},
-  {path:'registerUser', component: RegisterUserComponent},
-  {path:'registerBrand', component: RegisterBrandComponent},
-  {path: 'usersHome', component: UsersHomeComponent, canActivate: [AuthGuard], data: { role: 'user'}},
-  {path: 'adminsHome', component: AdminsHomeComponent, canActivate:[AuthGuard], data: { role: 'admin'}},
-  {path: 'companiesHome', component: CompaniesHomeComponent, canActivate:[AuthGuard], data: { role: 'company'}}
+  {path:'user/login', component: LoginUserComponent},
+  {path:'company/login', component: LoginBrandComponent},
+  {path:'admin/login', component: LoginAdminComponent},
+  {path:'user/register', component: RegisterUserComponent},
+  {path:'company/register', component: RegisterBrandComponent},
+  {path: 'user/home', component: UsersHomeComponent, canActivate: [AuthGuard], data: { role: 'user'}},
+  {path: 'admin/home', component: AdminsHomeComponent, canActivate:[AuthGuard], data: { role: 'admin'}},
+  {path: 'company/home', component: CompaniesHomeComponent, canActivate:[AuthGuard], data: { role: 'company'}}
 ];
 
 @NgModule({

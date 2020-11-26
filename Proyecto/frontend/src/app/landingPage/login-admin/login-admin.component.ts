@@ -34,7 +34,7 @@ export class LoginAdminComponent implements OnInit {
       .subscribe(res => {
         localStorage.setItem('tokenAdmin', res.token);
         localStorage.setItem('idAdmin', res.idAdmin);
-        this.router.navigate(['/adminsHome']);
+        this.router.navigate(['/admin/home']);
       }, error => {
         this.errorBool=true;
         this.errorMessage=error.error.message

@@ -49,7 +49,7 @@ export class RegisterUserComponent implements OnInit {
       res => {
         localStorage.setItem('token', res.token);
         localStorage.setItem('idUser', res.idUser);
-        this.router.navigate(['/usersHome']);
+        this.router.navigate(['/user/home']);
       },
       error => {
         this.errorMessage=error.error.message;
