@@ -23,11 +23,11 @@ export class UsuariosService {
   }
 
   loggedIn(){
-    return !!localStorage.getItem('tokenUser');
+    return !!localStorage.getItem('token');
   }
 
   getToken(){
-    return localStorage.getItem('tokenUser');
+    return localStorage.getItem('token');
   }
 
   logOut(){

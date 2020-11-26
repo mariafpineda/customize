@@ -25,11 +25,15 @@ export class AdminsService {
   }
 
   loggedIn(){
-    return !!localStorage.getItem('tokenAdmin');
+    return !!localStorage.getItem('token');
   }
 
   getAdmin(id):Observable<any>{
     return this.httpClient.get(this.url+`/${id}`);
+  }
+
+  getToken(){
+    return localStorage.getItem('token');
   }
 
   updateData(id, admin):Observable<any>{

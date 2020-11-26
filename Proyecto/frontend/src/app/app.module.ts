@@ -66,7 +66,8 @@ import { ConfiguracionesComponent } from './admins/configuraciones/configuracion
     MonacoEditorModule.forRoot()
   ],
   providers: [
-    AuthGuard,
+    AuthGuard
+    ,
     {
       provide : HTTP_INTERCEPTORS,
       useClass: TokenService,

@@ -20,11 +20,15 @@ export class EmpresasService {
   }
 
   loggedIn(){
-    return !!localStorage.getItem('tokenCompany');
+    return !!localStorage.getItem('token');
   }
 
   getCompany():Observable<any>{
     return this.httpClient.get(this.url+'/');
+  }
+
+  getToken(){
+    return localStorage.getItem('token');
   }
 
   stateCompany(id, state){

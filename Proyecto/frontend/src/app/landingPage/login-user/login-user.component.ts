@@ -32,7 +32,8 @@ export class LoginUserComponent implements OnInit {
     } else {
     this.usuariosService.signIn(this.formularioLoginUsers.value)
     .subscribe(res => {
-      localStorage.setItem('tokenUser', res.token);
+      localStorage.setItem('token', res.token);
+      localStorage.setItem('idUser', res.idUser);
       this.router.navigate(['/user/home']);
     }, error => {
         this.errorBool=true;

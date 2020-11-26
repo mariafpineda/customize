@@ -32,7 +32,7 @@ export class AdminsHomeComponent implements OnInit {
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('idAdmin');
-    this.router.navigate(['/customize-admin']);
+    this.router.navigate(['/admin/login']);
   }
 
 
