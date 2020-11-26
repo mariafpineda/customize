@@ -30,6 +30,7 @@ import { EmpresasComponent } from './admins/empresas/empresas.component';
 import { PlanesComponent } from './admins/planes/planes.component';
 import { PlantillasComponent } from './admins/plantillas/plantillas.component';
 import { ConfiguracionesComponent } from './admins/configuraciones/configuraciones.component';
+import { EditorComponent } from './admins/editor/editor.component';
 
 
 
@@ -53,7 +54,8 @@ import { ConfiguracionesComponent } from './admins/configuraciones/configuracion
     EmpresasComponent,
     PlanesComponent,
     PlantillasComponent,
-    ConfiguracionesComponent
+    ConfiguracionesComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,

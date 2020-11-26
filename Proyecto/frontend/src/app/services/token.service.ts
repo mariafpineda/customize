@@ -18,9 +18,9 @@ export class TokenService implements HttpInterceptor{
 
 //Para añadir cabezera a petición
   intercept(req, next){
-    if(this.usuariosService.getToken()!=""){
+    if(this.usuariosService.getToken()!=null){
       this.token=this.usuariosService.getToken();
-    } else if(this.adminsService.getToken()!=""){
+    } else if(this.adminsService.getToken()!=null){
       this.token=this.adminsService.getToken();
     } else{
       this.token=this.empresasService.getToken();

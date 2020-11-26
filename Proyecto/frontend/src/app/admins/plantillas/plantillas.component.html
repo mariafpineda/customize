@@ -1,10 +1,32 @@
-<div style="display:flex">
-<div style="width: 50%; height: 600px; padding-left:5px">
-    <h1>HTML</h1>
-        <ngx-monaco-editor id="html-part" [options]="editorOptions2" [(ngModel)]="codeHTML" (change)="update()"></ngx-monaco-editor>
-</div>
-<div style="width: 50%; height: 600px; padding-left:5px">
-    <h1>Preview</h1>
-        <iframe id="editorPreview" frameborder="0"></iframe>
-</div>
+<div id="section-planes">
+    <div class="header-section">
+        <h3>Plantillas</h3>
+        <button class="button">
+            <fa-icon [icon]="faPlus"></fa-icon>
+            Agregar plantilla
+        </button>
+    </div>
+    <hr>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6 cards-div">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"></h5>
+                      <h6 class="card-subtitle mb-2"></h6>
+                      <h6 class="card-subtitle mb-2 text-muted"></h6>
+                      
+                      <span class="card-text"></span> <br>
+                      <span class="card-text"></span><br>
+                      <div class="buttons-section">
+                        <button class="btn button2"> Editar </button>
+                        <button class="btn button2"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            
+        </div>
+    </div>
 </div>

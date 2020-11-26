@@ -13,6 +13,7 @@ import { AdminsHomeComponent } from './admins/admins-home/admins-home.component'
 import { CompaniesHomeComponent } from "./empresas/companies-home/companies-home.component";
 
 import { AuthGuard } from './auth.guard'
+import { EditorComponent } from './admins/editor/editor.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path:'company/register', component: RegisterBrandComponent},
   {path: 'user/home', component: UsersHomeComponent, canActivate: [AuthGuard], data:{role: 'user'}},
   {path: 'admin/home', component: AdminsHomeComponent, canActivate: [AuthGuard], data:{role: 'admin'}},
-  {path: 'company/home', component: CompaniesHomeComponent, canActivate: [AuthGuard], data:{role: 'company'}}
+  {path: 'company/home', component: CompaniesHomeComponent, canActivate: [AuthGuard], data:{role: 'company'}},
+  {path: 'admin/editor', component:EditorComponent, canActivate:[AuthGuard], data:{role: 'admin'}}
 ];
 
 @NgModule({

@@ -1,0 +1,68 @@
+.btn-outline-dark{
+    color: #00bbee !important;
+    border: 1px solid #00bbee !important;
+}
+
+.btn-outline-dark:hover{
+    background-color: #00bbee !important;
+    border: 1px solid #00bbee !important;
+    color:white !important;
+}
+
+.button{
+    margin-left: auto;
+    background-color: transparent;
+    color: black;
+    border: 0px solid #00bbee;
+}
+
+.button2{
+    margin-left: auto;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    margin-left:5px;
+}
+
+.button:hover{
+    color: #00bbee !important;
+}
+
+.button2:hover{
+    color: #00bbee !important;
+    border: 1px solid #00bbee !important;
+}
+
+.buttons-section{
+    text-align: end;
+    margin-top:15px;
+}
+
+.cards-div{
+    margin-bottom: 10px;
+}
+
+.card-text{
+    font-size:1.2rem;
+}
+
+.card-title{
+    font-family: 'Raleway semibold' !important;
+}
+.container-fluid{
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.header-section{
+    display: flex;
+}
+
+.header-section h3{
+    font-family: 'Raleway bold';
+}
+
+#section-planes{
+    margin:10px;
+    font-family: 'Raleway medium';
+}

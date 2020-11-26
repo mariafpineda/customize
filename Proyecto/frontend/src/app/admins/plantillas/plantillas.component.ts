@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-plantillas',
@@ -6,30 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plantillas.component.css']
 })
 export class PlantillasComponent  {
-  editorOptions2:any;
-  editorPreview:any;
-  htmlEditor = (<HTMLInputElement>document.getElementById('html-part'));
-  codeHTML: string= '';
-
-  onInit(editor) {
-    let line = editor.getPosition();
-    console.log(line);
-    monaco.editor.colorize(this.codeHTML, 'html', {})
-  }
-
-  
+  faPlus=faPlus;
+  faTrashAlt=faTrashAlt;
   
   constructor() { }
 
   ngOnInit(): void { 
-  this.editorOptions2 = {theme: 'vs-dark', language: 'html'};
-  }
-
-  update(){
-    this.editorPreview = (<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document;
-    this.editorPreview.open();
-    this.editorPreview.write(this.codeHTML);
-    this.editorPreview.close();
   }
 
 }
