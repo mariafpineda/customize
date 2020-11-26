@@ -19,7 +19,7 @@ export class TokenService implements HttpInterceptor{
         Authorization: `Bearer ${this.usuariosService.getToken()}`
       }
     });
-    return next.handle(tokenizeReq)
+    return next.handle(tokenizeReq);
   }
 
   
