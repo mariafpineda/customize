@@ -23,9 +23,9 @@ const routes: Routes = [
   {path:'customize-admin', component: LoginAdminComponent},
   {path:'registerUser', component: RegisterUserComponent},
   {path:'registerBrand', component: RegisterBrandComponent},
-  {path: 'usersHome', component: UsersHomeComponent, canActivate: [AuthGuard]},
-  {path: 'adminsHome', component: AdminsHomeComponent},
-  {path: 'companiesHome', component: CompaniesHomeComponent}
+  {path: 'usersHome', component: UsersHomeComponent, canActivate: [AuthGuard], data: { role: 'user'}},
+  {path: 'adminsHome', component: AdminsHomeComponent, canActivate:[AuthGuard], data: { role: 'admin'}},
+  {path: 'companiesHome', component: CompaniesHomeComponent, canActivate:[AuthGuard], data: { role: 'company'}}
 ];
 
 @NgModule({

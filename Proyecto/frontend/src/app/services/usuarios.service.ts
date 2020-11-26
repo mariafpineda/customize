@@ -23,15 +23,15 @@ export class UsuariosService {
   }
 
   loggedIn(){
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem('tokenUser');
   }
 
   getToken(){
-    return localStorage.getItem('token');
+    return localStorage.getItem('tokenUser');
   }
 
   logOut(){
-    localStorage.removeItem('token');
+    localStorage.removeItem('tokenUser');
     this.router.navigate(['/'])
   }
 }

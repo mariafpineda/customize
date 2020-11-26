@@ -19,6 +19,10 @@ export class EmpresasService {
     return this.httpClient.post(this.url+'/signup', company);
   }
 
+  loggedIn(){
+    return !!localStorage.getItem('tokenCompany');
+  }
+
   getCompany():Observable<any>{
     return this.httpClient.get(this.url+'/');
   }

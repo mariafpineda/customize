@@ -24,6 +24,10 @@ export class AdminsService {
     return this.httpClient.get(this.url+'/');
   }
 
+  loggedIn(){
+    return !!localStorage.getItem('tokenAdmin');
+  }
+
   getAdmin(id):Observable<any>{
     return this.httpClient.get(this.url+`/${id}`);
   }
