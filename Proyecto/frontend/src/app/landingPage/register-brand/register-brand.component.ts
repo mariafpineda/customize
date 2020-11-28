@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { EmpresasService } from 'src/app/services/empresas.service';
 import { PlanesService } from '../../services/planes.service'
@@ -29,9 +30,11 @@ export class RegisterBrandComponent implements OnInit {
 
   constructor( private empresasService:EmpresasService,
     private router:Router,
-    private planesService:PlanesService) { }
+    private planesService:PlanesService,
+    private titleService:Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Regístrate');
     this.planesService.getPlans()
     .subscribe(res =>{
       this.planes=res;

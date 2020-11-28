@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminsComponent } from '../admins/admins.component'
 import { faSignOutAlt, faBars } from "@fortawesome/free-solid-svg-icons";
 import { Router } from '@angular/router'
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -19,9 +20,11 @@ export class AdminsHomeComponent implements OnInit {
   public isCollapsed = false;
 
 
-  constructor( private router:Router) { }
+  constructor( private router:Router,
+    private titleService:Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Administración');
     this.regionVisible='administradores';
   }
 

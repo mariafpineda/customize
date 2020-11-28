@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { EmpresasService } from 'src/app/services/empresas.service';
 
@@ -19,9 +20,11 @@ export class LoginBrandComponent implements OnInit {
   });
 
   constructor(private empresasService:EmpresasService,
-    private router:Router) { }
+    private router:Router,
+    private titleService:Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Iniciar sesión');
   }
 
   guardarEmpresa(){

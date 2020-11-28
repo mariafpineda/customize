@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AdminsService } from 'src/app/services/admins.service';
 
@@ -20,9 +21,11 @@ export class LoginAdminComponent implements OnInit {
   });
 
   constructor(private adminsService:AdminsService,
-    private router:Router) { }
+    private router:Router,
+    private titleService:Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Iniciar sesión');
   }
 
   guardarAdmin(){

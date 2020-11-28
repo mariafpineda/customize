@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuariosService } from "../../services/usuarios.service";
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -20,9 +21,11 @@ export class LoginUserComponent implements OnInit {
   });
 
   constructor(private usuariosService:UsuariosService,
-    private router:Router ) { }
+    private router:Router,
+    private titleService:Title ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Iniciar sesión');
   }
 
   guardarUsuario(){
