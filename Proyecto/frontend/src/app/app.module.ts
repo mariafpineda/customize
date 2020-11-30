@@ -22,6 +22,7 @@ import { CompaniesHomeComponent } from './empresas/companies-home/companies-home
 import { FormsModule } from '@angular/forms';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 
+
 import { AuthGuard } from './auth.guard';
 import { TokenService } from "./services/token.service";
 import { SidebarComponent } from './admins/sidebar/sidebar.component';
@@ -65,7 +66,8 @@ import { EditorComponent } from './admins/editor/editor.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    MonacoEditorModule.forRoot()
+    MonacoEditorModule.forRoot(),
+    
   ],
   providers: [
     AuthGuard
