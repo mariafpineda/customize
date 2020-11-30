@@ -1,8 +1,7 @@
 #content{
     min-height: 100vh;
-    padding-top: 5.5rem;
+    padding: 5.5rem 1rem 0 1rem;
     margin-left: auto !important;
-    margin-right: auto !important;
 }
 
 .collapse-btn{
@@ -17,7 +16,7 @@
 nav{
     background-color: transparent !important; 
     width: 100%;
-    position: fixed !important;
+    position: fixed;
     z-index: 1200;
 }
 
@@ -47,12 +46,14 @@ nav{
 #sidebar{
     /*margin-left: -15rem;*/
     width: 15rem;
-    transition: margin .25s ease-out;
     margin-left: 0%;
     padding-left: 0%;
 }
 
-
+#sidenav{
+    width: 15rem;
+}
+/*
 @media (max-width: 768px) {
   #sidebar {
     position: fixed !important;
@@ -61,4 +62,4 @@ nav{
 
 }
 
-
+*/

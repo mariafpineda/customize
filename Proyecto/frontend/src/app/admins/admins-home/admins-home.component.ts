@@ -17,7 +17,7 @@ export class AdminsHomeComponent implements OnInit {
   faSignOutAlt=faSignOutAlt;
   faBars=faBars;
   regionVisible:String='';
-  public isCollapsed = false;
+  public isCollapsed = true;
 
 
   constructor( private router:Router,
