@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { PlantillasService } from "../../services/plantillas.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -10,13 +11,16 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./plantillas.component.css']
 })
 export class PlantillasComponent  {
+  @Output() onEditarPlantilla = new EventEmitter();
+  
   faPlus=faPlus;
   faTrashAlt=faTrashAlt;
   plantillas:any;
   plantillaSeleccionada:any;
   
   constructor( private plantillasService:PlantillasService,
-    private modalService:NgbModal) { }
+    private modalService:NgbModal,
+    private route:Router) { }
 
   ngOnInit(): void { 
     this.plantillasService.getTemplates()
@@ -33,8 +37,11 @@ export class PlantillasComponent  {
   }
 
   editarPlantilla(id){
-    console.log("Editar: ", id);
+    console.log(id);
+    this.onEditarPlantilla.emit(id);
+    this.route.navigate(['/admin/editor']);
   }
+
   
   eliminarPlantilla(){
     this.plantillasService.deleteTemplate(this.plantillaSeleccionada)

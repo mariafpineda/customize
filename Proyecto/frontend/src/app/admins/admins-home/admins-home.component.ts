@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AdminsComponent } from '../admins/admins.component'
 import { faSignOutAlt, faBars } from "@fortawesome/free-solid-svg-icons";
 import { Router } from '@angular/router'
 import { Title } from '@angular/platform-browser';
+import { EditorComponent } from '../editor/editor.component';
 
 
 
@@ -12,8 +12,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./admins-home.component.css']
 })
 export class AdminsHomeComponent implements OnInit {
-  @ViewChild('admins') adminsComponent:AdminsComponent;
-
+  @ViewChild('editor') editorComponent:EditorComponent;
   faSignOutAlt=faSignOutAlt;
   faBars=faBars;
   regionVisible:String='';
@@ -31,6 +30,11 @@ export class AdminsHomeComponent implements OnInit {
   categoriaSeleccionada(categoria){
     this.regionVisible=categoria;
     this.isCollapsed=true;
+  }
+
+  plantillaSeleccionada(id){
+    console.log("id de plantilla desde admins-home", id)
+    this.editorComponent.obtenerPlantilla(id);
   }
 
   logout(){

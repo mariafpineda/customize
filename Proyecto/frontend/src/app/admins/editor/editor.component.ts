@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-editor',
@@ -10,6 +10,7 @@ export class EditorComponent implements OnInit {
   editorPreview:any;
   htmlEditor = (<HTMLInputElement>document.getElementById('html-part'));
   codeHTML: string= '';
+  idPlantilla:String='';
 
   onInit(editor) {
     let line = editor.getPosition();
@@ -28,4 +29,9 @@ export class EditorComponent implements OnInit {
     this.editorPreview.write(this.codeHTML);
     this.editorPreview.close();
   }
+
+  obtenerPlantilla(id){
+    console.log("Id plantilla desde editor: ", id)
+  }
+
 }
