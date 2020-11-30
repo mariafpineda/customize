@@ -13,4 +13,8 @@ export class PlantillasService {
   getTemplates():Observable<any>{
     return this.httpClient.get(this.url+'/');
   }
+
+  deleteTemplate(id):Observable<any>{
+    return this.httpClient.delete(this.url+`/${id}`)
+  }
 }

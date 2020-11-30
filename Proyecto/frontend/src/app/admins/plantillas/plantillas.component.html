@@ -1,10 +1,10 @@
 <div id="section-planes">
     <div class="header-section">
         <h3>Plantillas</h3>
-        <button class="button">
-            <fa-icon [icon]="faPlus" href="admin/editor"></fa-icon>
+        <a class="button"  href="/admin/editor">
+            <fa-icon [icon]="faPlus"></fa-icon>
             Agregar plantilla
-        </button>
+        </a>
     </div>
     <hr>
 
@@ -18,8 +18,8 @@
                       
                       <span class="card-text"> {{plantilla.descripcion}} </span>
                       <div class="buttons-section">
-                        <button class="btn button2">Editar </button>
-                        <button class="btn button2"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+                        <button class="btn button2" (click)="editarPlantilla(plantilla._id)">Editar</button>
+                        <button class="btn button2" (click)="open(deleteTemplate, plantilla._id)"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
                       </div>
                     </div>
                   </div>
@@ -28,3 +28,15 @@
         </div>
     </div>
 </div>
+
+<!-- Modal para eliminar plantilla -->
+<ng-template #deleteTemplate let-modal class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-10" id="modal-addAdmin">
+    <div class="modal-body">
+        ¿Está seguro/a de eliminar esta plantilla? <br>
+        Una vez eliminado, toda su información se borrara del sistema.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="eliminarPlantilla()">Eliminar plantilla</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+  </ng-template>
