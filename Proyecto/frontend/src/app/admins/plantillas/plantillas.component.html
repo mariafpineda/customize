@@ -2,7 +2,7 @@
     <div class="header-section">
         <h3>Plantillas</h3>
         <button class="button">
-            <fa-icon [icon]="faPlus"></fa-icon>
+            <fa-icon [icon]="faPlus" href="admin/editor"></fa-icon>
             Agregar plantilla
         </button>
     </div>
@@ -10,17 +10,15 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6 cards-div">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6 cards-div" *ngFor="let plantilla of plantillas">
                 <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title"></h5>
-                      <h6 class="card-subtitle mb-2"></h6>
-                      <h6 class="card-subtitle mb-2 text-muted"></h6>
+                      <h5 class="card-title">{{plantilla.tituloTema}}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted"> {{plantilla._id}} </h6>
                       
-                      <span class="card-text"></span> <br>
-                      <span class="card-text"></span><br>
+                      <span class="card-text"> {{plantilla.descripcion}} </span>
                       <div class="buttons-section">
-                        <button class="btn button2"> Editar </button>
+                        <button class="btn button2">Editar </button>
                         <button class="btn button2"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
                       </div>
                     </div>

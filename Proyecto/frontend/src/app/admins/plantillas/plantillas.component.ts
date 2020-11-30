@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { PlantillasService } from "../../services/plantillas.service"
 
 @Component({
   selector: 'app-plantillas',
@@ -9,10 +10,16 @@ import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 export class PlantillasComponent  {
   faPlus=faPlus;
   faTrashAlt=faTrashAlt;
+  plantillas:any;
   
-  constructor() { }
+  constructor( private plantillasService:PlantillasService) { }
 
   ngOnInit(): void { 
+    this.plantillasService.getTemplates()
+    .subscribe(res => {
+      this.plantillas = res;
+    },
+    error => console.log(error));
   }
 
 }

@@ -30,6 +30,7 @@ export class AdminsHomeComponent implements OnInit {
 
   categoriaSeleccionada(categoria){
     this.regionVisible=categoria;
+    this.isCollapsed=true;
   }
 
   logout(){
