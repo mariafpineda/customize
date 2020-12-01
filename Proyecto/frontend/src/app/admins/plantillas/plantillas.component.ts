@@ -37,7 +37,6 @@ export class PlantillasComponent  {
   }
 
   editarPlantilla(id){
-    console.log(id);
     this.onEditarPlantilla.emit(id);
     this.route.navigate(['/admin/editor']);
   }

@@ -11,6 +11,7 @@ export class EditorComponent implements OnInit {
   htmlEditor = (<HTMLInputElement>document.getElementById('html-part'));
   codeHTML: string= '';
   idPlantilla:String='';
+  prueba:String="Hola desde ts";
 
   onInit(editor) {
     let line = editor.getPosition();
@@ -28,6 +29,7 @@ export class EditorComponent implements OnInit {
     this.editorPreview.open();
     this.editorPreview.write(this.codeHTML);
     this.editorPreview.close();
+    console.log((<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document.getElementById('prueba'));
   }
 
   obtenerPlantilla(id){
@@ -35,3 +37,18 @@ export class EditorComponent implements OnInit {
   }
 
 }
+
+/*`<style>
+  h1{
+      color: pink;
+  }
+  
+  </style>
+  <h1>Hola</h1>
+  <div id="prueba">
+    {{prueba}}
+  </div>
+  
+  <script>
+      document.getElementById("prueba")="Hola desde js"
+  </script>`;*/

@@ -33,7 +33,6 @@ export class AdminsHomeComponent implements OnInit {
   }
 
   plantillaSeleccionada(id){
-    console.log("id de plantilla desde admins-home", id)
     this.editorComponent.obtenerPlantilla(id);
   }
 
