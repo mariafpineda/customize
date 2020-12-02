@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-editor',
@@ -6,17 +7,17 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent implements OnInit {
-  editorOptions2={theme: 'vs-dark', language:'html'};
+  faBars=faBars;
+  editorOptions={theme: 'vs-dark', language:'html'};
   editorPreview:any;
-  htmlEditor = (<HTMLInputElement>document.getElementById('html-part'));
-  codeHTML: string= '';
+  code: string= '';
   idPlantilla:String='';
-  prueba:String="Hola desde ts";
+  public isMenuCollapsed=true;
 
   onInit(editor) {
     let line = editor.getPosition();
-    console.log(line);
-    monaco.editor.colorize(this.codeHTML, 'html', {})
+    console.log(line); 
+    monaco.editor.colorize(this.code, 'html', {})
   }
 
   constructor() { }
@@ -27,7 +28,7 @@ export class EditorComponent implements OnInit {
   update(){
     this.editorPreview = (<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document;
     this.editorPreview.open();
-    this.editorPreview.write(this.codeHTML);
+    this.editorPreview.write(this.code);
     this.editorPreview.close();
     console.log((<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document.getElementById('prueba'));
   }

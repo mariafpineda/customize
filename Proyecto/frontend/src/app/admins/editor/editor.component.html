@@ -1,13 +1,88 @@
-<div class="container">
-    <div class="row">
-            <div class="col-xl-6">
-                <h1>HTML</h1>
-                    <ngx-monaco-editor id="html-part" [options]="editorOptions2" [(ngModel)]="codeHTML" (change)="update()" style="min-height: 100vh;">
-                    </ngx-monaco-editor>
-            </div>
-            <div class="col-xl-6">
-                <h1>Preview</h1>
-                    <iframe id="editorPreview" frameborder="0" style="min-height: 100vh; width: 100%;"></iframe>
-            </div>
+<body>
+    <div class="container-fluid">
+        <div class="row"> 
+            <nav class="navbar navbar-expand-lg col-xl-2 col-lg-3" id="sidenav">
+                <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+                    <fa-icon [icon]="faBars"></fa-icon>
+                </button>
+                <div  [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="sidebar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="navbar-brand" [routerLink]="'.'">
+                                <img src="/assets/img/logo-puzzle.png" alt="" id="logo">
+                            </a>
+                        </li>
+                        <li>
+                        <a class="nav-link custom-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">Features</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link custom-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">Examples</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link custom-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 edit-area" id="content">
+                    <div class="col-xl-9">
+                        <h3>Editor HTML, CSS y JS</h3>
+                            <ngx-monaco-editor id="htmlPart" [options]="editorOptions" [(ngModel)]="code" (change)="update()">
+                            </ngx-monaco-editor>
+                    </div>
+                    <div class="col-xl-9">
+                        <h3>Previsualización</h3>
+                            <iframe id="editorPreview" frameborder="0"></iframe>
+                    </div>
+                </div>
+        </div>
     </div>
-</div>
+    <!-- <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg col-xl-2 col-lg-3" id="sidenav">
+                <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+                    <fa-icon [icon]="faBars"></fa-icon>
+                </button>
+                <div  [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="sidebar">
+                    <app-sidebar></app-sidebar>
+                </div>
+            </nav>
+               <nav class="navbar navbar-expand-lg col-xl-2 col-lg-2 col-md-1" id="sidenav">
+                    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+                        <fa-icon [icon]="faBars"></fa-icon>
+                    </button>
+                    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="sidebar">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="navbar-brand" [routerLink]="'.'">
+                                    <img src="/assets/img/logo-puzzle.png" alt="" id="logo">
+                                </a>
+                            </li>
+                            <li>
+                            <a class="nav-link custom-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">Features</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link custom-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">Examples</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link custom-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            <div class="col-xl-9 col-lg-9 edit-area" id="content">
+                <div class="col-xl-9">
+                    <h3>Editor HTML, CSS y JS</h3>
+                        <ngx-monaco-editor id="htmlPart" [options]="editorOptions" [(ngModel)]="code" (change)="update()">
+                        </ngx-monaco-editor>
+                </div>
+                <div class="col-xl-9">
+                    <h3>Previsualización</h3>
+                        <iframe id="editorPreview" frameborder="0"></iframe>
+                </div>
+            </div>    
+        </div>
+    </div>-->
+
+</body>
+

@@ -1,0 +1,85 @@
+body{
+    background-color:#29292B;
+    margin:0;
+}
+
+#content{
+    min-height: 100vh;
+    padding: 5.5rem 1rem 0 1rem;
+    margin-left: auto !important;
+}
+
+.custom-link{
+    font-family: 'Raleway medium' !important;
+    font-size: 1.2rem !important;
+    color: white !important;
+}
+
+.custom-link:hover{
+    color: #00bbee !important;
+}
+
+.edit-area{
+    color: white;
+    font-family: 'Raleway semibold';
+    background-color:  rgb(41, 41, 43);
+    float: right;
+}
+
+#editorPreview{
+    overflow-y: scroll;
+}
+
+#editorPreview, #htmlPart{
+    border: 1px solid  rgb(73, 73, 75);
+}
+
+#logo{
+    width: 150px;
+}
+
+nav{
+    background-color: transparent !important; 
+    width: 100%;
+    position: fixed;
+    z-index: 1200;
+}
+
+.navbar{
+    background-color: #343A40 !important;
+}
+
+.navbar-collapse{
+    align-items: baseline;
+}
+
+#navbarNav{
+    margin-left: auto;
+}
+
+
+.nav-link{
+    color: white !important;
+    font-family: 'Roboto' !important;
+}
+
+.nav-link:hover{
+    cursor: pointer;
+    color: #00bbee !important;
+}
+
+.navbar-toggler{
+    color: white !important;
+}
+
+#sidebar{
+    margin-top: 5px;
+    width: 15rem;
+    margin-left: 0%;
+    padding-left: 0%;
+    min-height: 100vh;
+}
+
+#sidenav{
+    width: 15rem;
+}
