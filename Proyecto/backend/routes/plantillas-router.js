@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var multer = require('../libs/multer');
 var plantillas = require('../models/plantillas');
 
 //Create template
@@ -44,7 +45,7 @@ var plantillas = require('../models/plantillas');
             {
                 tituloTema : req.body.titulo,
                 descripcion : req.body.descripcion,
-                imagenes: JSON.parse(req.body.imagenes),
+                imagenes: req.body.imagenes,
                 codigoHTML: req.body.codigoHTML,
                 codigoCSS: req.body.codigoCSS,
                 codigoJS: req.body.codigoJS
@@ -89,6 +90,9 @@ var plantillas = require('../models/plantillas');
             res.end();
         })
     })
+
+//Create image
+
 
 //Update images on template
 router.put('/:idTemplate/imagenes', function(req, res){
