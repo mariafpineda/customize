@@ -5,7 +5,9 @@ var esquema = new mongoose.Schema(
         tituloTema: String,
         descripcion : String,
         imagenes: Array,
-        codigo: String
+        codigoHTML: String,
+        codigoCSS: String,
+        codigoJS: String
     }
 )
 

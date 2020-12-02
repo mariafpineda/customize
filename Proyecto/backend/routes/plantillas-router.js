@@ -9,7 +9,9 @@ var plantillas = require('../models/plantillas');
                 tituloTema: req.body.titulo,
                 descripcion : req.body.descripcion,
                 imagenes : JSON.parse(req.body.imagenes),
-                codigo: req.body.codigo
+                codigoHTML: req.body.codigoHTML,
+                codigoCSS: req.body.codigoCSS,
+                codigoJS: req.body.codigoJS
             }
         );
         template.save().then(result => {
@@ -43,7 +45,9 @@ var plantillas = require('../models/plantillas');
                 tituloTema : req.body.titulo,
                 descripcion : req.body.descripcion,
                 imagenes: JSON.parse(req.body.imagenes),
-                codigo : req.body.codigo
+                codigoHTML: req.body.codigoHTML,
+                codigoCSS: req.body.codigoCSS,
+                codigoJS: req.body.codigoJS
             }
         ).then(result => {
             res.send(result);
