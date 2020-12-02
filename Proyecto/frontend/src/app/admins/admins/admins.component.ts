@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faUserTimes, faUserEdit, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { AdminsService } from "../../services/admins.service";
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router'
 

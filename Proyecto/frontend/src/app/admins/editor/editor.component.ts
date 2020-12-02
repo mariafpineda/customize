@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faBars, faEye, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEye} from "@fortawesome/free-solid-svg-icons";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-editor',
@@ -7,31 +8,38 @@ import { faBars, faEye, faPlay } from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent implements OnInit {
+  public isMenuCollapsed=true;
   faBars=faBars;
   faEye=faEye;
-  faPlay=faPlay;
   editorOptions={theme: 'vs-dark', language:'html'};
   editorOptions1={theme: 'vs-dark', language:'css'};
   editorOptions2={theme: 'vs-dark', language:'javascript'};
+  errorMessage:String='';
+  errorBool:Boolean;
+  successMessage:String='';
+  successBool:Boolean;
 
   editorPreview:any;
   codeHTML: string= '';
   codeCSS: string= '';
   codeJS: string= '';
   idPlantilla:String='';
-  public isMenuCollapsed=true;
-
-  onInit(editor) {
-    let line = editor.getPosition();
-    console.log(line); 
+  plantillas:any=[];
+  plantilla:any={
+    tituloTema:'',
+    descripcion:'',
+    codigoHTML:'',
+    codigoCSS:'',
+    codigoJS:'',
+    confirmarCorreo:''
   }
 
-  constructor() { }
+  constructor(private modalService:NgbModal) { }
 
   ngOnInit(): void {
   }
 
-  update(){
+  preview(){
     this.editorPreview = (<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document;
     this.editorPreview.open();
     this.editorPreview.write(`<style>${this.codeCSS}</style>`);
@@ -41,23 +49,16 @@ export class EditorComponent implements OnInit {
     console.log((<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document.getElementById('prueba'));
   }
 
+  open(content, id) {
+    this.modalService.open(content, { centered:true })
+  }
+
   obtenerPlantilla(id){
     console.log("Id plantilla desde editor: ", id)
   }
 
-}
-
-/*`<style>
-  h1{
-      color: pink;
+  agregarPlantilla(){
+    console.log("Guardar plantilla");
   }
-  
-  </style>
-  <h1>Hola</h1>
-  <div id="prueba">
-    {{prueba}}
-  </div>
-  
-  <script>
-      document.getElementById("prueba")="Hola desde js"
-  </script>`;*/
+
+}

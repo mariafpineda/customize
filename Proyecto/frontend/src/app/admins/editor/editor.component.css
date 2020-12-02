@@ -16,8 +16,12 @@ body{
 }
 
 .content{
-    min-height: 100vh;
-    padding: 5rem 1rem 0 1rem;
+    padding: 0.5rem 1rem 0 1rem;
+}
+
+.custom-btn{
+    color: black !important;
+    border: 1px solid black !important;
 }
 
 .custom-link{
@@ -31,8 +35,6 @@ body{
 }
 
 .custom-nav{
-    position: fixed;
-    z-index: 1200;
     width: 100%;
 }
 
