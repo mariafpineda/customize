@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEye, faPlay } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-editor',
@@ -8,16 +8,22 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 })
 export class EditorComponent implements OnInit {
   faBars=faBars;
+  faEye=faEye;
+  faPlay=faPlay;
   editorOptions={theme: 'vs-dark', language:'html'};
+  editorOptions1={theme: 'vs-dark', language:'css'};
+  editorOptions2={theme: 'vs-dark', language:'javascript'};
+
   editorPreview:any;
-  code: string= '';
+  codeHTML: string= '';
+  codeCSS: string= '';
+  codeJS: string= '';
   idPlantilla:String='';
   public isMenuCollapsed=true;
 
   onInit(editor) {
     let line = editor.getPosition();
     console.log(line); 
-    monaco.editor.colorize(this.code, 'html', {})
   }
 
   constructor() { }
@@ -28,7 +34,9 @@ export class EditorComponent implements OnInit {
   update(){
     this.editorPreview = (<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document;
     this.editorPreview.open();
-    this.editorPreview.write(this.code);
+    this.editorPreview.write(`<style>${this.codeCSS}</style>`);
+    this.editorPreview.write(this.codeHTML);
+    this.editorPreview.write(`<script>${this.codeJS}</script>`);
     this.editorPreview.close();
     console.log((<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document.getElementById('prueba'));
   }

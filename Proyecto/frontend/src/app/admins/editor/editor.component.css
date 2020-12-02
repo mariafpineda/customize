@@ -1,12 +1,23 @@
 body{
-    background-color:#29292B;
     margin:0;
 }
 
-#content{
+.btn{
+    color: white !important;
+    font-family: 'Raleway medium' !important;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.btn:hover{
+    border: 1px solid #00bbee !important;
+    color: #00bbee !important;
+    background-color: transparent;
+}
+
+.content{
     min-height: 100vh;
-    padding: 5.5rem 1rem 0 1rem;
-    margin-left: auto !important;
+    padding: 5rem 1rem 0 1rem;
 }
 
 .custom-link{
@@ -19,44 +30,45 @@ body{
     color: #00bbee !important;
 }
 
+.custom-nav{
+    position: fixed;
+    z-index: 1200;
+    width: 100%;
+}
+
 .edit-area{
-    color: white;
+    color: black;
     font-family: 'Raleway semibold';
-    background-color:  rgb(41, 41, 43);
-    float: right;
+    background-color:  white;
 }
 
 #editorPreview{
     overflow-y: scroll;
+    width: 100%;
+    min-height: 80vh;
+    border: 1px solid #dee2e6;
+
 }
 
-#editorPreview, #htmlPart{
-    border: 1px solid  rgb(73, 73, 75);
+.htmlPart{
+    min-height: 50vh;
+}
+
+h3{
+    color: #00bbee;
 }
 
 #logo{
-    width: 150px;
+    width: 100px;
 }
 
-nav{
-    background-color: transparent !important; 
-    width: 100%;
-    position: fixed;
-    z-index: 1200;
+#navbar{
+    justify-content: flex-end;
 }
 
 .navbar{
     background-color: #343A40 !important;
 }
-
-.navbar-collapse{
-    align-items: baseline;
-}
-
-#navbarNav{
-    margin-left: auto;
-}
-
 
 .nav-link{
     color: white !important;
@@ -68,18 +80,19 @@ nav{
     color: #00bbee !important;
 }
 
+.nav-link .active{
+    color: #00bbee !important;
+}
+
+.nav-item{
+    color: #00bbee !important;
+}
+
 .navbar-toggler{
     color: white !important;
 }
 
-#sidebar{
-    margin-top: 5px;
-    width: 15rem;
-    margin-left: 0%;
-    padding-left: 0%;
-    min-height: 100vh;
+.navbar-toggler-icon{
+    color: white !;
 }
 
-#sidenav{
-    width: 15rem;
-}
