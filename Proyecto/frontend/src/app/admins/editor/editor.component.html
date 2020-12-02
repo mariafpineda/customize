@@ -10,7 +10,7 @@
         <ul class="navbar-nav">
             <li class="nav-item">
                 <button class="btn my-2 my-sm-0" type="button" (click)="preview()">
-                    <fa-icon [icon]="faEye"></fa-icon>Visualizar</button>
+                    <fa-icon [icon]="faEye"></fa-icon> Previsualizar</button>
             </li>
             <li class="nav-item">
                 <button class="btn my-2 my-sm-0" type="button" (click)="open(addPlantilla, '')">Guardar</button>
@@ -25,21 +25,21 @@
             <ng-container ngbNavItem>
                 <a ngbNavLink>HTML</a>
                 <ng-template ngbNavContent>
-                    <ngx-monaco-editor class="htmlPart" [options]="editorOptions" [(ngModel)]="codeHTML">
+                    <ngx-monaco-editor class="htmlPart" [options]="editorOptions[0]" [(ngModel)]="codeHTML">
                     </ngx-monaco-editor>
                 </ng-template>
             </ng-container>
             <ng-container ngbNavItem>
                 <a ngbNavLink>CSS</a>
                 <ng-template ngbNavContent>
-                    <ngx-monaco-editor class="htmlPart" [options]="editorOptions1" [(ngModel)]="codeCSS">
+                    <ngx-monaco-editor class="htmlPart" [options]="editorOptions[1]" [(ngModel)]="codeCSS">
                     </ngx-monaco-editor>
                 </ng-template>
             </ng-container>
             <ng-container ngbNavItem>
                 <a ngbNavLink>JS</a>
                 <ng-template ngbNavContent>
-                    <ngx-monaco-editor class="htmlPart" [options]="editorOptions2" [(ngModel)]="codeJS">
+                    <ngx-monaco-editor class="htmlPart" [options]="editorOptions[2]" [(ngModel)]="codeJS">
                     </ngx-monaco-editor>
                 </ng-template>
             </ng-container>

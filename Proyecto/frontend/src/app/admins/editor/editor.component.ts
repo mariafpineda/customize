@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faBars, faEye} from "@fortawesome/free-solid-svg-icons";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PlantillasService } from 'src/app/services/plantillas.service';
 
 @Component({
   selector: 'app-editor',
@@ -11,9 +12,10 @@ export class EditorComponent implements OnInit {
   public isMenuCollapsed=true;
   faBars=faBars;
   faEye=faEye;
-  editorOptions={theme: 'vs-dark', language:'html'};
-  editorOptions1={theme: 'vs-dark', language:'css'};
-  editorOptions2={theme: 'vs-dark', language:'javascript'};
+  editorOptions=[
+    {theme: 'vs-dark', language:'html'},
+    {theme: 'vs-dark', language:'css'},
+    {theme: 'vs-dark', language:'javascript'}];
   errorMessage:String='';
   errorBool:Boolean;
   successMessage:String='';
@@ -24,17 +26,17 @@ export class EditorComponent implements OnInit {
   codeCSS: string= '';
   codeJS: string= '';
   idPlantilla:String='';
-  plantillas:any=[];
   plantilla:any={
     tituloTema:'',
     descripcion:'',
     codigoHTML:'',
     codigoCSS:'',
     codigoJS:'',
-    confirmarCorreo:''
+    imagenes:[]
   }
 
-  constructor(private modalService:NgbModal) { }
+  constructor(private modalService:NgbModal,
+    private plantillasService:PlantillasService) { }
 
   ngOnInit(): void {
   }
@@ -58,7 +60,26 @@ export class EditorComponent implements OnInit {
   }
 
   agregarPlantilla(){
-    console.log("Guardar plantilla");
+    console.log("Guardar plantilla", this.plantilla);
+    if(this.plantilla.tituloTema == '' || this.plantilla.descripcion == ''){
+      this.errorMessage="Todos los campos son obligatorios";
+      this.errorBool=true;
+    } else{
+      this.plantillasService.addTemplate(this.plantilla)
+      .subscribe(
+        res=>{
+          this.successMessage=res.message;
+          this.successBool=true;
+        }, error => {
+          this.errorBool=error.error.message;
+          this.errorBool=true;
+        }
+      )
+    }
+    setTimeout(() => {
+      this.errorBool=false;
+      this.successBool=false;
+    }, 5000);
   }
 
 }

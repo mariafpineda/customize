@@ -6,17 +6,17 @@ var plantillas = require('../models/plantillas');
     router.post('/', function(req, res){
         let template = new plantillas(
             {
-                tituloTema: req.body.titulo,
+                tituloTema: req.body.tituloTema,
                 descripcion : req.body.descripcion,
-                imagenes : JSON.parse(req.body.imagenes),
+                imagenes : req.body.imagenes,
                 codigoHTML: req.body.codigoHTML,
                 codigoCSS: req.body.codigoCSS,
                 codigoJS: req.body.codigoJS
             }
         );
         template.save().then(result => {
-            res.send(result);
-            res.end();
+            res.status(200).json({'message':'Plantilla agregada correctamente.'});
+            res.end()
         }).catch(error => {
             res.send(error);
             res.end();
