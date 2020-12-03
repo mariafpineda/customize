@@ -71,9 +71,26 @@ export class EditorComponent implements OnInit {
 
   obtenerPlantilla(id){
     console.log("Id plantilla desde editor: ", id)
-  }
+    this.plantillasService.getTemplate(id)
+    .subscribe(res => {
+      console.log(res);
+      this.plantilla.tituloTema=res[0].tituloTema,
+      this.plantilla.descripcion=res[0].descripcion,
+      this.codeHTML=res[0].codigoHTML,
+      this.codeCSS=res[0].codigoCSS,
+      this.codeJS=res[0].codigoJS,
+      this.plantilla.imagenes=res[0].imagenes
+      console.log(this.plantilla);
+    }, error => {
+      console.log(error);
+    });
+     
+    }
 
   agregarPlantilla(){
+    this.plantilla.codigoHTML=this.codeHTML;
+    this.plantilla.codigoCSS=this.codeCSS;
+    this.plantilla.codigoJS=this.codeJS;
     console.log("Guardar plantilla", this.plantilla);
     if(this.plantilla.tituloTema == '' || this.plantilla.descripcion == ''){
       this.errorMessage="Todos los campos son obligatorios";
@@ -82,6 +99,7 @@ export class EditorComponent implements OnInit {
       this.plantillasService.addTemplate(this.plantilla)
       .subscribe(
         res=>{
+          console.log(res);
           this.successMessage=res.message;
           this.successBool=true;
         }, error => {
@@ -116,6 +134,5 @@ export class EditorComponent implements OnInit {
       console.log(res);
     }, error => console.log(error));
     this.plantilla.imagenes.splice(index, 1);
-
   }
 }
