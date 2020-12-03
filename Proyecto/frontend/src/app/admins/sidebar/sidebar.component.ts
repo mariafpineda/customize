@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { faUserShield, faClipboardList, faTools, faFileCode, faHandshake} from "@fortawesome/free-solid-svg-icons";
+import { faUserShield, faClipboardList, faKey, faFileCode, faHandshake} from "@fortawesome/free-solid-svg-icons";
 import { Output } from "@angular/core";
 
 @Component({
@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
 
   faUserShield= faUserShield;
   faClipboard= faClipboardList;
-  faTools=faTools;
+  faKey=faKey;
   faCode=faFileCode;
   faHandshake=faHandshake;
 
