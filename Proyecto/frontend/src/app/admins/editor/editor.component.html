@@ -99,15 +99,17 @@
             <h5>Imágenes de plantilla</h5> <br>
             <span *ngIf="plantilla.imagenes.length == 0">Aún no se han cargado imágenes para esta plantilla.</span>
             <div class="images-display" *ngIf="plantilla.imagenes.length > 0">
-                <div class="card mb-3" style="width: 100%;">
+                <div class="card mb-3" style="width: 100%;"  *ngFor="let imagen of plantilla.imagenes">
                     <div class="row no-gutters">
                       <div class="col-md-4 col-sm-4 col-4">
-                        <img src="/assets/img/decos.png" class="card-img" alt="...">
+                        <img [src]="'http://localhost:8888/' + imagen.urlImagen" class="card-img" alt="...">
                       </div>
                       <div class="col-md-8 col-sm-8 col-8">
                         <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <h5 class="card-title">src para HTML:</h5>
+                            <p class="card-text">
+                                http://localhost:8888/{{imagen.urlImagen}}
+                            </p>
                         </div>
                       </div>
                     </div>
@@ -119,7 +121,7 @@
             <h5>Subir imagen</h5>
             <div class="add-image">
                 <div class="display-images">
-                    <small>Haga clic sobre la imagen para cargar imagen.</small> <br>
+                    <small>Haga clic sobre la nube para cargar la imagen.</small> <br>
                     <input type="file" class="d-none" #photoInput (change)="onPhotoSelected($event)">
                     <img [src]="photoSelected || '/assets/img/no-image.png'" alt="No image" id="add-image-file" (click)="photoInput.click()">
                 </div>

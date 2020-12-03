@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { faBars, faEye, faPlus} from "@fortawesome/free-solid-svg-icons";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ImagenesService } from 'src/app/services/imagenes.service';
 //import { read } from 'fs';
 import { PlantillasService } from 'src/app/services/plantillas.service';
 
@@ -47,7 +48,8 @@ export class EditorComponent implements OnInit {
 
   constructor(private modalService:NgbModal,
     private plantillasService:PlantillasService,
-    private titleService:Title) { }
+    private titleService:Title,
+    private imagenesService:ImagenesService) { }
 
   ngOnInit(): void {
     this.titleService.setTitle('Administración');
@@ -106,6 +108,10 @@ export class EditorComponent implements OnInit {
   }
 
   subirFoto(){
-    console.log();
+    this.imagenesService.addImage(this.file)
+    .subscribe(result => {
+      this.plantilla.imagenes.push(result);
+      console.log(this.plantilla.imagenes);
+    }, error => console.log(error))
   }
 }

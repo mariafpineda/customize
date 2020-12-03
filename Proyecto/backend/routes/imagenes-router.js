@@ -7,7 +7,7 @@ var fs = require('fs-extra');
 
 //Create photo
 
-router.post('/', multer.single('imagenes'), async function(req, res){
+router.post('/', multer.single('imagen'), async function(req, res){
     let photo = new imagenes(
         {
             urlImagen: req.file.path
