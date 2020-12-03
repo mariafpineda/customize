@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { PlantillasService } from "../../services/plantillas.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Router } from "@angular/router";
@@ -13,7 +13,7 @@ import { Router } from "@angular/router";
 export class PlantillasComponent  {
   @Output() onEditarPlantilla = new EventEmitter();
   
-  faPlus=faPlus;
+  faEdit=faEdit;
   faTrashAlt=faTrashAlt;
   plantillas:any;
   plantillaSeleccionada:any;

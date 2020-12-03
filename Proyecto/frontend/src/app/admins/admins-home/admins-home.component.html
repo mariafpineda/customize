@@ -33,7 +33,7 @@
                         <app-planes></app-planes>
                     </div>
                     <div id="vista-plantillas" [ngClass]="{'visible': regionVisible == 'plantillas', 'noVisible': regionVisible!='plantillas'}">
-                        <app-plantillas (onEditarPlantilla)="plantillaSeleccionada($event)"></app-plantillas>
+                        <app-plantillas></app-plantillas>
                     </div>
                     <div id="vista-configuraciones" [ngClass]="{'visible': regionVisible == 'configuraciones', 'noVisible': regionVisible!='configuraciones'}">
                         <app-configuraciones></app-configuraciones>
@@ -41,7 +41,6 @@
                 </div>
         </div>
     </div>
-    <app-editor #editor style="display:none"></app-editor>
 
 
 

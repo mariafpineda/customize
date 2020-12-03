@@ -43,7 +43,7 @@ var plantillas = require('../models/plantillas');
                 _id: req.params.idTemplate
             },
             {
-                tituloTema : req.body.titulo,
+                tituloTema : req.body.tituloTema,
                 descripcion : req.body.descripcion,
                 imagenes: req.body.imagenes,
                 codigoHTML: req.body.codigoHTML,
@@ -51,7 +51,7 @@ var plantillas = require('../models/plantillas');
                 codigoJS: req.body.codigoJS
             }
         ).then(result => {
-            res.send(result);
+            res.status(200).json({message:'Plantilla actualizada correctamente.'});
             res.end();
         }).catch(error => {
             res.send(error);

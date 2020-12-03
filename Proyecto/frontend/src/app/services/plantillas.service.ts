@@ -25,4 +25,8 @@ export class PlantillasService {
   getTemplate(id):Observable<any>{
     return this.httpClient.get(this.url+`${id}`);
   }
+
+  updateTemplate(id, template):Observable<any>{
+    return this.httpClient.put(this.url+`${id}`, template);
+  }
 }

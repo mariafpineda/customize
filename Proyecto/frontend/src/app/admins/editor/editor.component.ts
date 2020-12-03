@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { faBars, faEye, faPlus, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEye, faPlus, faTrashAlt, faEdit, faImages} from "@fortawesome/free-solid-svg-icons";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImagenesService } from 'src/app/services/imagenes.service';
 //import { read } from 'fs';
@@ -18,6 +18,8 @@ interface HtmlInputEvent extends Event{
 export class EditorComponent implements OnInit {
   public isMenuCollapsed=true;
   faBars=faBars;
+  faImages=faImages;
+  faEdit=faEdit;
   faEye=faEye;
   faPlus=faPlus;
   faTrashAlt=faTrashAlt;
@@ -32,10 +34,11 @@ export class EditorComponent implements OnInit {
   successBool:Boolean;
 
   editorPreview:any;
-  codeHTML: string= '';
-  codeCSS: string= '';
-  codeJS: string= '';
-  idPlantilla:String='';
+  codeHTML: string;
+  codeCSS: string;
+  codeJS: string;
+  idPlantilla:String;
+  editTemplate:any;
   plantilla:any={
     tituloTema:'',
     descripcion:'',
@@ -52,7 +55,36 @@ export class EditorComponent implements OnInit {
     private imagenesService:ImagenesService) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Administración');
+    this.titleService.setTitle('Administración');  
+  }
+
+  obtenerPlantilla(){
+    this.plantillasService.getTemplate(this.idPlantilla)
+    .subscribe(res => {
+      this.codeHTML=res[0].codigoHTML;
+      this.codeJS=res[0].codigoJS;
+      this.codeCSS=res[0].codigoCSS;
+      this.plantilla.tituloTema=res[0].tituloTema;
+      this.plantilla.descripcion=res[0].descripcion;
+      this.plantilla.imagenes=res[0].imagenes;
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  nuevaPlantilla(){
+    this.idPlantilla='';
+    this.plantilla={
+      tituloTema:'',
+      descripcion:'',
+      codigoHTML:'',
+      codigoCSS:'',
+      codigoJS:'',
+      imagenes:[]
+    }
+    this.codeHTML="";
+    this.codeCSS="";
+    this.codeJS="";
   }
 
   preview(){
@@ -66,36 +98,27 @@ export class EditorComponent implements OnInit {
   }
 
   open(content, id) {
+    console.log(this.idPlantilla);
     this.modalService.open(content, { centered:true })
   }
-
-  obtenerPlantilla(id){
-    console.log("Id plantilla desde editor: ", id)
-    this.plantillasService.getTemplate(id)
-    .subscribe(res => {
-      console.log(res);
-      this.plantilla.tituloTema=res[0].tituloTema,
-      this.plantilla.descripcion=res[0].descripcion,
-      this.codeHTML=res[0].codigoHTML,
-      this.codeCSS=res[0].codigoCSS,
-      this.codeJS=res[0].codigoJS,
-      this.plantilla.imagenes=res[0].imagenes
-      console.log(this.plantilla);
-    }, error => {
-      console.log(error);
-    });
-     
-    }
 
   agregarPlantilla(){
     this.plantilla.codigoHTML=this.codeHTML;
     this.plantilla.codigoCSS=this.codeCSS;
     this.plantilla.codigoJS=this.codeJS;
-    console.log("Guardar plantilla", this.plantilla);
     if(this.plantilla.tituloTema == '' || this.plantilla.descripcion == ''){
       this.errorMessage="Todos los campos son obligatorios";
       this.errorBool=true;
-    } else{
+    } else if(this.idPlantilla!=''){
+      this.plantillasService.updateTemplate(this.idPlantilla, this.plantilla)
+      .subscribe( res => {
+          this.successMessage=res.message;
+          this.successBool=true;
+      }, error => {
+          this.errorBool=error.error.message;
+          this.errorBool=true;
+      })
+    }else{
       this.plantillasService.addTemplate(this.plantilla)
       .subscribe(
         res=>{
