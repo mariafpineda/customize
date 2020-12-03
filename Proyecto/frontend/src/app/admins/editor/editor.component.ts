@@ -58,50 +58,6 @@ export class EditorComponent implements OnInit {
     this.titleService.setTitle('Administración');  
   }
 
-  obtenerPlantilla(){
-    this.plantillasService.getTemplate(this.idPlantilla)
-    .subscribe(res => {
-      this.codeHTML=res[0].codigoHTML;
-      this.codeJS=res[0].codigoJS;
-      this.codeCSS=res[0].codigoCSS;
-      this.plantilla.tituloTema=res[0].tituloTema;
-      this.plantilla.descripcion=res[0].descripcion;
-      this.plantilla.imagenes=res[0].imagenes;
-    }, error => {
-      console.log(error);
-    });
-  }
-
-  nuevaPlantilla(){
-    this.idPlantilla='';
-    this.plantilla={
-      tituloTema:'',
-      descripcion:'',
-      codigoHTML:'',
-      codigoCSS:'',
-      codigoJS:'',
-      imagenes:[]
-    }
-    this.codeHTML="";
-    this.codeCSS="";
-    this.codeJS="";
-  }
-
-  preview(){
-    this.editorPreview = (<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document;
-    this.editorPreview.open();
-    this.editorPreview.write(`<style>${this.codeCSS}</style>`);
-    this.editorPreview.write(this.codeHTML);
-    this.editorPreview.write(`<script>${this.codeJS}</script>`);
-    this.editorPreview.close();
-    console.log((<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document.getElementById('prueba'));
-  }
-
-  open(content, id) {
-    console.log(this.idPlantilla);
-    this.modalService.open(content, { centered:true })
-  }
-
   agregarPlantilla(){
     this.plantilla.codigoHTML=this.codeHTML;
     this.plantilla.codigoCSS=this.codeCSS;
@@ -135,6 +91,51 @@ export class EditorComponent implements OnInit {
       this.errorBool=false;
       this.successBool=false;
     }, 5000);
+  }
+
+  nuevaPlantilla(){
+    this.idPlantilla='';
+    this.plantilla={
+      tituloTema:'',
+      descripcion:'',
+      codigoHTML:'',
+      codigoCSS:'',
+      codigoJS:'',
+      imagenes:[]
+    }
+    this.codeHTML="";
+    this.codeCSS="";
+    this.codeJS="";
+  }
+
+  
+  open(content) {
+    this.modalService.open(content, { centered:true })
+  }
+
+  obtenerPlantilla(){
+    this.plantillasService.getTemplate(this.idPlantilla)
+    .subscribe(res => {
+      this.modalService.dismissAll();
+      this.codeHTML=res[0].codigoHTML;
+      this.codeJS=res[0].codigoJS;
+      this.codeCSS=res[0].codigoCSS;
+      this.plantilla.tituloTema=res[0].tituloTema;
+      this.plantilla.descripcion=res[0].descripcion;
+      this.plantilla.imagenes=res[0].imagenes;
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  preview(){
+    this.editorPreview = (<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document;
+    this.editorPreview.open();
+    this.editorPreview.write(`<style>${this.codeCSS}</style>`);
+    this.editorPreview.write(this.codeHTML);
+    this.editorPreview.write(`<script>${this.codeJS}</script>`);
+    this.editorPreview.close();
+    console.log((<HTMLIFrameElement>document.getElementById('editorPreview')).contentWindow.document.getElementById('prueba'));
   }
 
   onPhotoSelected(event: HtmlInputEvent):void{
