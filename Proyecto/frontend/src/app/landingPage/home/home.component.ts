@@ -10,6 +10,10 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('idAdmin');
+    localStorage.removeItem('idUser');
+    localStorage.removeItem('idBrand');
   }
 
 }

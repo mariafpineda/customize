@@ -1,3 +1,16 @@
+.add-image{
+    text-align: center;
+}
+
+#add-image-file{
+    width: 150px;
+    height: 150px;
+}
+
+#add-image-file:hover{
+    cursor: pointer;
+}
+
 body{
     margin:0;
 }
@@ -14,6 +27,22 @@ body{
     color: #00bbee !important;
     background-color: transparent;
 }
+
+.btn-outline-dark{
+    color: #00bbee !important;
+    border: 1px solid #00bbee !important;
+}
+
+.btn-outline-dark:hover{
+    background-color: #00bbee !important;
+    border: 1px solid #00bbee !important;
+    color:white !important;
+}
+
+.card-body{
+    padding:0.7rem !important;
+}
+
 
 .content{
     padding: 0.5rem 1rem 0 1rem;
@@ -38,6 +67,10 @@ body{
     width: 100%;
 }
 
+.display-images{
+    margin:10px; 
+}
+
 .edit-area{
     color: black;
     font-family: 'Raleway semibold';
@@ -53,11 +86,18 @@ body{
 }
 
 .htmlPart{
-    min-height: 50vh;
+    min-height: 80vh;
 }
 
 h3{
     color: #00bbee;
+}
+
+.images-display{
+    width: 100%;
+    padding: 0.2rem;
+    overflow-y: scroll;
+    height: 150px;
 }
 
 #logo{

@@ -1,7 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faBars, faEye} from "@fortawesome/free-solid-svg-icons";
+import { Title } from '@angular/platform-browser';
+import { faBars, faEye, faPlus} from "@fortawesome/free-solid-svg-icons";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+//import { read } from 'fs';
 import { PlantillasService } from 'src/app/services/plantillas.service';
+
+interface HtmlInputEvent extends Event{
+  target : HTMLInputElement & EventTarget;
+}
 
 @Component({
   selector: 'app-editor',
@@ -12,6 +18,8 @@ export class EditorComponent implements OnInit {
   public isMenuCollapsed=true;
   faBars=faBars;
   faEye=faEye;
+  faPlus=faPlus;
+
   editorOptions=[
     {theme: 'vs-dark', language:'html'},
     {theme: 'vs-dark', language:'css'},
@@ -34,11 +42,15 @@ export class EditorComponent implements OnInit {
     codigoJS:'',
     imagenes:[]
   }
+  file:File;
+  photoSelected: String | ArrayBuffer;
 
   constructor(private modalService:NgbModal,
-    private plantillasService:PlantillasService) { }
+    private plantillasService:PlantillasService,
+    private titleService:Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Administración');
   }
 
   preview(){
@@ -82,4 +94,14 @@ export class EditorComponent implements OnInit {
     }, 5000);
   }
 
+  onPhotoSelected(event: HtmlInputEvent):void{
+    if(event.target.files && event.target.files[0]){
+      this.file=<File>event.target.files[0];
+      //Image preview
+
+      const reader = new FileReader();
+      reader.onload = e => this.photoSelected = reader.result;
+      reader.readAsDataURL(this.file);
+    }
+  }
 }
