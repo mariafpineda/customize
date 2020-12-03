@@ -123,7 +123,7 @@
                     <input type="file" class="d-none" #photoInput (change)="onPhotoSelected($event)">
                     <img [src]="photoSelected || '/assets/img/no-image.png'" alt="No image" id="add-image-file" (click)="photoInput.click()">
                 </div>
-                <button class="btn btn-outline-dark">Subir imagen</button>
+                <button class="btn btn-outline-dark" (click)="subirFoto()">Subir imagen</button>
             </div>
         </div>
     </div>

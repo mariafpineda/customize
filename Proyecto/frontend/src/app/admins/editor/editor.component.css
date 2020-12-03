@@ -1,5 +1,4 @@
 .add-image{
-    text-align: center;
 }
 
 #add-image-file{
@@ -69,6 +68,8 @@ body{
 
 .display-images{
     margin:10px; 
+    text-align: center;
+
 }
 
 .edit-area{

@@ -104,4 +104,8 @@ export class EditorComponent implements OnInit {
       reader.readAsDataURL(this.file);
     }
   }
+
+  subirFoto(){
+    console.log();
+  }
 }

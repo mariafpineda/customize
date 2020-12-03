@@ -10,8 +10,7 @@ var fs = require('fs-extra');
 router.post('/', multer.single('imagenes'), async function(req, res){
     let photo = new imagenes(
         {
-            urlImagen: req.file.path,
-            nombreImagen: req.body.nombreImagen
+            urlImagen: req.file.path
         }
     );
 
@@ -40,7 +39,7 @@ router.get('/', async function(req, res){
 //Delete photo
 
 router.delete('/:idImage', async function(req, res){
-    await imagenes.findByIdAndDelete(
+    await imagenes.remove(
             {_id: req.params.idImage}
     ).then(result => {
         if(result){
