@@ -99,21 +99,24 @@
             <h5>Imágenes de plantilla</h5> <br>
             <span *ngIf="plantilla.imagenes.length == 0">Aún no se han cargado imágenes para esta plantilla.</span>
             <div class="images-display" *ngIf="plantilla.imagenes.length > 0">
-                <div class="card mb-3" style="width: 100%;"  *ngFor="let imagen of plantilla.imagenes">
+                <div class="card mb-4" style="width: 100%;"  *ngFor="let imagen of plantilla.imagenes; index as i">
                     <div class="row no-gutters">
                       <div class="col-md-4 col-sm-4 col-4">
-                        <img [src]="'http://localhost:8888/' + imagen.urlImagen" class="card-img" alt="...">
+                        <img [src]="'http://localhost:8888/' + imagen.urlImagen" class="card-img" id="uploaded-img" alt="...">
                       </div>
                       <div class="col-md-8 col-sm-8 col-8">
                         <div class="card-body">
-                          <h5 class="card-title">src para HTML:</h5>
-                            <p class="card-text">
-                                http://localhost:8888/{{imagen.urlImagen}}
-                            </p>
+                          <h5 class="card-title">Insertar en HTML como:</h5>
+                            <small class="card-text">
+                                &lt;img src="http://localhost:8888/{{imagen.urlImagen}}" alt=""&gt;
+                            </small>
+                            <div class="del-btn">
+                                <button class="btn btn-outline-dark" (click)="eliminarImagen(imagen._id, i)"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+                            </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                </div>
             </div>
         </div>
         <hr>
@@ -121,17 +124,12 @@
             <h5>Subir imagen</h5>
             <div class="add-image">
                 <div class="display-images">
-                    <small>Haga clic sobre la nube para cargar la imagen.</small> <br>
                     <input type="file" class="d-none" #photoInput (change)="onPhotoSelected($event)">
-                    <img [src]="photoSelected || '/assets/img/no-image.png'" alt="No image" id="add-image-file" (click)="photoInput.click()">
+                    <img src="/assets/img/no-image.png" alt="No image" id="add-image-file" (click)="photoInput.click()">
                 </div>
+                <button class="btn btn-outline-dark" (click)="photoInput.click()">Seleccionar imagen</button>
                 <button class="btn btn-outline-dark" (click)="subirFoto()">Subir imagen</button>
             </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <!--
-        <button class="btn my-2 my-sm-0 btn-outline-dark" type="button" (click)="agregarPlantilla()">Guardar</button>-->
-        <button class="btn my-2 my-sm-0 btn-outline-dark" type="button" (click)="modal.close()">Cerrar</button>
     </div>
   </ng-template>

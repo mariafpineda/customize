@@ -7,18 +7,22 @@ import { Observable } from 'rxjs';
 })
 export class PlantillasService {
 
-  private url = "http://localhost:8888/plantillas"
+  private url = "http://localhost:8888/plantillas/"
   constructor(private httpClient:HttpClient) { }
 
   addTemplate(template):Observable<any>{
-    return this.httpClient.post(this.url+'/', template);
+    return this.httpClient.post(this.url, template);
   }
 
   getTemplates():Observable<any>{
-    return this.httpClient.get(this.url+'/');
+    return this.httpClient.get(this.url);
   }
 
   deleteTemplate(id):Observable<any>{
-    return this.httpClient.delete(this.url+`/${id}`)
+    return this.httpClient.delete(this.url+`${id}`)
+  }
+
+  getTemplate(id):Observable<any>{
+    return this.httpClient.get(this.url+`${id}`);
   }
 }

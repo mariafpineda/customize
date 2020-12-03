@@ -19,4 +19,8 @@ export class ImagenesService {
   getImages():Observable<any>{
     return this.httpClient.get(this.url);
   }
+
+  deleteImage(id):Observable<any>{
+    return this.httpClient.delete(this.url+`${id}`);
+  }
 }

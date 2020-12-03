@@ -39,13 +39,29 @@ router.get('/', async function(req, res){
 //Delete photo
 
 router.delete('/:idImage', async function(req, res){
-    await imagenes.remove(
+    await imagenes.findOneAndDelete(
             {_id: req.params.idImage}
     ).then(result => {
         if(result){
             fs.unlink(path.resolve(result.urlImagen));
         }
         res.json(result);
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    })
+})
+
+//Get photo
+
+router.get('/:idImage', async function(req, res){
+    imagenes.find(
+        {
+            _id: req.params.idImage
+        }
+    ).then(result => {
+        res.send(result);
         res.end();
     }).catch(error => {
         res.send(error);

@@ -67,6 +67,11 @@ body{
     width: 100%;
 }
 
+.del-btn{
+    text-align: end;
+    
+}
+
 .display-images{
     margin:10px; 
     text-align: center;
@@ -99,7 +104,8 @@ h3{
     width: 100%;
     padding: 0.2rem;
     overflow-y: scroll;
-    height: 150px;
+    height: 200px;
+    background-size: cover;
 }
 
 #logo{
@@ -140,3 +146,6 @@ h3{
     color: white !;
 }
 
+#uploaded-img{
+    height: 100%;
+}
