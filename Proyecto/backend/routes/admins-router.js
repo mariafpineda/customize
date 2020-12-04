@@ -122,6 +122,12 @@ router.post("/signin", async (req, res) => {
 router.put('/:idAdmin/password', verifyToken, async (req, res) => {
     const salt=10;
     const hash= await bcrypt.hashSync(req.body.contraseniaAdmin, salt);
+    const admin = await admins.findOne({'_id': req.params.idAdmin});
+
+    if(!bcrypt.compareSync(req.body.contraseniaAnterior, admin.contraseniaAdmin)){
+        return res.status(401).json({'message':'La contraseña anterior es incorrecta.'});
+    }
+
     await admins.update(
         {
             _id: req.params.idAdmin
@@ -129,9 +135,8 @@ router.put('/:idAdmin/password', verifyToken, async (req, res) => {
         {
             contraseniaAdmin:hash
         }
-    ).then(result => {
-        res.send(result);
-        res.end();
+    ).then( () => {
+        res.status(200).json({'message': 'Contraseña actualizada correctamente.'});
     }).catch(error => {
         res.send(error);
         res.end();

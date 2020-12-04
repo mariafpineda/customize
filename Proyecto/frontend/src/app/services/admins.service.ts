@@ -43,4 +43,8 @@ export class AdminsService {
   deleteAdmin(id):Observable<any>{
     return this.httpClient.delete(this.url+`/${id}`);
   }
+
+  updatePassword(id, data):Observable<any>{
+    return this.httpClient.put(this.url+`/${id}/password`, data);
+  }
 }
