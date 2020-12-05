@@ -5,8 +5,8 @@
     color: white !important;
 }
 
-.custom-link:hover{
-    color: #00bbee !important;
+.nav-item:hover{
+    background-color: #00bbee !important;
 }
 
 .icon{
@@ -19,6 +19,9 @@
     width: 100%;
 }
 
+.navbar-brand{
+    margin-left: 1rem;
+}
 
 .nav-link{
     display:flex;
@@ -26,7 +29,7 @@
 
 #sidebar{
     background-color: #343A40 !important;
-    width: 14rem;
+    width: 15rem;
     min-height: 100vh;
     transition: margin .25s ease-out;
 }
@@ -40,6 +43,7 @@
 hr{
     background-color: white !important;
     margin-right: 1rem !important;
+    margin-left: 1rem;
 }
 
 
