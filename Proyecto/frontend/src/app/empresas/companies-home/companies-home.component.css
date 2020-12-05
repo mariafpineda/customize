@@ -1,0 +1,98 @@
+.btn-outline-primary{
+    border:  1px solid transparent;
+    color: white;
+}
+
+.btn-outline-primary:hover{
+    background-color:transparent;
+    color: #00bbee;
+    border: 1px solid #00bbee;
+}
+
+
+.content{
+    width: 100%;
+    margin-left: 0px;
+    transition: ease  0.25s;
+}
+
+.dropdown-divider{
+    margin: 0.5rem 20px !important;
+}
+
+.dropdown-toggle::after{
+    display: none;
+}
+
+.dropdown-style button{
+    color: white !important;
+}
+
+.dropdown-style button:hover{
+    color: #00bbee !important;
+    background-color: transparent;
+}
+
+.icon{
+    color: white;
+    font-size: 1.2rem;
+    width: 50px;
+    text-align: center;
+}
+
+.navbar-brand{
+    margin-left: 1rem;
+}
+
+.nav-item-custom{
+    padding-left: 20px;
+}
+
+.nav-item-custom:hover{
+    background-color: #00bbee;
+    color: white;
+}
+
+.nav-link{
+    display: flex;
+}
+
+.sideMenu{
+    position:fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: 65px auto auto;
+    width: 200px;
+    transition: ease 0.25s;
+    transform: translateX(-100%);
+    z-index:2000;
+}
+
+.text{
+    color: white;
+    font-family: 'Raleway medium';
+    font-size: 1.2rem;
+}
+
+.wrapper{
+    margin-top:61px;
+}
+
+.display-sidemenu{
+    transform: translateX(0);
+}
+
+.hide-sidemenu{
+    transform:translateX(-100%);
+}
+
+@media (min-width:992px){
+    .sideMenu{
+        transform: translateX(0);
+    }
+
+    .content{
+        margin-left: 200px;
+    }
+}
