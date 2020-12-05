@@ -48,6 +48,11 @@ export class PlanesComponent implements OnInit {
         this.plan.cantidadPaginas=res[0].cantidadPaginas;
         this.plan.cantidadProductos=res[0].cantidadProductos;
       }, error => console.log(error));
+    } else{
+      this.plan.nombrePlan='';
+      this.plan.cantidadPaginas= '';
+      this.plan.cantidadProductos = '';
+      this.plan.precioPlan = '';
     }
 
   }
