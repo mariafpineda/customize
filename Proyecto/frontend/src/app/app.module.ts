@@ -32,6 +32,11 @@ import { PlanesComponent } from './admins/planes/planes.component';
 import { PlantillasComponent } from './admins/plantillas/plantillas.component';
 import { ConfiguracionesComponent } from './admins/configuraciones/configuraciones.component';
 import { EditorComponent } from './admins/editor/editor.component';
+import { BancoComponent } from './empresas/banco/banco.component';
+import { CategoriasComponent } from './empresas/categorias/categorias.component';
+import { ProductosComponent } from './empresas/productos/productos.component';
+import { TiendasComponent } from './empresas/tiendas/tiendas.component';
+import { EditorTiendasComponent } from './empresas/editor-tiendas/editor-tiendas.component';
 
 
 
@@ -56,7 +61,12 @@ import { EditorComponent } from './admins/editor/editor.component';
     PlanesComponent,
     PlantillasComponent,
     ConfiguracionesComponent,
-    EditorComponent
+    EditorComponent,
+    BancoComponent,
+    CategoriasComponent,
+    ProductosComponent,
+    TiendasComponent,
+    EditorTiendasComponent
   ],
   imports: [
     BrowserModule,
