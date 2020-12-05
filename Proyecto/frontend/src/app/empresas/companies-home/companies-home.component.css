@@ -44,6 +44,10 @@
     margin-left: 1rem;
 }
 
+.navbar-nav{
+    text-align: right;
+}
+
 .nav-item-custom{
     padding-left: 20px;
 }
@@ -55,6 +59,10 @@
 
 .nav-link{
     display: flex;
+}
+
+.navbar-toggler{
+    border-color:transparent;
 }
 
 .sideMenu{
@@ -73,6 +81,14 @@
     color: white;
     font-family: 'Raleway medium';
     font-size: 1.2rem;
+}
+
+.toggler-icon{
+    color: white;
+}
+
+.toggler-icon:hover{
+    color: #00bbee;
 }
 
 .wrapper{

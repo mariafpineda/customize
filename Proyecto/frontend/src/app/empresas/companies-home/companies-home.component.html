@@ -1,12 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" (click)="isSidebarCollapsed =! isSidebarCollapsed">
-        <span class="navbar-toggler-icon"></span>
+        <span class="toggler-icon">
+            <fa-icon [icon]="faBars"></fa-icon>
+        </span>
       </button>
     <a class="navbar-brand" href="/company/home">
         <img src="/assets/img/logo-color-resize.png" alt="" width="150">
     </a>
     <button class="navbar-toggler" type="button" (click)="isMenuCollapsed =! isMenuCollapsed">
-      <span class="navbar-toggler-icon"></span>
+        <span class="toggler-icon">
+            <fa-icon [icon]="faBars"></fa-icon>
+        </span>
     </button>
   
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">

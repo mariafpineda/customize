@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCog, faSignOutAlt, faTag, faList, faStore} from '@fortawesome/free-solid-svg-icons';
+import { faCog, faSignOutAlt, faTag, faList, faStore, faBars} from '@fortawesome/free-solid-svg-icons';
 import { faUserCircle as farUserCircle, faFile as farFile } from "@fortawesome/free-regular-svg-icons"
 
 @Component({
@@ -19,6 +19,7 @@ export class CompaniesHomeComponent implements OnInit {
   faTag=faTag;
   faList=faList;
   faStore=faStore;
+  faBars=faBars;
 
   constructor() { }
 
