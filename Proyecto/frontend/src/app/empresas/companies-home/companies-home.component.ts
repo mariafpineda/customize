@@ -44,6 +44,7 @@ export class CompaniesHomeComponent implements OnInit {
 
   seccionVisible(region){
     this.regionVisible=region;
+    this.isSidebarCollapsed=true;
   }
 
   seccionSeleccionada(seccion){

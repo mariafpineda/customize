@@ -1,1 +1,120 @@
-<p>banco works!</p>
+
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Imágenes</a>
+      <ng-template ngbNavContent>
+        <small *ngIf="imagenes.length==0">Aún no hay imágenes.</small>
+        <div *ngIf="imagenes.length != 0" class="d-flex">
+            <div class="card col-6" *ngFor="let imagen of imagenes">
+                <img [src]="'http://localhost:8888/' + imagen.rutaImg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{imagen.nombre}}</h5>
+                  <p class="card-text">{{imagen.descripcion}}</p>
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-outline-primary" (click)="actualizarImagen(imagen._id)">
+                        <fa-icon [icon]="faEdit"></fa-icon>
+                    </button>
+                    <button class="btn btn-outline-primary" (click)="borrarImagen(imagen._id)">
+                        <fa-icon [icon]="faTrashAlt"></fa-icon>
+                    </button>
+                </div>
+               
+                <div class="card-footer">
+                    <small class="text-muted">{{imagen._id}}</small>
+                </div>
+            </div>
+        </div>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Videos</a>
+      <ng-template ngbNavContent>
+        <small *ngIf="videos.length==0">Aún no hay videos.</small>
+        <div *ngIf="videos.length != 0" class="d-flex">
+            <div class="card col-6" *ngFor="let video of videos">
+                <video [src]="'http://localhost:8888/' + video.rutaVideo" class="card-img-top" alt="..." controls></video>
+                <div class="card-body">
+                  <h5 class="card-title">{{video.nombre}}</h5>
+                  <p class="card-text">{{video.descripcion}}</p>
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-outline-primary button" (click)="actualizarVideo(video._id)">
+                        <fa-icon [icon]="faEdit"></fa-icon>
+                    </button>
+                    <button class="btn btn-outline-primary button" (click)="borrarVideo(video._id)">
+                    <fa-icon [icon]="faTrashAlt"></fa-icon>
+                    </button>
+                </div>
+                
+                <div class="card-footer">
+                    <small class="text-muted">{{video._id}}</small>
+                </div>
+            </div>
+        </div>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3">
+      <a ngbNavLink>Archivos genéricos</a>
+      <ng-template ngbNavContent>
+        <small *ngIf="archivos.length==0">Aún no hay archivos.</small>
+        <div *ngIf="videos.length != 0">
+            <div class="card" style="width: 100%" *ngFor="let archivo of archivos">
+                <div class="row">
+                  <div class="col-md-3 icon-div">
+                    <fa-icon [icon]="faFile" class="icon"></fa-icon>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="card-body">
+                      <h5 class="card-title">{{archivo.nombre}}</h5>
+                      <p class="card-text">{{archivo.descripcion}}</p>
+                      <p class="card-text">
+                          <small class="text-muted">ID: {{archivo._id}}</small>
+                      </p>
+                        <div class="buttons">
+                            <button class="btn btn-outline-primary button" (click)="actualizarArchivo(archivo._id)">
+                                <fa-icon [icon]="faEdit"></fa-icon>
+                            </button>
+                            <button class="btn btn-outline-primary button" (click)="borrarArchivo(archivo._id)">
+                            <fa-icon [icon]="faTrashAlt"></fa-icon>
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="4">
+        <a ngbNavLink>Agregar archivo</a>
+        <ng-template ngbNavContent>
+          <div style="text-align: center;">
+            <div>
+                <small *ngIf="archivoAgregado" class="success">Archivo agregado correctamente.</small>
+                <div class="form-group row" style="margin-top:20px">
+                  <label class="col-sm-4 col-form-label">Nombre del archivo</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" [(ngModel)]="nombre" [value]="nombre">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 col-form-label">Descripción</label>
+                  <div class="col-sm-8">
+                    <textarea class="form-contorl" rows="2" style="width: 100%;" [(ngModel)]="descripcion" [value]="descripcion"></textarea>
+                  </div>
+                </div>
+              </div>
+              <h5 class="mr-auto">Subir archivo</h5>
+              <input class="d-none" type="file" #fileInput (change)="onFileSelected($event)">
+              <img src="/assets/img/no-image.png" width="200" (click)="fileInput.click()">
+              <hr>
+              <button class="btn btn-outline-primary" (click)="fileInput.click()">Seleccionar archivo</button>
+              <button class="btn btn-outline-primary" (click)="agregarArchivo()">Guardar</button>
+          </div>
+        </ng-template>
+      </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  

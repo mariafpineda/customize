@@ -1,0 +1,49 @@
+.btn-outline-primary{
+    border: 1px solid #00bbee;
+    color: #00bbee;
+    margin-left: 10px;
+}
+
+.btn-outline-primary:hover{
+    color: white;
+    background-color: #00bbee;
+}
+
+.buttons{
+    text-align: right;
+    margin-bottom:5px;
+    margin-right: 5px;
+}
+
+.card{
+    padding-left: 0;
+    padding-right: 0;
+    margin:5px;
+}
+
+li a{
+    color: #00bbee !important;
+    font-family: 'Raleway medium';
+}
+
+img{
+    cursor: pointer;
+}
+
+.icon{
+    font-size: 6rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.icon-div{
+    display: flex;
+    text-align: center;
+    margin-top:auto;
+    margin-bottom: auto;
+}
+
+.col-form-label{
+    text-align: left;
+    font-family:'Raleway medium'
+}

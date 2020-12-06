@@ -47,4 +47,28 @@ export class EmpresasService {
     return this.httpClient.get(this.url+`/${id}/plan`);
   }
 
+  addImage(id, nombre, descripcion, imagen):Observable<any>{
+    const fd = new FormData();
+    fd.append('nombre', nombre);
+    fd.append('descripcion', descripcion);
+    fd.append('imagen', imagen);
+    return this.httpClient.post(this.url+`/${id}/nuevaImagen`, fd);
+  }
+
+  addVideo(id, nombre, descripcion, imagen):Observable<any>{
+    const fd = new FormData();
+    fd.append('nombre', nombre);
+    fd.append('descripcion', descripcion);
+    fd.append('video', imagen);
+    return this.httpClient.post(this.url+`/${id}/nuevoVideo`, fd);
+  }
+
+  addFile(id, nombre, descripcion, imagen):Observable<any>{
+    const fd = new FormData();
+    fd.append('nombre', nombre);
+    fd.append('descripcion', descripcion);
+    fd.append('archivo', imagen);
+    return this.httpClient.post(this.url+`/${id}/nuevoArchivo`, fd);
+  }
+
 }

@@ -4,6 +4,9 @@ var empresas = require('../models/empresas');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
+var multer  =require('../libs/multer');
+var path = require('path');
+var fs = require('fs-extra');
 
 //Login 
     router.post('/signin', async (req, res) => {
@@ -303,7 +306,7 @@ var jwt = require('jsonwebtoken');
     });
 
 //Add image
-    router.post('/:idBrand/nuevaImagen', function(req, res){
+    router.post('/:idBrand/nuevaImagen', multer.single('imagen'), async function(req, res){
         empresas.update(
             {
                 _id: req.params.idBrand
@@ -312,7 +315,9 @@ var jwt = require('jsonwebtoken');
                 $push: {
                     "imagenes" : {
                         _id : new mongoose.Types.ObjectId(),
-                        rutaImg : req.body.rutaImg
+                        rutaImg : req.file.path,
+                        nombre: req.body.nombre,
+                        descripcion:req.body.descripcion
                     }
                 }
             }
@@ -333,7 +338,8 @@ var jwt = require('jsonwebtoken');
                 "imagenes._id": mongoose.Types.ObjectId(req.params.idImage)
             },
             {
-                "imagenes.$.rutaImg": req.body.ruta
+                "imagenes.$.nombre": req.body.nombre,
+                "imagenes.$.descripcion":req.body.descripcion
             }
         ).then(result => {
             res.send(result);
@@ -403,7 +409,7 @@ var jwt = require('jsonwebtoken');
     });
 
 //Add video
-    router.post('/:idBrand/nuevoVideo', function(req, res){
+    router.post('/:idBrand/nuevoVideo',  multer.single('video'), function(req, res){
         empresas.update(
             {
                 _id: req.params.idBrand
@@ -412,7 +418,9 @@ var jwt = require('jsonwebtoken');
                 $push: {
                     "videos" : {
                         _id : new mongoose.Types.ObjectId(),
-                        rutaVideo : req.body.rutaVideo
+                        rutaVideo : req.file.path,
+                        nombre: req.body.nombre,
+                        descripcion:req.body.descripcion
                     }
                 }
             }
@@ -433,7 +441,8 @@ var jwt = require('jsonwebtoken');
                 "videos._id": mongoose.Types.ObjectId(req.params.idVideo)
             },
             {
-                "videos.$.rutaVideo": req.body.ruta
+                "videos.$.nombre": req.body.nombre,
+                "videos.$.descripcion": req.body.nombre
             }
         ).then(result => {
             res.send(result);
@@ -503,7 +512,7 @@ var jwt = require('jsonwebtoken');
 });
 
 //Add files
-    router.post('/:idBrand/nuevoArchivo', function(req, res){
+    router.post('/:idBrand/nuevoArchivo', multer.single('archivo'), async function(req, res){
     empresas.update(
         {
             _id: req.params.idBrand
@@ -512,7 +521,9 @@ var jwt = require('jsonwebtoken');
             $push: {
                 "archivos" : {
                     _id : new mongoose.Types.ObjectId(),
-                    rutaFile : req.body.rutaFile
+                    rutaFile : req.file.path,
+                    nombre: req.body.nombre,
+                    descripcion:req.body.descripcion
                 }
             }
         }
@@ -533,7 +544,8 @@ var jwt = require('jsonwebtoken');
             "archivos._id": mongoose.Types.ObjectId(req.params.idFile)
         },
         {
-            "archivos.$.rutaFile": req.body.ruta
+            "archivos.$.nombre": req.body.nombre,
+            "archivos.$.descripcion": req.body.nombre
         }
     ).then(result => {
         res.send(result);
