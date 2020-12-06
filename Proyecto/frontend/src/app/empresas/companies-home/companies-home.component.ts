@@ -46,4 +46,7 @@ export class CompaniesHomeComponent implements OnInit {
     this.regionVisible=region;
   }
 
+  seccionSeleccionada(seccion){
+    this.regionVisible=seccion;
+  }
 }

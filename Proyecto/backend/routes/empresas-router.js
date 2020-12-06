@@ -127,7 +127,38 @@ var jwt = require('jsonwebtoken');
         res.send(error);
         res.end();
     });
-})
+});
+
+//Get brands plan
+
+    router.get('/:idBrand/plan', function(req, res){
+        empresas.aggregate([
+            {
+                $lookup: {
+                    from:"planes",
+                    localField: "planActual",
+                    foreignField:"_id",
+                    as:"plan"
+                }
+            },
+            {
+                $match:{
+                    "_id": mongoose.Types.ObjectId(req.params.idBrand)
+                }
+            },
+            {
+                $project:{
+                    plan:true
+                }
+            }
+        ]).then(result => {
+            res.send(result);
+            res.end();
+        }).catch(error  => {
+            res.send(error);
+            res.end();
+        })
+    })
 
 //Add products
     router.post('/:idBrand/nuevoProducto', function(req, res){

@@ -1,0 +1,33 @@
+
+<div class="container">
+    <div class="row">
+        <div class="card w-100">
+            <div class="card-body">
+              <h5 class="card-title">Productos</h5>
+              <p class="card-text">Puedes añadir productos a tu tienda online y visualizar los productos que ya tienes agregados.</p>
+              <div class="button">
+                  <a (click)="seccionSeleccionada('productos')" class="btn btn-primary">Ir a Productos</a>
+              </div>
+            </div>
+        </div>
+        <div class="card w-100">
+            <div class="card-body">
+              <h5 class="card-title">Configuraciones</h5>
+              <p class="card-text">Dirígete a la sección de Configuraciones para agregar configuraciones generales a tu tienda online</p>
+              <div class="button">
+                  <a class="btn btn-primary" (click)="seccionSeleccionada('configuraciones')">Ir a Configuraciones</a>
+              </div>
+            </div>
+        </div>
+        <div class="card w-100">
+            <div class="card-body">
+              <h5 class="card-title">Plan de suscripción</h5>
+              <p class="card-text" *ngIf="plan.cantidadPaginas>1">Con el plan de suscripción que tienes actualmente puedes crear {{plan.cantidadPaginas}} sitios web con {{plan.cantidadProductos}} productos en cada uno.</p>
+              <p class="card-text" *ngIf="plan.cantidadPaginas==1">Con el plan de suscripción que tienes actualmente puedes crear {{plan.cantidadPaginas}} sitio web con {{plan.cantidadProductos}} productos.</p>
+              <p class="card-te">Para cambiar tu plan, dirígete a configuraciones de <a class="link-profile" href="/company/profile">Mi Perfil</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+

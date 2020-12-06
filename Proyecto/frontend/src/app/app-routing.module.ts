@@ -14,6 +14,7 @@ import { CompaniesHomeComponent } from "./empresas/companies-home/companies-home
 
 import { AuthGuard } from './auth.guard'
 import { EditorComponent } from './admins/editor/editor.component';
+import { PerfilTiendasComponent } from './empresas/perfil-tiendas/perfil-tiendas.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path: 'user/home', component: UsersHomeComponent, canActivate: [AuthGuard], data:{role: 'user'}},
   {path: 'admin/home', component: AdminsHomeComponent, canActivate: [AuthGuard], data:{role: 'admin'}},
   {path: 'company/home', component: CompaniesHomeComponent, canActivate: [AuthGuard], data:{role: 'company'}},
-  {path: 'admin/editor', component:EditorComponent, canActivate:[AuthGuard], data:{role: 'admin'}}
+  {path: 'admin/editor', component:EditorComponent, canActivate:[AuthGuard], data:{role: 'admin'}},
+  {path: 'company/profile', component:PerfilTiendasComponent, canActivate:[AuthGuard], data: {role:'company'}}
 ];
 
 @NgModule({

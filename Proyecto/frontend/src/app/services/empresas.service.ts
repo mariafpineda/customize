@@ -35,12 +35,16 @@ export class EmpresasService {
     return localStorage.getItem('token');
   }
 
-  stateCompany(id, state){
-    return this.httpClient.post(this.url+`/${id}/estado/${state}`, {})
+  stateCompany(id, state):Observable<any> {
+    return this.httpClient.post(this.url+`/${id}/estado/${state}`, {});
   }
 
-  deleteCompany(id){
-    return this.httpClient.delete(this.url+`/${id}`)
+  deleteCompany(id):Observable<any>{
+    return this.httpClient.delete(this.url+`/${id}`);
+  }
+
+  getPlan(id):Observable<any>{
+    return this.httpClient.get(this.url+`/${id}/plan`);
   }
 
 }

@@ -1,0 +1,28 @@
+.button{
+    text-align: right;
+    font-family: 'Raleway medium';
+}
+
+.card{
+    margin-bottom: 20px;
+}
+
+.btn-primary{
+    border: 1px solid #00bbee;
+    background-color: white;
+    color: #00bbee;
+}
+
+.btn-primary:hover{
+    background-color: #00bbee;
+    color: white;
+}
+
+.link-profile{
+    text-decoration: none;
+    color: #00bbee;
+}
+
+.link-profile:hover{
+    color: #94d12e !important;
+}
