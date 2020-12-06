@@ -17,7 +17,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
             <div ngbDropdown class="d-inline-block ml-auto ">
-                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle> {{nombreEmpresa}}</button>
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>HOLA, {{nombreEmpresa}}</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="bg-dark dropdown-style dropdown-menu-right">
                   <button ngbDropdownItem (click)="isMenuCollapsed = true"> <fa-icon [icon]="farUser"></fa-icon> MI PERFIL</button>
                   <div class="dropdown-divider"></div>
@@ -86,12 +86,25 @@
                 </li>
             </ul>
           </div>
-
       </div>
       <div class="content">
           <div class="container-fluid">
-              <div class="row">
-                  
+              <div class="row ml-auto mr-auto">
+                  <div class="col-xl-8">
+                      <app-inicio-tiendas></app-inicio-tiendas>
+                  </div>
+                  <div class="col-xl-8">
+                      <app-banco></app-banco>
+                  </div>
+                  <div class="col-xl-8">
+                      <app-categorias></app-categorias>
+                  </div>
+                  <div class="col-xl-8">
+                      <app-productos></app-productos>
+                  </div>
+                  <div class="col-xl-8">
+                      <app-config-tiendas></app-config-tiendas>
+                  </div>
               </div>
           </div>
       </div>
