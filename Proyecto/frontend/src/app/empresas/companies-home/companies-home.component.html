@@ -32,32 +32,32 @@
       <div class="sideMenu bg-dark" [ngClass]="{'display-sidemenu': isSidebarCollapsed==false, 'hide-sidemenu': isSidebarCollapsed==true}">
           <div class="sidebar">
             <ul class="navbar-nav">
-                <li class="nav-item-custom">
-                    <a href="" class="nav-link">
+                <li class="nav-item-custom" (click)="seccionVisible('inicio')">
+                    <a class="nav-link">
                         <div class="icon">
                             <fa-icon  [icon]="faHome"></fa-icon>
                         </div>
                         <span class="text">Inicio</span>
                     </a>
                 </li>
-                <li class="nav-item-custom">
-                    <a href="" class="nav-link">
+                <li class="nav-item-custom" (click)="seccionVisible('banco')">
+                    <a class="nav-link">
                         <div class="icon">
                             <fa-icon  [icon]="farFile"></fa-icon>
                         </div>
                         <span class="text">Archivos</span>
                     </a>
                 </li>
-                <li class="nav-item-custom">
-                    <a href="" class="nav-link">
+                <li class="nav-item-custom" (click)="seccionVisible('categorias')">
+                    <a class="nav-link">
                         <div class="icon">
                             <fa-icon  [icon]="faList"></fa-icon>
                         </div>
                         <span class="text">Categorías</span>
                     </a>
                 </li>
-                <li class="nav-item-custom">
-                    <a href="" class="nav-link">
+                <li class="nav-item-custom" (click)="seccionVisible('productos')">
+                    <a class="nav-link">
                         <div class="icon">
                             <fa-icon  [icon]="faTag"></fa-icon>
                         </div>
@@ -65,8 +65,8 @@
                     </a>
                 </li>
                 <div class="dropdown-divider"></div>
-                <li class="nav-item-custom">
-                    <a href="" class="nav-link">
+                <li class="nav-item-custom" (click)="seccionVisible('tienda')">
+                    <a class="nav-link">
                         <div class="icon">
                             <fa-icon  [icon]="faStore"></fa-icon>
                         </div>
@@ -76,8 +76,8 @@
                             
             </ul>
             <ul class="navbar-nav" style="position: absolute; bottom:0; width: 100%;">
-                <li class="nav-item-custom" style="padding:0;">
-                    <a href="" class="nav-link" style="width: 100%;">
+                <li class="nav-item-custom" (click)="seccionVisible('configuraciones')" style="padding:0;">
+                    <a class="nav-link" style="width: 100%;">
                         <div class="icon icon-config">
                             <fa-icon  [icon]="faCog"></fa-icon>
                         </div>
@@ -89,22 +89,25 @@
       </div>
       <div class="content">
           <div class="container-fluid">
-              <div class="row ml-auto mr-auto">
-                  <div class="col-xl-8">
+              <div class="row mr-auto">
+                  <div class="col-xl-6 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='inicio', 'noVisible': regionVisible != 'inicio'}">
                       <app-inicio-tiendas></app-inicio-tiendas>
                   </div>
-                  <div class="col-xl-8">
+                  <div class="col-xl-6 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='banco', 'noVisible': regionVisible != 'banco'}">
                       <app-banco></app-banco>
                   </div>
-                  <div class="col-xl-8">
+                  <div class="col-xl-6 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='categorias', 'noVisible': regionVisible != 'categorias'}">
                       <app-categorias></app-categorias>
                   </div>
-                  <div class="col-xl-8">
+                  <div class="col-xl-6 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='productos', 'noVisible': regionVisible != 'productos'}">
                       <app-productos></app-productos>
                   </div>
-                  <div class="col-xl-8">
-                      <app-config-tiendas></app-config-tiendas>
+                  <div class="col-xl-6 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='tienda', 'noVisible': regionVisible != 'tienda'}">
+                      <app-tiendas></app-tiendas>
                   </div>
+                  <div class="col-xl-6 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='configuraciones', 'noVisible': regionVisible != 'configuraciones'}">
+                    <app-config-tiendas></app-config-tiendas>
+                </div>
               </div>
           </div>
       </div>

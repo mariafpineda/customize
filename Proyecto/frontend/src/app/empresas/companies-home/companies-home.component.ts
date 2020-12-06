@@ -23,7 +23,7 @@ export class CompaniesHomeComponent implements OnInit {
   faBars=faBars;
   faHome=faHome;
   nombreEmpresa:String;
-
+  regionVisible:String='inicio';
 
   constructor(private router:Router, private empresasService:EmpresasService) { }
 
@@ -40,6 +40,10 @@ export class CompaniesHomeComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('idBrand');
     this.router.navigate(['/company/login']);
+  }
+
+  seccionVisible(region){
+    this.regionVisible=region;
   }
 
 }
