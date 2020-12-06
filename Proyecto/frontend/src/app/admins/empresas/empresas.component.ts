@@ -23,7 +23,7 @@ export class EmpresasComponent implements OnInit {
     private modalService:NgbModal) { }
 
   ngOnInit(): void {
-    this.empresasService.getCompany()
+    this.empresasService.getCompanies()
     .subscribe(res => {
       this.empresas=res;
     }, error => console.log(error)

@@ -23,7 +23,11 @@ export class EmpresasService {
     return !!localStorage.getItem('token');
   }
 
-  getCompany():Observable<any>{
+  getCompany(id):Observable<any>{
+    return this.httpClient.get(this.url+`/${id}`);
+  }
+
+  getCompanies():Observable<any>{
     return this.httpClient.get(this.url+'/');
   }
 

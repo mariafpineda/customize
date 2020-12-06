@@ -40,6 +40,10 @@
     text-align: center;
 }
 
+.icon-config{
+    width: 35px;
+}
+
 .navbar-brand{
     margin-left: 1rem;
 }
@@ -55,6 +59,14 @@
 .nav-item-custom:hover{
     background-color: #00bbee;
     color: white;
+}
+
+.nav-item-custom1{
+    font-size: 1rem !important;
+}
+
+.nav-item-custom1:hover{
+    color: #0be;
 }
 
 .nav-link{
@@ -75,6 +87,16 @@
     transition: ease 0.25s;
     transform: translateX(-100%);
     z-index:2000;
+}
+
+.show>.btn-outline-primary.dropdown-toggle{
+    color:white;
+    background-color: #0be;
+    border-color: #00bbee;
+}
+
+.show>.btn-outline-primary.dropdown-toggle:focus{
+    box-shadow: 0 0 0 0.2rem rgba(0,219,240,.1);
 }
 
 .text{
