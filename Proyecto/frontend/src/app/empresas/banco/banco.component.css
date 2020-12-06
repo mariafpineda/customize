@@ -25,6 +25,10 @@
     margin:5px;
 }
 
+.img{
+    height: 200px;
+}
+
 li a{
     color: #00bbee !important;
     font-family: 'Raleway medium';

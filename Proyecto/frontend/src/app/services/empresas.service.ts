@@ -71,4 +71,28 @@ export class EmpresasService {
     return this.httpClient.post(this.url+`/${id}/nuevoArchivo`, fd);
   }
 
+  updateImage(idCompany, idImage, data):Observable<any>{
+    return this.httpClient.post(this.url+`/${idCompany}/imagenes/${idImage}`, data);
+  }
+
+  updateVideo(idCompany, idVideo, data):Observable<any>{
+    return this.httpClient.post(this.url+`/${idCompany}/videos/${idVideo}`, data);
+  }
+
+  updateFile(idCompany, idFile, data):Observable<any>{
+    return this.httpClient.post(this.url+`/${idCompany}/archivos/${idFile}`, data);
+  }
+
+  deleteImage(idCompany, idImage):Observable<any>{
+    return this.httpClient.delete(this.url+`/${idCompany}/eliminarImagen/${idImage}`);
+  }
+
+  deleteVideo(idCompany, idVideo):Observable<any>{
+    return this.httpClient.delete(this.url+`/${idCompany}/eliminarVideo/${idVideo}`);
+  }
+
+  deleteFile(idCompany, idFile):Observable<any>{
+    return this.httpClient.delete(this.url+`/${idCompany}/eliminarArchivo/${idFile}`);
+  }
+  
 }

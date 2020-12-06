@@ -33,7 +33,6 @@ export class CompaniesHomeComponent implements OnInit {
   onWindowScroll(e){
     {
       let element = document.querySelector('.sideMenu');
-      console.log(window.pageYOffset);
       if (window.pageYOffset > 0) {
         element.classList.add('sideMenu-scrolled');
       } else {

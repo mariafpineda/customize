@@ -442,7 +442,7 @@ var fs = require('fs-extra');
             },
             {
                 "videos.$.nombre": req.body.nombre,
-                "videos.$.descripcion": req.body.nombre
+                "videos.$.descripcion": req.body.descripcion
             }
         ).then(result => {
             res.send(result);
@@ -545,7 +545,7 @@ var fs = require('fs-extra');
         },
         {
             "archivos.$.nombre": req.body.nombre,
-            "archivos.$.descripcion": req.body.nombre
+            "archivos.$.descripcion": req.body.descripcion
         }
     ).then(result => {
         res.send(result);
