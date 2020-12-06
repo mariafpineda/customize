@@ -12,10 +12,10 @@
                   <p class="card-text">{{imagen.descripcion}}</p>
                 </div>
                 <div class="buttons">
-                    <button class="btn btn-outline-primary" (click)="actualizarImagen(imagen._id)">
+                    <button class="btn btn-outline-primary button" (click)="actualizarImagen(imagen._id)">
                         <fa-icon [icon]="faEdit"></fa-icon>
                     </button>
-                    <button class="btn btn-outline-primary" (click)="borrarImagen(imagen._id)">
+                    <button class="btn btn-outline-danger button" (click)="borrarImagen(imagen._id)">
                         <fa-icon [icon]="faTrashAlt"></fa-icon>
                     </button>
                 </div>
@@ -42,7 +42,7 @@
                     <button class="btn btn-outline-primary button" (click)="actualizarVideo(video._id)">
                         <fa-icon [icon]="faEdit"></fa-icon>
                     </button>
-                    <button class="btn btn-outline-primary button" (click)="borrarVideo(video._id)">
+                    <button class="btn btn-outline-danger button" (click)="borrarVideo(video._id)">
                     <fa-icon [icon]="faTrashAlt"></fa-icon>
                     </button>
                 </div>
@@ -75,7 +75,7 @@
                             <button class="btn btn-outline-primary button" (click)="actualizarArchivo(archivo._id)">
                                 <fa-icon [icon]="faEdit"></fa-icon>
                             </button>
-                            <button class="btn btn-outline-primary button" (click)="borrarArchivo(archivo._id)">
+                            <button class="btn btn-outline-danger button" (click)="borrarArchivo(archivo._id)">
                             <fa-icon [icon]="faTrashAlt"></fa-icon>
                             </button>
                         </div>

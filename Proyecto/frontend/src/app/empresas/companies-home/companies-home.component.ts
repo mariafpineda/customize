@@ -3,6 +3,8 @@ import { faCog, faSignOutAlt, faTag, faList, faStore, faBars, faHome} from '@for
 import { faUserCircle as farUserCircle, faFile as farFile } from "@fortawesome/free-regular-svg-icons"
 import { Router} from '@angular/router';
 import { EmpresasService } from 'src/app/services/empresas.service';
+import { HostListener } from '@angular/core'
+
 
 @Component({
   selector: 'app-companies-home',
@@ -27,6 +29,20 @@ export class CompaniesHomeComponent implements OnInit {
 
   constructor(private router:Router, private empresasService:EmpresasService) { }
 
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(e){
+    {
+      let element = document.querySelector('.sideMenu');
+      console.log(window.pageYOffset);
+      if (window.pageYOffset > 0) {
+        element.classList.add('sideMenu-scrolled');
+      } else {
+        element.classList.remove('sideMenu-scrolled');
+      }
+    }
+}
+
+
   ngOnInit(): void {
     this.empresasService.getCompany(localStorage.getItem('idBrand'))
     .subscribe(res=>{
@@ -35,6 +51,8 @@ export class CompaniesHomeComponent implements OnInit {
       console.log(error);
     })
   }
+
+  
 
   logout(){
     localStorage.removeItem('token');

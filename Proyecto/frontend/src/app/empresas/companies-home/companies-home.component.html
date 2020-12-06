@@ -29,7 +29,7 @@
     </div>
   </nav>
   <div class="wrapper d-flex">
-      <div class="sideMenu bg-dark" [ngClass]="{'display-sidemenu': isSidebarCollapsed==false, 'hide-sidemenu': isSidebarCollapsed==true}">
+      <div class="sideMenu bg-dark" [ngClass]="{'display-sidemenu': isSidebarCollapsed==false, 'hide-sidemenu': isSidebarCollapsed==true}" (scroll)="onWindowScroll($event)">
           <div class="sidebar">
             <ul class="navbar-nav">
                 <li class="nav-item-custom" (click)="seccionVisible('inicio')">

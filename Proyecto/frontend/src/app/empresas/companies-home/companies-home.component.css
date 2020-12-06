@@ -44,7 +44,6 @@
     width: 35px;
 }
 
-
 .navbar-brand{
     margin-left: 1rem;
 }
@@ -88,6 +87,10 @@
     transition: ease 0.25s;
     transform: translateX(-100%);
     z-index:2000;
+}
+
+.sideMenu-scrolled{
+    margin: 0px auto auto !important;
 }
 
 .show>.btn-outline-primary.dropdown-toggle{

@@ -20,8 +20,8 @@ export class BancoComponent implements OnInit {
   imagenes:any=[];
   videos:any=[];
   archivos:any=[];
-  nombre:String;
-  descripcion:String;
+  nombre:String='';
+  descripcion:String='';
   archivo:File;
   archivoAgregado:Boolean;
 
