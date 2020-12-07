@@ -9,6 +9,16 @@
     background-color: #00bbee;
 }
 
+.button{
+    border: 1px solid transparent;
+}
+
+.buttons{
+    text-align: right;
+    margin-bottom:5px;
+    margin-right: 5px;
+}
+
 #content{
     font-family: 'Raleway medium';
 }

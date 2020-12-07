@@ -3,9 +3,9 @@
     <li [ngbNavItem]="1">
       <a ngbNavLink>Imágenes</a>
       <ng-template ngbNavContent>
-        <small *ngIf="imagenes.length==0">No hay imágenes.</small>
+        <small *ngIf="imagenes.length==0">Aún no hay imágenes.</small>
         <div *ngIf="imagenes.length != 0" class="row">
-          <div class=" col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6" *ngFor="let imagen of imagenes">
+          <div class=" col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6" *ngFor="let imagen of imagenes"  style="padding-bottom: 10px;">
             <div class="card" >
               <img [src]="'http://localhost:8888/' + imagen.rutaImg" class="card-img-top img" alt="...">
               <div class="card-body">
@@ -35,8 +35,8 @@
       <ng-template ngbNavContent>
         <small *ngIf="videos.length==0">Aún no hay videos.</small>
         <div *ngIf="videos.length != 0" class="row">
-          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let video of videos">
-            <div class="card " >
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let video of videos"  style="padding-bottom: 10px;">
+            <div class="card" >
               <video [src]="'http://localhost:8888/' + video.rutaVideo" class="card-img-top" alt="..." controls></video>
               <div class="card-body">
                 <h5 class="card-title">{{video.nombre}}</h5>

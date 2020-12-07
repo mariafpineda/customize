@@ -2,10 +2,137 @@
     <div class="w-100 d-flex">
         <h1>Productos</h1>
         <div class="ml-auto mt-auto mb-auto">
-            <button class="btn btn-outline-primary">
+            <button class="btn btn-outline-primary" (click)="open(addProduct, '')">
                 <fa-icon [icon]="faPlus"></fa-icon> 
                 Añadir producto</button>
         </div>
     </div>
     <hr>
+    <div>
+        <small *ngIf="productos.length==0">No hay productos registrados.</small>
+        <div *ngIf="productos.length != 0" class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6" *ngFor="let producto of productos"  style="padding-bottom: 10px;">
+                <div class="card" style="width: 100%">
+                    <img [src]="'http://localhost:8888/' + producto.imagen" class="card-img-top" height="150" alt="">
+                      <div class="card-body">
+                          <h5 class="card-title">{{producto.nombreProducto}}</h5>
+                          <p class="card-text">Precio <strong>L {{producto.precio}}</strong></p>
+                          <p class="card-text">
+                              <small class="text-muted">ID: {{producto._id}}</small>
+                          </p>
+                              <div class="buttons">
+                                  <button class="btn btn-outline-primary button" (click)="open(editProduct, producto._id)">
+                                      <fa-icon [icon]="faEdit"></fa-icon>
+                                  </button>
+                                  <button class="btn btn-outline-danger button" (click)="open(deleteProduct, producto._id)">
+                                  <fa-icon [icon]="faTrashAlt"></fa-icon>
+                                  </button>
+                              </div>
+                      </div>
+                  </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!--Modal  para agregar productos -->
+
+<ng-template #addProduct let-modal>
+    <div class="modal-body">
+      <h4 class="modal-title" id="modal-basic-title">Nueva producto</h4>
+      <div>
+        <div class="form-group row" style="margin-top:20px">
+          <label class="col-sm-5 col-form-label">Nombre</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" [(ngModel)]="nombre" [value]="nombre">
+          </div>
+        </div>
+        <div class="form-group row" style="margin-top:20px">
+            <label class="col-sm-5 col-form-label">Precio (L)</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" [(ngModel)]="precio" [value]="precio">
+            </div>
+          </div>
+          <div class="form-group row" style="margin-top:20px">
+            <label class="col-sm-5 col-form-label">Categorias</label>
+            <div class="col-sm-7">
+                <select [(ngModel)]="categoriaSeleccionada" class="form-control">
+                    <option [ngValue]="categoria.nombre" *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
+                </select>
+            </div>
+          </div>
+          <div class="form-group row" style="margin-top:20px">
+            <label class="col-sm-5 col-form-label">Imagen</label>
+            <div class="col-sm-7">
+                <select [(ngModel)]="imagenSeleccionada" id="imagen" class="form-control" (change)="visualizarIcono()">
+                    <option [ngValue]="imagen.rutaImg" *ngFor="let imagen of imagenes">{{imagen.nombre}}</option>
+                </select>
+            </div>
+          </div>
+          <div class="d-flex mr-auto ml-auto" style="margin-top:20px; justify-content: center;">
+            <img [src]="previewImg" width="200" height="150" alt="">
+          </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" (click)="agregarProducto()">Agregar</button>
+      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+</ng-template>
+
+<!--Modal para editar productos -->
+
+<ng-template #editProduct let-modal>
+    <div class="modal-body">
+      <h4 class="modal-title" id="modal-basic-title">Editar producto</h4>
+      <div>
+        <div class="form-group row" style="margin-top:20px">
+          <label class="col-sm-5 col-form-label">Nombre</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" [(ngModel)]="nombre" [value]="nombre">
+          </div>
+        </div>
+        <div class="form-group row" style="margin-top:20px">
+            <label class="col-sm-5 col-form-label">Precio (L)</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" [(ngModel)]="precio" [value]="precio">
+            </div>
+          </div>
+          <div class="form-group row" style="margin-top:20px">
+            <label class="col-sm-5 col-form-label">Categorias</label>
+            <div class="col-sm-7">
+                <select [(ngModel)]="categoriaSeleccionada" class="form-control">
+                    <option [ngValue]="categoria.nombre" *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
+                </select>
+            </div>
+          </div>
+          <div class="form-group row" style="margin-top:20px">
+            <label class="col-sm-5 col-form-label">Imagen</label>
+            <div class="col-sm-7">
+                <select [(ngModel)]="imagenSeleccionada" id="imagen" class="form-control" (change)="visualizarIcono()">
+                    <option [ngValue]="imagen.rutaImg" *ngFor="let imagen of imagenes">{{imagen.nombre}}</option>
+                </select>
+            </div>
+          </div>
+          <div class="d-flex mr-auto ml-auto" style="margin-top:20px; justify-content: center;">
+            <img [src]="previewImg" width="200" height="150" alt="">
+          </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" (click)="editarProducto()">Guardar cambios</button>
+      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+</ng-template>
+
+<!--Modal eliminar productos-->
+
+<ng-template #deleteProduct let-modal>
+    <div class="modal-body">
+      ¿Está seguro/a de querer eliminar este producto?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" (click)="eliminarProducto()">Eliminar</button>
+      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>

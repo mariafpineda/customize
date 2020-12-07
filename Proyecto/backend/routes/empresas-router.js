@@ -175,7 +175,8 @@ var fs = require('fs-extra');
                         _id: new mongoose.Types.ObjectId(),
                         nombreProducto: req.body.nombreProducto,
                         precio: req.body.precio,
-                        categoria :  req.body.categoria
+                        categoria :  req.body.categoria,
+                        imagen: req.body.imagen
                     }
                 }
             }
@@ -198,7 +199,8 @@ var fs = require('fs-extra');
             {
                 "productos.$.nombreProducto": req.body.nombreProducto,
                 "productos.$.precio" : req.body.precio,
-                "productos.$.categoria" :  req.body.categoria
+                "productos.$.categoria" :  req.body.categoria,
+                "productos.$.imagen": req.body.imagen
             }
         ).then(result => {
             res.send(result);
@@ -210,7 +212,7 @@ var fs = require('fs-extra');
     });
 
 //Delete product
-    router.delete('/:idBrand/eliminarProductos/:idProducto', function (req, res) {
+    router.delete('/:idBrand/eliminarProducto/:idProducto', function (req, res) {
         let productos; 
         empresas.find(
             {
@@ -265,7 +267,7 @@ var fs = require('fs-extra');
             res.end()
         })
     })
-    
+  
     
     /******** */
 //Add category

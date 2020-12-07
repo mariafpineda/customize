@@ -47,6 +47,10 @@ export class EmpresasService {
     return this.httpClient.get(this.url+`/${id}/plan`);
   }
 
+  getImages(id):Observable<any>{
+    return this.httpClient.get(this.url+`/${id}/imagenes`);
+  }
+
   addImage(id, nombre, descripcion, imagen):Observable<any>{
     const fd = new FormData();
     fd.append('nombre', nombre);
@@ -106,4 +110,23 @@ export class EmpresasService {
   deleteCategory(idCompany, idCategory):Observable<any>{
     return this.httpClient.delete(this.url+`/${idCompany}/eliminarCategoria/${idCategory}`);
   }
+
+  // Productos
+
+  addProduct(idCompany, data):Observable<any>{
+    return this.httpClient.post(this.url+`/${idCompany}/nuevoProducto`, data);
+  }
+
+  getProducts(id):Observable<any>{
+    return this.httpClient.get(this.url+`/${id}/productos`);
+  }
+
+  updateProduct(idCompany, idProduct, data):Observable<any>{
+    return this.httpClient.post(this.url+`/${idCompany}/productos/${idProduct}`, data);
+  }
+
+  deleteProduct(idCompany, idProduct):Observable<any>{
+    return this.httpClient.delete(this.url+`/${idCompany}/eliminarProducto/${idProduct}`);
+  }
+  
 }
