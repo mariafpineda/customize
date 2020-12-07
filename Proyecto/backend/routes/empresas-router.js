@@ -265,7 +265,9 @@ var fs = require('fs-extra');
             res.end()
         })
     })
-
+    
+    
+    /******** */
 //Add category
     router.post('/:idBrand/nuevaCategoria', function(req, res){
         empresas.update(
@@ -274,8 +276,10 @@ var fs = require('fs-extra');
             },
             {
                 $push: {
-                    _id: new mongoose.Types.ObjectId(),
-                    "categorias" : req.params.categoria
+                    "categorias" : {
+                        "_id": new mongoose.Types.ObjectId(),
+                        "nombre": req.body.nombre
+                    }
                 }
             }
         ).then(result => {
@@ -298,7 +302,7 @@ var fs = require('fs-extra');
                 _id: false
             }
         ).then(result => {
-            res.send(result);
+            res.send(result[0]);
             res.end();
         }).catch(result => {
             res.send(error);
@@ -307,7 +311,7 @@ var fs = require('fs-extra');
     });
 
 //Delete category
-    router.delete('/idBrand/eliminarCategoria/:idCategoria', function(req, res){
+    router.delete('/:idBrand/eliminarCategoria/:idCategoria', function(req, res){
         let categorias; 
         empresas.find(
             {
@@ -345,6 +349,9 @@ var fs = require('fs-extra');
         });
     })
 
+    
+    
+    /****** */
 //Add image
     router.post('/:idBrand/nuevaImagen', multer.single('imagen'), async function(req, res){
         empresas.update(

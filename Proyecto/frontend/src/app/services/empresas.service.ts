@@ -94,5 +94,16 @@ export class EmpresasService {
   deleteFile(idCompany, idFile):Observable<any>{
     return this.httpClient.delete(this.url+`/${idCompany}/eliminarArchivo/${idFile}`);
   }
+
+  getCategories(id):Observable<any>{
+    return this.httpClient.get(this.url+`/${id}/categorias`)
+  }
+
+  addCategory(id, nombre):Observable<any>{
+    return this.httpClient.post(this.url+`/${id}/nuevaCategoria`, {nombre});
+  }
   
+  deleteCategory(idCompany, idCategory):Observable<any>{
+    return this.httpClient.delete(this.url+`/${idCompany}/eliminarCategoria/${idCategory}`);
+  }
 }
