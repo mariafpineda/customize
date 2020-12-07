@@ -93,13 +93,13 @@
                   <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-12 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='inicio', 'noVisible': regionVisible != 'inicio'}">
                       <app-inicio-tiendas (onSeccionSeleccionada)="seccionVisible($event)"></app-inicio-tiendas>
                   </div>
-                  <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-12 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='banco', 'noVisible': regionVisible != 'banco'}">
+                  <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='banco', 'noVisible': regionVisible != 'banco'}">
                       <app-banco></app-banco>
                   </div>
                   <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-12 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='categorias', 'noVisible': regionVisible != 'categorias'}">
                       <app-categorias></app-categorias>
                   </div>
-                  <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-12 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='productos', 'noVisible': regionVisible != 'productos'}">
+                  <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='productos', 'noVisible': regionVisible != 'productos'}">
                       <app-productos></app-productos>
                   </div>
                   <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-12 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='tienda', 'noVisible': regionVisible != 'tienda'}">

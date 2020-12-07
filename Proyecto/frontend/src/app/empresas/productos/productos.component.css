@@ -1,0 +1,19 @@
+.btn-outline-primary{
+    background-color: transparent;
+    color:#00bbee;
+    border: 1px solid #00bbee;
+}
+
+.btn-outline-primary:hover{
+    color: white;
+    background-color: #00bbee;
+}
+
+#content{
+    font-family: 'Raleway medium';
+}
+
+h1{
+    font-family:  'Raleway semibold';
+    color: #00bbee;
+}

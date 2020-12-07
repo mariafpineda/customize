@@ -37,6 +37,7 @@ export class BancoComponent implements OnInit {
       this.imagenes=res[0].imagenes;
       this.videos=res[0].videos;
       this.archivos=res[0].archivos;
+      console.log(this.archivos);
     },error=> {
       console.log(error);
     })

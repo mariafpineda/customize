@@ -40,7 +40,6 @@ export class CategoriasComponent implements OnInit {
   }
 
   borrarCategoria(id){
-    console.log(id);
     this.empresasService.deleteCategory(this.empresaLoggeada, id)
     .subscribe( () =>{
       this.ngOnInit()

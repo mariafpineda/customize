@@ -5,25 +5,28 @@
       <ng-template ngbNavContent>
         <small *ngIf="imagenes.length==0">No hay imágenes.</small>
         <div *ngIf="imagenes.length != 0" class="row">
-            <div class="card col-xl-5 col-lg-5 col-md-8 col-sm-8 col-8 mr-auto ml-auto" *ngFor="let imagen of imagenes">
-                <img [src]="'http://localhost:8888/' + imagen.rutaImg" class="card-img-top img" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">{{imagen.nombre}}</h5>
-                  <p class="card-text">{{imagen.descripcion}}</p>
-                </div>
-                <div class="buttons">
-                    <button class="btn btn-outline-primary button" (click)="open(editFile, 'imagen', imagen._id)">
-                        <fa-icon [icon]="faEdit"></fa-icon>
-                    </button>
-                    <button class="btn btn-outline-danger button" (click)="open(deleteFile, 'imagen', imagen._id)">
-                        <fa-icon [icon]="faTrashAlt"></fa-icon>
-                    </button>
-                </div>
-               
-                <div class="card-footer">
-                    <small class="text-muted">{{imagen._id}}</small>
-                </div>
-            </div>
+          <div class=" col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6" *ngFor="let imagen of imagenes">
+            <div class="card" >
+              <img [src]="'http://localhost:8888/' + imagen.rutaImg" class="card-img-top img" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{imagen.nombre}}</h5>
+                <p class="card-text">{{imagen.descripcion}}</p>
+              </div>
+              <div class="buttons">
+                  <button class="btn btn-outline-primary button" (click)="open(editFile, 'imagen', imagen._id)">
+                      <fa-icon [icon]="faEdit"></fa-icon>
+                  </button>
+                  <button class="btn btn-outline-danger button" (click)="open(deleteFile, 'imagen', imagen._id)">
+                      <fa-icon [icon]="faTrashAlt"></fa-icon>
+                  </button>
+              </div>
+             
+              <div class="card-footer">
+                  <small class="text-muted">{{imagen._id}}</small>
+              </div>
+          </div>
+          </div>
+            
         </div>
       </ng-template>
     </li>
@@ -32,25 +35,27 @@
       <ng-template ngbNavContent>
         <small *ngIf="videos.length==0">Aún no hay videos.</small>
         <div *ngIf="videos.length != 0" class="row">
-            <div class="card col-xl-5 col-lg-5 col-md-8 col-sm-8 col-8  mr-auto ml-auto" *ngFor="let video of videos">
-                <video [src]="'http://localhost:8888/' + video.rutaVideo" class="card-img-top" alt="..." controls></video>
-                <div class="card-body">
-                  <h5 class="card-title">{{video.nombre}}</h5>
-                  <p class="card-text">{{video.descripcion}}</p>
-                </div>
-                <div class="buttons">
-                    <button class="btn btn-outline-primary button" (click)="open(editFile, 'video', video._id)">
-                        <fa-icon [icon]="faEdit"></fa-icon>
-                    </button>
-                    <button class="btn btn-outline-danger button" (click)="open(deleteFile, 'video', video._id)">
-                    <fa-icon [icon]="faTrashAlt"></fa-icon>
-                    </button>
-                </div>
-                
-                <div class="card-footer">
-                    <small class="text-muted">{{video._id}}</small>
-                </div>
-            </div>
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let video of videos">
+            <div class="card " >
+              <video [src]="'http://localhost:8888/' + video.rutaVideo" class="card-img-top" alt="..." controls></video>
+              <div class="card-body">
+                <h5 class="card-title">{{video.nombre}}</h5>
+                <p class="card-text">{{video.descripcion}}</p>
+              </div>
+              <div class="buttons">
+                  <button class="btn btn-outline-primary button" (click)="open(editFile, 'video', video._id)">
+                      <fa-icon [icon]="faEdit"></fa-icon>
+                  </button>
+                  <button class="btn btn-outline-danger button" (click)="open(deleteFile, 'video', video._id)">
+                  <fa-icon [icon]="faTrashAlt"></fa-icon>
+                  </button>
+              </div>
+              <div class="card-footer">
+                  <small class="text-muted">{{video._id}}</small>
+              </div>
+          </div>
+          </div>
+            
         </div>
       </ng-template>
     </li>
@@ -58,13 +63,13 @@
       <a ngbNavLink>Archivos genéricos</a>
       <ng-template ngbNavContent>
         <small *ngIf="archivos.length==0">Aún no hay archivos.</small>
-        <div *ngIf="videos.length != 0">
+        <div *ngIf="archivos.length != 0" class="col-xl-6">
             <div class="card" style="width: 100%" *ngFor="let archivo of archivos">
                 <div class="row">
-                  <div class="col-md-3 col-3 icon-div">
+                  <div class="col-md-4 col-3 icon-div">
                     <fa-icon [icon]="faFile" class="icon"></fa-icon>
                   </div>
-                  <div class="col-md-9 col-9">
+                  <div class="col-md-8 col-9">
                     <div class="card-body">
                       <h5 class="card-title">{{archivo.nombre}}</h5>
                       <p class="card-text">{{archivo.descripcion}}</p>
