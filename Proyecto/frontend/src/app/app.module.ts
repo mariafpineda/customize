@@ -37,7 +37,6 @@ import { CategoriasComponent } from './empresas/categorias/categorias.component'
 import { ProductosComponent } from './empresas/productos/productos.component';
 import { TiendasComponent } from './empresas/tiendas/tiendas.component';
 import { EditorTiendasComponent } from './empresas/editor-tiendas/editor-tiendas.component';
-import { ConfigTiendasComponent } from './empresas/config-tiendas/config-tiendas.component';
 import { InicioTiendasComponent } from './empresas/inicio-tiendas/inicio-tiendas.component';
 import { PerfilTiendasComponent } from './empresas/perfil-tiendas/perfil-tiendas.component';
 
@@ -70,7 +69,6 @@ import { PerfilTiendasComponent } from './empresas/perfil-tiendas/perfil-tiendas
     ProductosComponent,
     TiendasComponent,
     EditorTiendasComponent,
-    ConfigTiendasComponent,
     InicioTiendasComponent,
     PerfilTiendasComponent
   ],

@@ -75,16 +75,6 @@
                 </li>
                             
             </ul>
-            <ul class="navbar-nav" style="position: absolute; bottom:0; width: 100%;">
-                <li class="nav-item-custom" (click)="seccionVisible('configuraciones')" style="padding:0;">
-                    <a class="nav-link" style="width: 100%;">
-                        <div class="icon icon-config">
-                            <fa-icon  [icon]="faCog"></fa-icon>
-                        </div>
-                        <span class="text">Configuraciones</span>
-                    </a>
-                </li>
-            </ul>
           </div>
       </div>
       <div class="content">
@@ -105,9 +95,6 @@
                   <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-12 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='tienda', 'noVisible': regionVisible != 'tienda'}">
                       <app-tiendas></app-tiendas>
                   </div>
-                  <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-12 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='configuraciones', 'noVisible': regionVisible != 'configuraciones'}">
-                    <app-config-tiendas></app-config-tiendas>
-                </div>
               </div>
           </div>
       </div>
