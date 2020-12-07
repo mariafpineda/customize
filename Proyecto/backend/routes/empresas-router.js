@@ -267,13 +267,14 @@ var fs = require('fs-extra');
     })
 
 //Add category
-    router.post('/:idBrand/nuevaCategoria/:categoria', function(req, res){
+    router.post('/:idBrand/nuevaCategoria', function(req, res){
         empresas.update(
             {
                 _id: req.params.idBrand
             },
             {
                 $push: {
+                    _id: new mongoose.Types.ObjectId(),
                     "categorias" : req.params.categoria
                 }
             }
@@ -304,6 +305,45 @@ var fs = require('fs-extra');
             res.end();
         });
     });
+
+//Delete category
+    router.delete('/idBrand/eliminarCategoria/:idCategoria', function(req, res){
+        let categorias; 
+        empresas.find(
+            {
+                _id: req.params.idBrand
+            },
+            {
+                "categorias":true,
+                _id: false
+            }
+        ).then(result => {
+            res.send(result);
+            categorias = result[0].categorias;
+            for(let i in categorias){
+                if(categorias[i]._id==req.params.idCategoria){
+                    categorias.splice(i, 1);
+                }
+            }
+                empresas.update(
+                    {
+                        _id: req.params.idBrand
+                    },
+                    {
+                        categorias : categorias
+                    }
+                ).then(
+
+                ).catch(error2 => {
+                    res.send(error2);
+                    res.end();
+                })
+            res.end();
+        }).catch(error => {
+            res.send(error);
+            res.end();
+        });
+    })
 
 //Add image
     router.post('/:idBrand/nuevaImagen', multer.single('imagen'), async function(req, res){
@@ -351,9 +391,9 @@ var fs = require('fs-extra');
     });
 
 //Delete image
-    router.delete('/:idBrand/eliminarImagen/:idImagen', function (req, res) {
+    router.delete('/:idBrand/eliminarImagen/:idImagen', async function (req, res) {
         let imagenes; 
-        empresas.find(
+        await empresas.find(
             {
                 _id: req.params.idBrand
             },
@@ -366,6 +406,7 @@ var fs = require('fs-extra');
             imagenes = result[0].imagenes;
             for(let i in imagenes){
                 if(imagenes[i]._id==req.params.idImagen){
+                    fs.unlink(path.resolve(imagenes[i].rutaImg));
                     imagenes.splice(i, 1);
                 }
             }
@@ -454,9 +495,9 @@ var fs = require('fs-extra');
     });
 
 //Delete video
-    router.delete('/:idBrand/eliminarVideo/:idVideo', function (req, res) {
+    router.delete('/:idBrand/eliminarVideo/:idVideo', async  function (req, res) {
     let videos; 
-    empresas.find(
+    await empresas.find(
         {
             _id: req.params.idBrand
         },
@@ -469,6 +510,7 @@ var fs = require('fs-extra');
         videos = result[0].videos;
         for(let i in videos){
             if(videos[i]._id==req.params.idVideo){
+                fs.unlink(path.resolve(videos[i].rutaVideo));
                 videos.splice(i, 1);
             }
         }
@@ -557,9 +599,9 @@ var fs = require('fs-extra');
 });
 
 //Delete files
-    router.delete('/:idBrand/eliminarArchivo/:idFile', function (req, res) {
+    router.delete('/:idBrand/eliminarArchivo/:idFile', async function (req, res) {
     let archivos; 
-    empresas.find(
+    await empresas.find(
         {
             _id: req.params.idBrand
         },
@@ -570,11 +612,12 @@ var fs = require('fs-extra');
     ).then(result => {
         archivos = result[0].archivos;
         for(let i in archivos){
-            if(archivos[i]._id==req.params.idFile){
+            if(archivos[i]._id==req.params.idFile){ 
+                fs.unlink(path.resolve(archivos[i].rutaFile));
                 archivos.splice(i, 1);
             }
         }
-            empresas.update(
+        empresas.update(
                 {
                     _id: req.params.idBrand
                 },

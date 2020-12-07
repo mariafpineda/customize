@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-categorias',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categorias.component.css']
 })
 export class CategoriasComponent implements OnInit {
-
+  faPlus=faPlus;
   constructor() { }
 
   ngOnInit(): void {
