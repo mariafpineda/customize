@@ -98,7 +98,7 @@ var fs = require('fs-extra');
     })
 
 //Update password
-router.put('/:idBrand/password', verifyToken, async (req, res) => {
+router.put('/:idBrand/password', async (req, res) => {
     const salt=10;
     const hash= await bcrypt.hashSync(req.body.contraseniaEmpresa, salt);
     const empresa = await empresas.findOne({'_id': req.params.idBrand});
@@ -849,11 +849,10 @@ router.put('/:idBrand/password', verifyToken, async (req, res) => {
     router.post('/:idBrand/plan/:idPlan', verifyToken, function(req, res){
         empresas.update(
             {
-                _id: req.params.idBrand,
-                planActual : req.params.idPlan
+                _id: req.params.idBrand
             },
             {
-                planActual : req.body.plan
+                planActual : mongoose.Types.ObjectId(req.params.idPlan)
             }
         ).then(result => {
             res.send(result);

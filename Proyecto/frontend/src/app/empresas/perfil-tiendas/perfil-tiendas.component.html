@@ -1,15 +1,106 @@
 <div id="content">
     <h1>Mi perfil</h1>
-    <hr>
     <div>
-        <h5>Configuraciones generales</h5>
+        <hr>
+        <h6>Configuraciones generales</h6>
+        <hr>
+        <div>
+            <div class="config-gen">
+                <small class="error" *ngIf="errorBool">{{messageInfo}}</small>
+                <small class="success" *ngIf="successBool">{{messageInfo}}</small>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Nombre de Empresa</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" [(ngModel)]="nombreEmpresa" [value]="nombreEmpresa">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Dominio</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" [(ngModel)]="nombreDominio" [value]="nombreDominio">
+              </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Rubro</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" [(ngModel)]="rubro" [value]="rubro">
+                </div>
+              </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Pais</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" [(ngModel)]="pais" [value]="pais">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Correo electrónico</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" [(ngModel)]="correoEmpresa" [value]="correoEmpresa">
+                </div>
+            </div>
+            <div class="button">
+                <button class="btn btn-outline-dark" (click)="actualizarInformacion()">Guardar cambios</button>
+            </div>
+        </div>
     </div>
-    <hr>
     <div>
-        <h5>Seguridad</h5>
+        <hr>
+        <h6>Plan de suscripción</h6>
+        <hr>
+        <p>Actualmente cuentas con el plan de suscripción <strong>{{planActual}}</strong> </p>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label">Planes de suscripción</label>
+            <div class="col-sm-6">
+              <select class="form-control" [(ngModel)]="planSeleccionado">
+                <option disabled>Seleccione uno</option>
+                <option [value]="plan._id" *ngFor="let plan of planes">{{plan.nombrePlan}}</option>
+            </select>            
+            </div>
+        </div>
+        <div class="button">
+            <button class="btn btn-outline-dark" (click)="actualizarPlan()">Guardar cambios</button>
+        </div>
     </div>
-    <hr>
     <div>
-        <h5>Cuenta</h5>
+        <hr>
+        <h6>Seguridad</h6>
+        <hr>
+        <div class="config-gen">
+            <small class="error" *ngIf="errorBool">{{message}}</small>
+            <small class="success" *ngIf="successBool">{{message}}</small>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label">Contraseña anterior</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control" [(ngModel)]="contraseniaAnterior" [value]="contraseniaAnterior">
+            </div>
+          </div>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label">Nueva contraseña</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control" [(ngModel)]="contraseniaEmpresa" [value]="contraseniaEmpresa">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label">Confirmar nueva contraseña</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control" [(ngModel)]="confirmarContrasenia" [value]="confirmarContrasenia">
+            </div>
+        </div>
+        <div class="button">
+            <button class="btn btn-outline-dark" (click)="cambiarContrasenia()">Guardar cambios</button>
+        </div>
+    </div>
+    <div>
+        <hr>
+        <h6>Cuenta</h6>
+        <hr>
+        <div class="form-group row">
+            <label class="col-sm-10 col-form-label">Eliminar mi cuenta</label>
+            <div class="col-sm-2" style="text-align: right;">
+                <button class="btn btn-outline-danger" (click)="borrarCuenta()">Eliminar</button>
+            </div>
+        </div>
     </div>
 </div>

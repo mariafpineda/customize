@@ -1,0 +1,26 @@
+.button{
+    text-align: right;
+}
+
+#content{
+    font-family: 'Raleway medium';
+}
+
+#content h6{
+    text-align: center;
+}
+
+
+h1{
+    font-family: 'Raleway semibold';
+    color: #00bbee;
+}
+
+h6{
+    font-family: 'Raleway semibold';
+}
+
+.config-gen{
+    text-align: center;
+}
+

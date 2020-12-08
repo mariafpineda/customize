@@ -24,7 +24,7 @@
               <h5 class="card-title">Plan de suscripción</h5>
               <p class="card-text" *ngIf="plan.cantidadPaginas>1">Con el plan de suscripción que tienes actualmente puedes crear {{plan.cantidadPaginas}} sitios web con {{plan.cantidadProductos}} productos en cada uno.</p>
               <p class="card-text" *ngIf="plan.cantidadPaginas==1">Con el plan de suscripción que tienes actualmente puedes crear {{plan.cantidadPaginas}} sitio web con {{plan.cantidadProductos}} productos.</p>
-              <p class="card-te">Para cambiar tu plan, dirígete a configuraciones de <a class="link-profile" href="/company/profile">Mi Perfil</a></p>
+              <p class="card-te">Para cambiar tu plan, dirígete a configuraciones de <a class="link-profile" (click)="seccionSeleccionada('perfil')">Mi Perfil</a></p>
             </div>
         </div>
     </div>

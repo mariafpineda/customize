@@ -39,6 +39,10 @@ export class EmpresasService {
     return this.httpClient.put(this.url+`/${id}/password`, data);
   }
 
+  updatePlan(idCompany, idPlan):Observable<any>{
+    return this.httpClient.post(this.url+`/${idCompany}/plan/${idPlan}`, {});
+  }
+
   getToken(){
     return localStorage.getItem('token');
   }
