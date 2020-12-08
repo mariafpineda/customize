@@ -31,6 +31,14 @@ export class EmpresasService {
     return this.httpClient.get(this.url+'/');
   }
 
+  updateCompany(id, data):Observable<any>{
+    return this.httpClient.put(this.url+`/${id}`, data)
+  }
+
+  updatePassword(id, data):Observable<any>{
+    return this.httpClient.put(this.url+`/${id}/password`, data);
+  }
+
   getToken(){
     return localStorage.getItem('token');
   }

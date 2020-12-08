@@ -64,7 +64,7 @@ var fs = require('fs-extra');
     })
 
 //Read brands
-    router.get('/', function(req, res){
+    router.get('/', verifyToken, function(req, res){
         empresas.find({}, {})
         .then(result => {
             res.send(result);
@@ -76,9 +76,7 @@ var fs = require('fs-extra');
     });
 
 //Update brand
-    router.put('/:idBrand', async (req, res) => {
-        const salt = 10;
-        const hash =  bcrypt.hashSync(req.body.contrasenia, salt);
+    router.put('/:idBrand', verifyToken, async (req, res) => {
         await empresas.update(
             {
                 _id : req.params.idBrand
@@ -88,8 +86,7 @@ var fs = require('fs-extra');
                 nombreDominio : req.body.dominio,
                 rubro : req.body.rubro,
                 pais :  req.body.pais,
-                correoEmpresa : req.body.correo,
-                contraseniaEmpresa : hash
+                correoEmpresa : req.body.correo
             }
         ).then(result => {
             res.send(result);
@@ -100,8 +97,33 @@ var fs = require('fs-extra');
         })
     })
 
+//Update password
+router.put('/:idBrand/password', verifyToken, async (req, res) => {
+    const salt=10;
+    const hash= await bcrypt.hashSync(req.body.contraseniaEmpresa, salt);
+    const empresa = await empresas.findOne({'_id': req.params.idBrand});
+
+    if(!bcrypt.compareSync(req.body.contraseniaAnterior, empresa.contraseniaEmpresa)){
+        return res.status(401).json({'message':'La contraseña anterior es incorrecta.'});
+    }
+
+    await empresas.update(
+        {
+            _id: req.params.idBrand
+        },
+        {
+            contraseniaEmpresa:hash
+        }
+    ).then( () => {
+        res.status(200).json({'message': 'Contraseña actualizada correctamente.'});
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
+});
+
 //Delete brand
-    router.delete('/:idBrand', function (req, res){
+    router.delete('/:idBrand', verifyToken, function (req, res){
         empresas.remove(
             {
                 _id : req.params.idBrand
@@ -118,7 +140,7 @@ var fs = require('fs-extra');
 // ---------------- //
 
 //Get brand
-    router.get('/:idBrand', function(req, res){
+    router.get('/:idBrand', verifyToken, function(req, res){
     empresas.find(
         {
             _id: req.params.idBrand
@@ -134,7 +156,7 @@ var fs = require('fs-extra');
 
 //Get brands plan
 
-    router.get('/:idBrand/plan', function(req, res){
+    router.get('/:idBrand/plan', verifyToken, function(req, res){
         empresas.aggregate([
             {
                 $lookup: {
@@ -164,7 +186,7 @@ var fs = require('fs-extra');
     })
 
 //Add products
-    router.post('/:idBrand/nuevoProducto', function(req, res){
+    router.post('/:idBrand/nuevoProducto', verifyToken, function(req, res){
         empresas.update(
             {
                 _id: mongoose.Types.ObjectId(req.params.idBrand)
@@ -190,7 +212,7 @@ var fs = require('fs-extra');
     });
 
 //Update products
-    router.post('/:idBrand/productos/:idProduct', function (req, res) {
+    router.post('/:idBrand/productos/:idProduct', verifyToken, function (req, res) {
         empresas.update(
             {
                 _id: req.params.idBrand,
@@ -212,7 +234,7 @@ var fs = require('fs-extra');
     });
 
 //Delete product
-    router.delete('/:idBrand/eliminarProducto/:idProducto', function (req, res) {
+    router.delete('/:idBrand/eliminarProducto/:idProducto', verifyToken, function (req, res) {
         let productos; 
         empresas.find(
             {
@@ -251,7 +273,7 @@ var fs = require('fs-extra');
     })
 
 //Get products
-    router.get('/:idBrand/productos', function(req, res){
+    router.get('/:idBrand/productos', verifyToken, function(req, res){
         empresas.find(
             {
                 _id: req.params.idBrand
@@ -271,7 +293,7 @@ var fs = require('fs-extra');
     
     /******** */
 //Add category
-    router.post('/:idBrand/nuevaCategoria', function(req, res){
+    router.post('/:idBrand/nuevaCategoria', verifyToken, function(req, res){
         empresas.update(
             {
                 _id: req.params.idBrand
@@ -294,7 +316,7 @@ var fs = require('fs-extra');
     });
 
 //Get categories
-    router.get('/:idBrand/categorias', function(req, res){
+    router.get('/:idBrand/categorias', verifyToken, function(req, res){
         empresas.find(
             {
                 _id: req.params.idBrand
@@ -313,7 +335,7 @@ var fs = require('fs-extra');
     });
 
 //Delete category
-    router.delete('/:idBrand/eliminarCategoria/:idCategoria', function(req, res){
+    router.delete('/:idBrand/eliminarCategoria/:idCategoria', verifyToken, function(req, res){
         let categorias; 
         empresas.find(
             {
@@ -355,7 +377,7 @@ var fs = require('fs-extra');
     
     /****** */
 //Add image
-    router.post('/:idBrand/nuevaImagen', multer.single('imagen'), async function(req, res){
+    router.post('/:idBrand/nuevaImagen', multer.single('imagen'), verifyToken, async function(req, res){
         empresas.update(
             {
                 _id: req.params.idBrand
@@ -380,7 +402,7 @@ var fs = require('fs-extra');
 });
 
 //Update image
-    router.post('/:idBrand/imagenes/:idImage', function (req, res) {
+    router.post('/:idBrand/imagenes/:idImage', verifyToken, function (req, res) {
         empresas.update(
             {
                 _id: req.params.idBrand,
@@ -400,7 +422,7 @@ var fs = require('fs-extra');
     });
 
 //Delete image
-    router.delete('/:idBrand/eliminarImagen/:idImagen', async function (req, res) {
+    router.delete('/:idBrand/eliminarImagen/:idImagen', verifyToken, async function (req, res) {
         let imagenes; 
         await empresas.find(
             {
@@ -440,7 +462,7 @@ var fs = require('fs-extra');
     })
 
 //Get images
-    router.get('/:idBrand/imagenes', function(req, res){
+    router.get('/:idBrand/imagenes', verifyToken, function(req, res){
         empresas.find(
             {
                 _id: req.params.idBrand
@@ -459,7 +481,7 @@ var fs = require('fs-extra');
     });
 
 //Add video
-    router.post('/:idBrand/nuevoVideo',  multer.single('video'), function(req, res){
+    router.post('/:idBrand/nuevoVideo',  multer.single('video'), verifyToken, function(req, res){
         empresas.update(
             {
                 _id: req.params.idBrand
@@ -484,7 +506,7 @@ var fs = require('fs-extra');
     });
 
 //Update video
-    router.post('/:idBrand/videos/:idVideo', function (req, res) {
+    router.post('/:idBrand/videos/:idVideo', verifyToken, function (req, res) {
         empresas.update(
             {
                 _id: req.params.idBrand,
@@ -504,7 +526,7 @@ var fs = require('fs-extra');
     });
 
 //Delete video
-    router.delete('/:idBrand/eliminarVideo/:idVideo', async  function (req, res) {
+    router.delete('/:idBrand/eliminarVideo/:idVideo', verifyToken, async  function (req, res) {
     let videos; 
     await empresas.find(
         {
@@ -544,7 +566,7 @@ var fs = require('fs-extra');
 })
 
 //Get videos
-    router.get('/:idBrand/videos', function(req, res){
+    router.get('/:idBrand/videos', verifyToken, function(req, res){
     empresas.find(
         {
             _id: req.params.idBrand
@@ -563,7 +585,7 @@ var fs = require('fs-extra');
 });
 
 //Add files
-    router.post('/:idBrand/nuevoArchivo', multer.single('archivo'), async function(req, res){
+    router.post('/:idBrand/nuevoArchivo', multer.single('archivo'), verifyToken, async function(req, res){
     empresas.update(
         {
             _id: req.params.idBrand
@@ -588,7 +610,7 @@ var fs = require('fs-extra');
 });
 
 //Update files
-    router.post('/:idBrand/archivos/:idFile', function (req, res) {
+    router.post('/:idBrand/archivos/:idFile', verifyToken, function (req, res) {
     empresas.update(
         {
             _id: req.params.idBrand,
@@ -608,7 +630,7 @@ var fs = require('fs-extra');
 });
 
 //Delete files
-    router.delete('/:idBrand/eliminarArchivo/:idFile', async function (req, res) {
+    router.delete('/:idBrand/eliminarArchivo/:idFile', verifyToken, async function (req, res) {
     let archivos; 
     await empresas.find(
         {
@@ -647,7 +669,7 @@ var fs = require('fs-extra');
     })
 
 //Get files
-    router.get('/:idBrand/archivos', function(req, res){
+    router.get('/:idBrand/archivos', verifyToken, function(req, res){
     empresas.find(
         {
             _id: req.params.idBrand
@@ -667,7 +689,7 @@ var fs = require('fs-extra');
 
 //Add pages
 
-    router.post('/:idBrand/nuevaPagina', function(req, res){
+    router.post('/:idBrand/nuevaPagina', verifyToken, function(req, res){
         empresas.update(
             {
                 _id: req.params.idBrand
@@ -700,7 +722,7 @@ var fs = require('fs-extra');
 
 //Update pages
 
-    router.post('/:idBrand/paginas/:idPage', function (req, res) {
+    router.post('/:idBrand/paginas/:idPage', verifyToken, function (req, res) {
     empresas.update(
         {
             _id: req.params.idBrand,
@@ -725,7 +747,7 @@ var fs = require('fs-extra');
 });
 
 //Delete pages
-    router.delete('/:idBrand/eliminarPagina/:idPage', function (req, res) {
+    router.delete('/:idBrand/eliminarPagina/:idPage', verifyToken, function (req, res) {
     let paginas; 
     empresas.find(
         {
@@ -764,7 +786,7 @@ var fs = require('fs-extra');
 
 //Get pages
 
-    router.get('/:idBrand/paginas', function(req, res){
+    router.get('/:idBrand/paginas', verifyToken, function(req, res){
     empresas.find(
         {
             _id: req.params.idBrand
@@ -783,7 +805,7 @@ var fs = require('fs-extra');
     });
 
 //Get page
-    router.get('/:idBrand/paginas/:idPage', function(req, res){
+    router.get('/:idBrand/paginas/:idPage', verifyToken, function(req, res){
         empresas.find(
             {
                 _id: req.params.idBrand,
@@ -803,7 +825,7 @@ var fs = require('fs-extra');
     });
 
 //Update source code
-    router.post('/:idBrand/paginas/:idPage/codigo', function (req, res) {
+    router.post('/:idBrand/paginas/:idPage/codigo', verifyToken, function (req, res) {
     empresas.update(
         {
             _id: req.params.idBrand,
@@ -824,7 +846,7 @@ var fs = require('fs-extra');
 });
 
 //Update plan
-    router.post('/:idBrand/plan/:idPlan', function(req, res){
+    router.post('/:idBrand/plan/:idPlan', verifyToken, function(req, res){
         empresas.update(
             {
                 _id: req.params.idBrand,
@@ -843,7 +865,7 @@ var fs = require('fs-extra');
     });
 
 //Update state
-    router.post('/:idBrand/estado/:estado', function(req, res){
+    router.post('/:idBrand/estado/:estado', verifyToken, function(req, res){
     empresas.update(
         {
             _id: req.params.idBrand,
@@ -861,5 +883,18 @@ var fs = require('fs-extra');
 });
 
 
-
 module.exports = router;
+
+function verifyToken(req, res, next){
+    if(!req.headers.authorization){
+    }
+
+    const token = req.headers.authorization.split(' ')[1];
+    if(token === 'null'){
+        return res.status(401).send('Unauthorized request');
+    }
+
+    const payload = jwt.verify(token, 'secretkey');
+    req.brandId = payload._id;
+    next();
+}

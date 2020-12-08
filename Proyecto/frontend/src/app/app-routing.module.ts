@@ -29,7 +29,6 @@ const routes: Routes = [
   {path: 'admin/home', component: AdminsHomeComponent, canActivate: [AuthGuard], data:{role: 'admin'}},
   {path: 'company/home', component: CompaniesHomeComponent, canActivate: [AuthGuard], data:{role: 'company'}},
   {path: 'admin/editor', component:EditorComponent, canActivate:[AuthGuard], data:{role: 'admin'}},
-  {path: 'company/profile', component:PerfilTiendasComponent, canActivate:[AuthGuard], data: {role:'company'}}
 ];
 
 @NgModule({

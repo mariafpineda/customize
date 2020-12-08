@@ -19,7 +19,7 @@
             <div ngbDropdown class="d-inline-block ml-auto ">
                 <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>HOLA, {{nombreEmpresa}}</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="bg-dark dropdown-style dropdown-menu-right">
-                  <button ngbDropdownItem (click)="isMenuCollapsed = true"> <fa-icon [icon]="farUser"></fa-icon> MI PERFIL</button>
+                  <button ngbDropdownItem (click)="isMenuCollapsed = true" (click)="seccionVisible('perfil')"> <fa-icon [icon]="farUser"></fa-icon> MI PERFIL</button>
                   <div class="dropdown-divider"></div>
                   <button ngbDropdownItem (click)="isMenuCollapsed = true" (click)="logout()"> <fa-icon [icon]="faSignOutAlt"></fa-icon> CERRAR SESIÓN </button>
                 </div>
@@ -95,6 +95,9 @@
                   <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-12 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='tienda', 'noVisible': regionVisible != 'tienda'}">
                       <app-tiendas></app-tiendas>
                   </div>
+                  <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mr-auto ml-auto" [ngClass]="{'visible': regionVisible=='perfil', 'noVisible': regionVisible != 'perfil'}">
+                    <app-perfil-tiendas></app-perfil-tiendas>
+                </div>
               </div>
           </div>
       </div>
