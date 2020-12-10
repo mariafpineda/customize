@@ -6,6 +6,10 @@
     margin-left: auto;
 }
 
+.btn-outline-danger{ 
+    border: 1px solid transparent;
+}
+
 .btn-outline-dark{
     font-family: 'Raleway medium';
     border:  1px solid transparent;
@@ -42,7 +46,8 @@
 
 .content{
     width: 100%;
-    margin-left: 0px;
+    margin: 50px 15px 0px;
+    /*margin-left: 0px;*/
     transition: ease  0.25s;
 }
 
@@ -72,6 +77,13 @@
 
 .icon-config{
     width: 35px;
+}
+
+nav{
+    top:0;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
 }
 
 .navbar-brand{
@@ -120,7 +132,7 @@ p{
     width: 300px;
     transition: ease 0.25s;
     transform: translateX(-100%);
-    z-index:2000;
+    z-index:1000;
 }
 
 .sideMenu-scrolled{

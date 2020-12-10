@@ -17,7 +17,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
             <div ngbDropdown class="d-inline-block ml-auto ">
-                <button class="btn btn-outline-dark">Guardar</button>
+                <button class="btn btn-outline-dark save-btn">Guardar</button>
             </div>
         </li>
       </ul>
@@ -33,7 +33,16 @@
                     <fa-icon [icon]="faChevronDown" class="arrow-icon"></fa-icon></div>
                 </button>
               </p>
-              <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+              <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" style="max-height: 70vh; overflow-y: scroll;">
+                <div class="card" *ngFor="let bloque of bloques; index as i">
+                  <div class="card-body d-flex">
+                    <label for="" class="form-label mb-auto mt-auto">Bloque {{i+1}}</label>
+                    <div class="ml-auto">
+                      <button type="button" class="btn btn-outline-dark" (click)="open(editBlock, i+1)"> <fa-icon [icon]="farEdit"></fa-icon> </button>
+                      <button type="button" class="btn btn-outline-danger" (click)="open(deleteBlock, i+1)"> <fa-icon [icon]="farTrashAlt"></fa-icon> </button>
+                    </div>
+                  </div>
+                </div>
                 <hr>
                 <div class="card">
                   <div class="card-body ml-auto mr-auto">
@@ -106,9 +115,29 @@
 
           </div>
       </div>
-      <div class="content">
-        <div class="row" id="content">
-
-        </div>
+      <div class="content" style="width: 100%;">
+        <div class="container-fluid">
+          <div class="row ml-auto" id="content">
+          </div>
+      </div>
       </div>
   </div>
+
+  <ng-template #editBlock let-modal>
+    <div class="modal-body">
+      <div [froalaEditor] [(froalaModel)]="editorContent"></div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>
+
+  <ng-template #deleteBlock let-modal>
+    <div class="modal-body">
+      ¿Está seguro/a de eliminar este bloque de contenido?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="eliminarBloque()">Eliminar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>
