@@ -57,6 +57,7 @@ import 'froala-editor/js/third_party/image_tui.min';
 import 'froala-editor/js/third_party/spell_checker.min';
 import 'froala-editor/js/third_party/embedly.min';
 
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 
 @NgModule({
@@ -99,7 +100,8 @@ import 'froala-editor/js/third_party/embedly.min';
     HttpClientModule,
     FormsModule,
     MonacoEditorModule.forRoot(),
-    
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   providers: [
     AuthGuard

@@ -7,8 +7,9 @@
 }
 
 .btn-outline-dark{
+    font-family: 'Raleway medium';
     border:  1px solid transparent;
-    color: black;
+    color: #00bbee;
 }
 
 .btn-outline-dark:hover{

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HostListener } from '@angular/core'
-import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faChevronDown, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-editor-tiendas',
@@ -17,6 +17,7 @@ export class EditorTiendasComponent implements OnInit {
   disabled = false;
   faBars=faBars;
   faChevronDown=faChevronDown;
+  faPlus=faPlus;
 
   constructor(private route:ActivatedRoute) { 
     console.log(this.route.snapshot.paramMap.get('idCompany'));
