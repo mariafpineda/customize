@@ -1,5 +1,21 @@
+button{
+    font-family: 'Raleway medium';
+}
+
 .button{
     text-align: right;
+}
+
+.btn-outline-dark{
+    color: #00bbee;
+    border: 1px solid #00bbee;
+}
+
+
+.btn-outline-dark:hover{
+    color: white;
+    border: 1px solid #00bbee;
+    background-color: #00bbee;
 }
 
 #header{

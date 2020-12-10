@@ -147,4 +147,11 @@ export class EmpresasService {
     return this.httpClient.get(this.url+`/${id}/paginas`);
   }
   
+  addPage(id, data):Observable<any>{
+    return this.httpClient.post(this.url+`/${id}/nuevaPagina`, data);
+  }
+
+  deletePage(idCompany, idPage):Observable<any>{
+    return this.httpClient.delete(this.url+`/${idCompany}/eliminarPagina/${idPage}`);
+  }
 }

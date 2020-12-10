@@ -9,9 +9,38 @@
 <hr>
 <div id="content">
     <div>
-        <h5>Páginas</h5>
+        <div class="d-flex mb-2">
+            <h5>Páginas</h5>
+            <button type="button" class="btn btn-outline-dark ml-auto" (click)="crearPagina(alerta)"> <fa-icon [icon]="faPlus"></fa-icon> Nueva página</button>
+        </div>
         <div *ngIf="paginas.length==0">
             <small>Aún no se ha creado ninguna página.</small>
         </div>
+        <div *ngIf="paginas.length!=0">
+            <div class="row">
+                <div class="col-xl-4" *ngFor="let pagina of paginas">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">{{pagina.tituloSitio}}</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">{{pagina._id}}</h6>
+                          <p class="card-text"> {{pagina.descripcion}}</p>
+                          <div class="button">
+                            <button type="button" class="btn btn-outline-dark ml-1" (click)="editarPagina(pagina._id)">Editar</button>
+                            <button type="button" class="btn btn-outline-danger ml-1" (click)="eliminarPagina(pagina._id)"> <fa-icon [icon]="faTrashAlt"></fa-icon> </button>
+                          </div>  
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<ng-template #alerta let-modal>
+    <div class="modal-body">
+      Ya has cubierto la cantidad de páginas que permite tu plan de suscripción. Si quieres agregar más, actualiza tu plan.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>
