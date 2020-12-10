@@ -10,9 +10,8 @@
 <div id="content">
     <div>
         <h5>Páginas</h5>
-    </div>
-    <hr>
-    <div>
-        <h5>Plantillas</h5>
+        <div *ngIf="paginas.length==0">
+            <small>Aún no se ha creado ninguna página.</small>
+        </div>
     </div>
 </div>

@@ -707,7 +707,8 @@ router.put('/:idBrand/password', async (req, res) => {
                         palabrasClave: req.body.palabrasClave,
                         codigo: req.body.codigo,
                         cssExtra: req.body.css,
-                        jsExtra: req.body.js
+                        jsExtra: req.body.js,
+                        paginaPrincipal:req.body.paginaPrincipal
                     }
                 }
             }

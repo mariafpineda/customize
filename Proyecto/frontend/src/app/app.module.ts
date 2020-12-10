@@ -39,6 +39,7 @@ import { TiendasComponent } from './empresas/tiendas/tiendas.component';
 import { EditorTiendasComponent } from './empresas/editor-tiendas/editor-tiendas.component';
 import { InicioTiendasComponent } from './empresas/inicio-tiendas/inicio-tiendas.component';
 import { PerfilTiendasComponent } from './empresas/perfil-tiendas/perfil-tiendas.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -70,7 +71,8 @@ import { PerfilTiendasComponent } from './empresas/perfil-tiendas/perfil-tiendas
     TiendasComponent,
     EditorTiendasComponent,
     InicioTiendasComponent,
-    PerfilTiendasComponent
+    PerfilTiendasComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

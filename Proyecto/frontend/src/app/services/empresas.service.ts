@@ -140,5 +140,11 @@ export class EmpresasService {
   deleteProduct(idCompany, idProduct):Observable<any>{
     return this.httpClient.delete(this.url+`/${idCompany}/eliminarProducto/${idProduct}`);
   }
+
+  //Paginas
+
+  getPages(id):Observable<any>{
+    return this.httpClient.get(this.url+`/${id}/paginas`);
+  }
   
 }
