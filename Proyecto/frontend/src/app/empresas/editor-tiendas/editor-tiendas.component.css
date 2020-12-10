@@ -22,6 +22,11 @@
     background-color:#f7f7f7 !important;
 }
 
+.card{
+    font-family: 'Raleway medium';
+    font-size: 14px;
+}
+
 .collapse-btn{
     height: 60px;
     color: black;

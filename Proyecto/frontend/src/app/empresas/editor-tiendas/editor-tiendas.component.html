@@ -24,7 +24,7 @@
     </div>
   </nav>
   <div class="wrapper d-flex">
-      <div class="sideMenu bg-dark" [ngClass]="{'display-sidemenu': isSidebarCollapsed==false, 'hide-sidemenu': isSidebarCollapsed==true}" (scroll)="onWindowScroll($event)">
+      <div class="sideMenu bg-dark" [ngClass]="{'display-sidemenu': isSidebarCollapsed==false, 'hide-sidemenu': isSidebarCollapsed==true}">
           <div class="sidebar">
               <p>
                 <button type="button" class="btn collapse-btn" (click)="isCollapsed = !isCollapsed" style="width: 100%;"> 
@@ -34,9 +34,44 @@
                 </button>
               </p>
               <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+                <hr>
                 <div class="card">
                   <div class="card-body ml-auto mr-auto">
-                    <button type="button" class="btn btn-outline-dark"> <fa-icon [icon]="faPlus"></fa-icon> Agregar bloque</button>
+                    <label for="staticEmail" class="col-sm-12 form-label mb-3 mt-auto" style="text-align: center;">Adaptabilidad de pantalla</label>
+                    <div class="mb-3 row">
+                      <label for="staticEmail" class="col-sm-8 form-label mb-auto mt-auto">Pantallas muy pequeñas</label>
+                      <div class="col-sm-4">
+                        <input type="number" class="form-control" min="0" max="12" [(ngModel)]="adaptabilidad.xs" [value]="adaptabilidad.xs">
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="staticEmail" class="col-sm-8 form-label mb-auto mt-auto">Pantallas pequeñas</label>
+                      <div class="col-sm-4">
+                        <input type="number" class="form-control" min="0" max="12" [(ngModel)]="adaptabilidad.sm" [value]="adaptabilidad.sm">
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="staticEmail" class="col-sm-8 form-label mb-auto mt-auto">Pantallas medianas</label>
+                      <div class="col-sm-4">
+                        <input type="number" class="form-control" min="0" max="12" [(ngModel)]="adaptabilidad.md" [value]="adaptabilidad.md">
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="staticEmail" class="col-sm-8 form-label mb-auto mt-auto">Pantallas grandes</label>
+                      <div class="col-sm-4">
+                        <input type="number" class="form-control" min="0" max="12" [(ngModel)]="adaptabilidad.lg" [value]="adaptabilidad.lg">
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="staticEmail" class="col-sm-8 form-label mb-auto mt-auto">Pantallas muy grandes</label>
+                      <div class="col-sm-4">
+                        <input type="number" class="form-control" min="0" max="12" [(ngModel)]="adaptabilidad.xl" [value]="adaptabilidad.xl">
+                      </div>
+                    </div>
+                    <div style="text-align: center;">
+                      <button type="button" class="btn btn-outline-dark" (click)="agregarBloque()"> <fa-icon [icon]="faPlus"></fa-icon> Agregar bloque</button>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -73,7 +108,7 @@
       </div>
       <div class="content">
         <div class="row" id="content">
-          
+
         </div>
       </div>
   </div>

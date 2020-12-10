@@ -18,12 +18,20 @@ export class EditorTiendasComponent implements OnInit {
   faBars=faBars;
   faChevronDown=faChevronDown;
   faPlus=faPlus;
+  bloques:any=[];
+  adaptabilidad={
+    xl:'',
+    lg:'',
+    md:'',
+    sm:'',
+    xs:''
+  }
 
   constructor(private route:ActivatedRoute) { 
     console.log(this.route.snapshot.paramMap.get('idCompany'));
   }
 
-  @HostListener('window:scroll', ['$event'])
+  /*@HostListener('window:scroll', ['$event'])
   onWindowScroll(e){
     {
       let element = document.querySelector('.sideMenu');
@@ -33,11 +41,14 @@ export class EditorTiendasComponent implements OnInit {
         element.classList.remove('sideMenu-scrolled');
       }
     }
-  } 
+  } */
 
 
   ngOnInit(): void {
     console.log(this.route.snapshot.paramMap.get('idPage'));
   }
 
+  agregarBloque(){
+    console.log(this.adaptabilidad)
+  }
 }
