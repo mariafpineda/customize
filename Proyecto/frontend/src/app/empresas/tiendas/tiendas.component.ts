@@ -27,14 +27,12 @@ export class TiendasComponent implements OnInit {
     this.empresasService.getPages(this.empresaLoggeada)
     .subscribe(res =>{
       this.paginas=res[0].paginas;
-      console.log(this.paginas);
     }
     , error=>console.log(error));
 
     this.plantillasService.getTemplates()
     .subscribe(res=>{
       this.plantillas=res;
-      console.log(this.plantillas);
     });
 
     this.empresasService.getPlan(this.empresaLoggeada)

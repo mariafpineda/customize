@@ -39,7 +39,7 @@ export class CompaniesHomeComponent implements OnInit {
         element.classList.remove('sideMenu-scrolled');
       }
     }
-}
+  } 
 
 
   ngOnInit(): void {

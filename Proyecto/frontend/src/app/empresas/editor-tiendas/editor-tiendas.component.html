@@ -1,0 +1,114 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" (click)="isSidebarCollapsed =! isSidebarCollapsed">
+        <span class="toggler-icon">
+            <fa-icon [icon]="faBars"></fa-icon>
+        </span>
+      </button>
+    <a class="navbar-brand" href="/company/home">
+        <img src="/assets/img/logo-color-resize.png" alt="" width="150">
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed =! isMenuCollapsed">
+        <span class="toggler-icon">
+            <fa-icon [icon]="faBars"></fa-icon>
+        </span>
+    </button>
+ 
+   <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <div ngbDropdown class="d-inline-block ml-auto ">
+                <button class="btn btn-outline-dark">Guardar</button>
+            </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="wrapper d-flex">
+      <div class="sideMenu bg-dark" [ngClass]="{'display-sidemenu': isSidebarCollapsed==false, 'hide-sidemenu': isSidebarCollapsed==true}" (scroll)="onWindowScroll($event)">
+          <div class="sidebar">
+              <p>
+                <button type="button" class="btn collapse-btn" (click)="isCollapsed = !isCollapsed" style="width: 100%;"> 
+                  <div class="d-flex">
+                    Bloques de contenido  
+                    <fa-icon [icon]="faChevronDown" class="arrow-icon"></fa-icon></div>
+                </button>
+              </p>
+              <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+                <div class="card">
+                  <div class="card-body">
+                    You can collapse this card by clicking Toggle
+                  </div>
+                </div>
+              </div>
+              <p>
+                <button type="button" class="btn collapse-btn" (click)="isCollapsed2 = !isCollapsed2" style="width: 100%;">
+                    <div class="d-flex">
+                        Plantillas  
+                    <fa-icon [icon]="faChevronDown" class="arrow-icon"></fa-icon></div>
+                </button>
+              </p>
+              <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed2">
+                <div class="card">
+                  <div class="card-body">
+                    You can collapse this card by clicking Toggle
+                  </div>
+                </div>
+              </div>
+              <p>
+                <button type="button" class="btn collapse-btn" (click)="isCollapsed3 = !isCollapsed3" style="width: 100%;">
+                    <div class="d-flex">
+                        Configuraciones  
+                    <fa-icon [icon]="faChevronDown" class="arrow-icon"></fa-icon></div>
+                </button>
+              </p>
+              <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed2">
+                <div class="card">
+                  <div class="card-body">
+                    You can collapse this card by clicking Toggle
+                  </div>
+                </div>
+              </div>
+             <!--<ul class="navbar-nav">
+                <li class="nav-item-custom">
+                    <a class="nav-link">
+                        <div class="icon">
+                        </div>
+                        <span class="text">Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item-custom">
+                    <a class="nav-link">
+                        <div class="icon">
+                        </div>
+                        <span class="text">Archivos</span>
+                    </a>
+                </li>
+                <li class="nav-item-custom">
+                    <a class="nav-link">
+                        <div class="icon">
+                        </div>
+                        <span class="text">Categorías</span>
+                    </a>
+                </li>
+                <li class="nav-item-custom">
+                    <a class="nav-link">
+                        <div class="icon">
+                        </div>
+                        <span class="text">Productos</span>
+                    </a>
+                </li>
+                <div class="dropdown-divider"></div>
+                <li class="nav-item-custom">
+                    <a class="nav-link">
+                        <div class="icon">
+                        </div>
+                        <span class="text">Mi tienda</span>
+                    </a>
+                </li>
+                            
+            </ul>-->
+          </div>
+      </div>
+      <div class="content">
+      </div>
+  </div>

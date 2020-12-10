@@ -1,0 +1,168 @@
+.accordion>.card{
+    overflow-y: scroll !important;
+}
+
+.arrow-icon{
+    margin-left: auto;
+}
+
+.btn-outline-dark{
+    border:  1px solid transparent;
+    color: black;
+}
+
+.btn-outline-dark:hover{
+    background-color:#00bbee;
+    color: white;
+    border: 1px solid #00bbee;
+}
+
+.bg-dark{
+    background-color:#f7f7f7 !important;
+}
+
+.collapse-btn{
+    height: 60px;
+    color: black;
+    border-radius: 0;
+    text-align: left;
+    font-family: 'Raleway semibold';
+    border-bottom: 1px solid rgba(190, 190, 190, 0.966);
+}
+
+.collapse-btn:hover{
+    background-color: #00baee94;
+}
+
+.content{
+    width: 100%;
+    margin-left: 0px;
+    transition: ease  0.25s;
+}
+
+.dropdown-divider{
+    margin: 0.5rem 20px !important;
+}
+
+.dropdown-toggle::after{
+    display: none;
+}
+
+.dropdown-style button{
+    color: white !important;
+}
+
+.dropdown-style button:hover{
+    color: #00bbee !important;
+    background-color: transparent;
+}
+
+.icon{
+    color: white;
+    font-size: 1.2rem;
+    width: 50px;
+    text-align: center;
+}
+
+.icon-config{
+    width: 35px;
+}
+
+.navbar-brand{
+    margin-left: 1rem;
+}
+
+.navbar-nav{
+    text-align: right;
+}
+
+.nav-item-custom{
+    padding-left: 20px;
+}
+
+.nav-item-custom:hover{
+    background-color: #00bbee;
+    color: white;
+}
+
+.nav-item-custom1{
+    font-size: 1rem !important;
+}
+
+.nav-item-custom1:hover{
+    color: #0be;
+}
+
+.nav-link{
+    display: flex;
+}
+
+.navbar-toggler{
+    border-color:transparent;
+}
+
+p{
+    margin-bottom:0rem !important;
+}
+
+.sideMenu{
+    position:fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: 65px auto auto;
+    width: 300px;
+    transition: ease 0.25s;
+    transform: translateX(-100%);
+    z-index:2000;
+}
+
+.sideMenu-scrolled{
+    margin: 0px auto auto !important;
+}
+
+.show>.btn-outline-primary.dropdown-toggle{
+    color:white;
+    background-color: #0be;
+    border-color: #00bbee;
+}
+
+.show>.btn-outline-primary.dropdown-toggle:focus{
+    box-shadow: 0 0 0 0.2rem rgba(0,219,240,.1);
+}
+
+.text{
+    color: white;
+    font-family: 'Raleway medium';
+    font-size: 1.2rem;
+}
+
+.toggler-icon{
+    color: white;
+}
+
+.toggler-icon:hover{
+    color: #00bbee;
+}
+
+.wrapper{
+    margin-top:2rem;
+}
+
+.display-sidemenu{
+    transform: translateX(0);
+}
+
+.hide-sidemenu{
+    transform:translateX(-100%);
+}
+
+@media (min-width:992px){
+    .sideMenu{
+        transform: translateX(0);
+    }
+
+    .content{
+        margin-left: 300px;
+    }
+}
