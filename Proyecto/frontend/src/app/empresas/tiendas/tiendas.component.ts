@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faEye } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-tiendas',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tiendas.component.css']
 })
 export class TiendasComponent implements OnInit {
+  faEye=faEye;
 
   constructor() { }
 
