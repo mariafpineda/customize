@@ -27,7 +27,7 @@
       <div class="sideMenu bg-dark" [ngClass]="{'display-sidemenu': isSidebarCollapsed==false, 'hide-sidemenu': isSidebarCollapsed==true}">
           <div class="sidebar">
               <p>
-                <button type="button" class="btn collapse-btn" (click)="isCollapsed = !isCollapsed" style="width: 100%;"> 
+                <button type="button" class="btn collapse-btn" (click)="isCollapsed = !isCollapsed" style="width: 100%; border-top:1px solid rgb(177, 177, 177)"> 
                   <div class="d-flex">
                     Bloques de contenido  
                     <fa-icon [icon]="faChevronDown" class="arrow-icon"></fa-icon></div>
@@ -77,10 +77,15 @@
                         <input type="number" class="form-control" min="0" max="12" [(ngModel)]="adaptabilidad.xl" [value]="adaptabilidad.xl">
                       </div>
                     </div>
+                    <div class="mb-3 row">
+                      <label for="staticEmail" class="col-sm-6 form-label mb-auto mt-auto">Height (px) </label>
+                      <div class="col-sm-6">
+                        <input type="number" class="form-control" [(ngModel)]="adaptabilidad.height" [value]="adaptabilidad.height">
+                      </div>
+                    </div>
                     <div style="text-align: center;">
                       <button type="button" class="btn btn-outline-dark" (click)="agregarBloque()"> <fa-icon [icon]="faPlus"></fa-icon> Agregar bloque</button>
                     </div>
-                    
                   </div>
                 </div>
               </div>
@@ -124,10 +129,96 @@
   </div>
 
   <ng-template #editBlock let-modal>
-    <div class="modal-body">
-      <div [froalaEditor] [(froalaModel)]="editorContent"></div>
+    <div class="modal-body" style="height: 600px; overflow-y: scroll;">
+      <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1" class="custom-li">
+          <a ngbNavLink class="custom-link">Froala Editor</a>
+          <ng-template ngbNavContent>
+            <p class="card-text">Agrega contenido a tu página con el editor Froala. Lo que escribas en el editor será añadido en el archivo de texto</p>
+            <div [froalaEditor] [(froalaModel)]="editorContent"></div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2" class="custom-li">
+          <a ngbNavLink class="custom-link">Editor HTML & CSS</a>
+          <ng-template ngbNavContent>
+            <p class="card-text">Puedes agregar contenido de HTML puro en tu bloque de contenido. También puedes agregar css con la etiqueta.</p> 
+            <hr>
+            <h5>HTML</h5>
+            <ngx-monaco-editor class="htmlPart" [options]="editorOptions[0]" [(ngModel)]="codeHTML">
+            </ngx-monaco-editor>
+            <h5>CSS</h5>
+            <ngx-monaco-editor class="htmlPart" [options]="editorOptions[1]" [(ngModel)]="codeCSS">
+            </ngx-monaco-editor>
+                 
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="3" class="custom-li">
+          <a ngbNavLink class="custom-link">Imagen</a>
+          <ng-template ngbNavContent>
+              <p class="card-text">Puedes agregar una imagen de fondo a tu bloque de contenido aquí.</p>
+              <div class="d-flex" style="justify-content: center;">
+                <input class="d-none" type="file" #fileInput (change)="onFileSelected($event)">
+                <img src="/assets/img/no-image.png" width="200" (click)="fileInput.click()">
+              </div>
+              <div style="text-align: center;">
+                <button type="button" class="btn btn-outline-dark" (click)="fileInput.click()">Seleccionar imagen</button>
+              </div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="4" class="custom-li">
+          <a ngbNavLink class="custom-link">Adaptabilidad</a>
+          <ng-template ngbNavContent>
+            <div class="card">
+              <div class="card-body ml-auto mr-auto">
+                <label for="staticEmail" class="col-sm-12 form-label mb-3 mt-auto" style="text-align: center;">Adaptabilidad de pantalla</label>
+                <div class="mb-3 row">
+                  <label for="staticEmail" class="col-sm-8 form-label mb-auto mt-auto">Pantallas muy pequeñas</label>
+                  <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" max="12" [(ngModel)]="adaptabilidad.xs" [value]="adaptabilidad.xs">
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label for="staticEmail" class="col-sm-8 form-label mb-auto mt-auto">Pantallas pequeñas</label>
+                  <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" max="12" [(ngModel)]="adaptabilidad.sm" [value]="adaptabilidad.sm">
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label for="staticEmail" class="col-sm-8 form-label mb-auto mt-auto">Pantallas medianas</label>
+                  <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" max="12" [(ngModel)]="adaptabilidad.md" [value]="adaptabilidad.md">
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label for="staticEmail" class="col-sm-8 form-label mb-auto mt-auto">Pantallas grandes</label>
+                  <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" max="12" [(ngModel)]="adaptabilidad.lg" [value]="adaptabilidad.lg">
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label for="staticEmail" class="col-sm-8 form-label mb-auto mt-auto">Pantallas muy grandes</label>
+                  <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" max="12" [(ngModel)]="adaptabilidad.xl" [value]="adaptabilidad.xl">
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <label for="staticEmail" class="col-sm-6 form-label mb-auto mt-auto">Height (px) </label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" [(ngModel)]="adaptabilidad.height" [value]="adaptabilidad.height">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+      
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      
+      
     </div>
     <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="actualizarContenido()">Guardar</button>
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
     </div>
   </ng-template>

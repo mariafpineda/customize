@@ -4,6 +4,10 @@ import { faBars, faChevronDown, faPlus } from '@fortawesome/free-solid-svg-icons
 import { faEdit as farEdit, faTrashAlt as farTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+interface HtmlInputEvent extends Event{
+  target: HTMLInputElement & EventTarget;
+}
+
 @Component({
   selector: 'app-editor-tiendas',
   templateUrl: './editor-tiendas.component.html',
@@ -21,17 +25,29 @@ export class EditorTiendasComponent implements OnInit {
   faPlus=faPlus;
   farEdit=farEdit;
   farTrashAlt=farTrashAlt;
-
+ 
+  /*Monaco Editor*/
+  editorOptions=[{theme:'vs-dark', language:'html'},
+  {theme:'vs-dark', language:'css'}]
+  codeHTML:String=""
+  codeCSS:String;
+ 
+  /*Froala Editor*/
   editorContent:String;
+
   bloqueSeleccionado:number;
+  active=1;
   bloques:any=[];
   adaptabilidad={
     xl:'',
     lg:'',
     md:'',
     sm:'',
-    xs:''
+    xs:'',
+    height:''
   };
+
+  archivo:File;
 
   constructor(private route:ActivatedRoute,
     private modalService:NgbModal) { 
@@ -58,7 +74,8 @@ export class EditorTiendasComponent implements OnInit {
       col-lg-${this.adaptabilidad.lg}
       col-md-${this.adaptabilidad.md}
       col-sm-${this.adaptabilidad.sm} 
-      col-${this.adaptabilidad.xs}" style="background-color: red; height:50px"></div>
+      col-${this.adaptabilidad.xs}" style="background-color: red; height:${this.adaptabilidad.height}px">
+      </div>
     `;
   }
 
@@ -71,5 +88,31 @@ export class EditorTiendasComponent implements OnInit {
     bloque.remove();
     this.bloques.splice(this.bloqueSeleccionado-1, 1);
     this.modalService.dismissAll();
+  }
+
+  onFileSelected(event: HtmlInputEvent):void{
+    if(event.target.files && event.target.files[0]){
+      this.archivo=<File>event.target.files[0];
+    }
+
+    console.log(this.archivo);
+  }
+
+  actualizarContenido(){
+    var contenido=(<HTMLDivElement>document.getElementById(`${this.bloqueSeleccionado}`));
+    contenido.innerHTML='';
+    contenido.innerHTML+=this.editorContent;
+    contenido.innerHTML+=this.codeHTML;
+    console.log(this.editorContent);
+    console.log(this.codeHTML);
+    console.log(this.archivo);
+    console.log(this.bloqueSeleccionado);
+    contenido.removeAttribute("class");
+    contenido.removeAttribute("style");
+    contenido.style.height=`${this.adaptabilidad.height}px`;
+    contenido.classList.add(`col-xl-${this.adaptabilidad.xl}`,`col-lg-${this.adaptabilidad.lg}`,`col-md-${this.adaptabilidad.md}`,`col-sm-${this.adaptabilidad.sm}`,`col-${this.adaptabilidad.xs}`);
+    console.log(contenido);
+    this.bloques[this.bloqueSeleccionado-1]=this.adaptabilidad
+    console.log(this.adaptabilidad);
   }
 }

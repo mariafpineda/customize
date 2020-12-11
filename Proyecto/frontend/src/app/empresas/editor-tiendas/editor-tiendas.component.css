@@ -47,8 +47,17 @@
 .content{
     width: 100%;
     margin: 50px 15px 0px;
-    /*margin-left: 0px;*/
     transition: ease  0.25s;
+}
+
+
+.custom-link{
+    color: #00bbee;
+    font-family: 'Raleway medium';
+}
+
+.custom-link:hover{
+    color: #00bbee !important;
 }
 
 .dropdown-divider{
@@ -84,6 +93,7 @@ nav{
     width: 100%;
     position: fixed;
     z-index: 1000;
+    border-bottom: 1px solid rgb(177,177,177);
 }
 
 .navbar-brand{
@@ -133,6 +143,7 @@ p{
     transition: ease 0.25s;
     transform: translateX(-100%);
     z-index:1000;
+    border-right: 1px solid rgb(177,177,177);
 }
 
 .sideMenu-scrolled{
@@ -156,7 +167,7 @@ p{
 }
 
 .toggler-icon{
-    color: white;
+    color: black;
 }
 
 .toggler-icon:hover{
