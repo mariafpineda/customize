@@ -120,12 +120,12 @@
 
           </div>
       </div>
-      <div class="content" style="width: 100%;">
+      <iframe class="content col-xl-9 ml-auto " id="content" frameborder="0" style="width: 100%;">
         <div class="container-fluid">
-          <div class="row ml-auto" id="content">
+          <div class="row" id="contenido" frameborder="0">
           </div>
-      </div>
-      </div>
+        </div>
+      </iframe>
   </div>
 
   <ng-template #editBlock let-modal>
@@ -141,7 +141,7 @@
         <li [ngbNavItem]="2" class="custom-li">
           <a ngbNavLink class="custom-link">Editor HTML & CSS</a>
           <ng-template ngbNavContent>
-            <p class="card-text">Puedes agregar contenido de HTML puro en tu bloque de contenido. También puedes agregar css con la etiqueta.</p> 
+            <p class="card-text">Puedes agregar contenido de HTML puro en tu bloque de contenido. También puedes agregar CSS.</p> 
             <hr>
             <h5>HTML</h5>
             <ngx-monaco-editor class="htmlPart" [options]="editorOptions[0]" [(ngModel)]="codeHTML">

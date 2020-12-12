@@ -46,7 +46,8 @@ export class EditorTiendasComponent implements OnInit {
     xs:'',
     height:''
   };
-
+  bloqueContenido:any;
+  
   archivo:File;
 
   constructor(private route:ActivatedRoute,
@@ -56,6 +57,11 @@ export class EditorTiendasComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.route.snapshot.paramMap.get('idPage'));
+    this.prueba();
+    this.bloqueContenido=(<HTMLIFrameElement>document.getElementById('content')).contentWindow.document;
+    this.bloqueContenido.open();
+    this.bloqueContenido.write(`<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">`);
+    this.bloqueContenido.write('<div class="container-fluid"><div class="row" id="contenido"></div> </div>')
   }
 
   open(content, id){
@@ -67,16 +73,16 @@ export class EditorTiendasComponent implements OnInit {
   agregarBloque(){
     console.log(this.adaptabilidad);
     this.bloques.push(this.adaptabilidad);
-    console.log(this.bloques);
-    var bloque=(<HTMLDivElement>document.getElementById('content'));
-    bloque.innerHTML+=`
+    console.log(this.bloqueContenido.getElementById('contenido'));
+    var bloque=`
       <div id="${this.bloques.length}" class="col-xl-${this.adaptabilidad.xl}
       col-lg-${this.adaptabilidad.lg}
       col-md-${this.adaptabilidad.md}
       col-sm-${this.adaptabilidad.sm} 
       col-${this.adaptabilidad.xs}" style="background-color: red; height:${this.adaptabilidad.height}px">
       </div>
-    `;
+    `
+    this.bloqueContenido.getElementById('contenido').innerHTML+=(bloque);
   }
 
   editarBloque(index){
@@ -114,5 +120,13 @@ export class EditorTiendasComponent implements OnInit {
     console.log(contenido);
     this.bloques[this.bloqueSeleccionado-1]=this.adaptabilidad
     console.log(this.adaptabilidad);
+  }
+
+  prueba(){
+    var prueba="Probando"
+    var codigo="Hola, ${prueba}"
+    console.log(codigo);
+    var res = codigo.replace("${prueba}", `${prueba}`)
+    console.log(res);
   }
 }
