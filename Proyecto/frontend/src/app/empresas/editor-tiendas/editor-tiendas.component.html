@@ -96,10 +96,23 @@
                     <fa-icon [icon]="faChevronDown" class="arrow-icon"></fa-icon></div>
                 </button>
               </p>
-              <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed2">
-                <div class="card">
+              <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed2" style="height: 300px; overflow-y: scroll;">
+                <div class="card mb-3" *ngIf="plantillaSeleccionada">
+                  <div class="card-body d-flex">
+                    <label for="" class="form-label mb-auto mt-auto">Plantilla {{plantillaSeleccionada.tituloTema}}</label>
+                    <div class="ml-auto">
+                      <button type="button" class="btn btn-outline-dark" (click)="open(editBlockPlantilla, '')"> <fa-icon [icon]="farEdit"></fa-icon> </button>
+                      <button type="button" class="btn btn-outline-danger" (click)="open(deleteBlockPlantilla, '')"> <fa-icon [icon]="farTrashAlt"></fa-icon> </button>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="card" *ngFor="let plantilla of plantillas">
                   <div class="card-body">
-                    You can collapse this card by clicking Toggle
+                    <h5 class="card-title">{{plantilla.tituloTema}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{plantilla._id}}</h6>
+                    <p class="card-text">{{plantilla.descripcion}}</p>
+                    <a class="btn btn-outline-dark" (click)="usarPlantilla(plantilla)">Usar</a>
                   </div>
                 </div>
               </div>
@@ -120,7 +133,7 @@
 
           </div>
       </div>
-      <iframe class="content col-xl-9 ml-auto " id="content" frameborder="0" style="width: 100%;">
+      <iframe class="content col-xl-9 col-lg-8 col-md-12 ml-auto " id="content" frameborder="0" style="width: 100%;">
         <div class="container-fluid">
           <div class="row" id="contenido" frameborder="0">
           </div>
@@ -211,6 +224,46 @@
   </ng-template>
 
   <ng-template #deleteBlock let-modal>
+    <div class="modal-body">
+      ¿Está seguro/a de eliminar este bloque de contenido?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="eliminarBloque()">Eliminar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>
+
+  <ng-template #editBlockPlantilla let-modal>
+    <div class="modal-body" style="height: 600px; overflow-y: scroll;">
+      <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1" class="custom-li">
+          <a ngbNavLink class="custom-link">Editor CSS & JS</a>
+          <ng-template ngbNavContent>
+            <p class="card-text">Puedes editar los estilos actuales de la plantilla, cambiar colores y agregar contenido en JavaScript.</p> 
+            <hr>
+            <h5>HTML</h5>
+            <ngx-monaco-editor class="htmlPart" [options]="editorOptions[0]" [(ngModel)]="codeHTML">
+            </ngx-monaco-editor>
+            <h5>CSS</h5>
+            <ngx-monaco-editor class="htmlPart" [options]="editorOptions[1]" [(ngModel)]="codeCSS">
+            </ngx-monaco-editor>
+                 
+          </ng-template>
+        </li>
+      
+      </ul>
+      
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="actualizarContenido()">Guardar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>
+
+  <ng-template #deleteBlockPlantilla let-modal>
     <div class="modal-body">
       ¿Está seguro/a de eliminar este bloque de contenido?
     </div>

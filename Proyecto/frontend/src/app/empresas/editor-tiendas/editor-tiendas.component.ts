@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { faBars, faChevronDown, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faEdit as farEdit, faTrashAlt as farTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PlantillasService } from 'src/app/services/plantillas.service';
 
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget;
@@ -25,6 +26,8 @@ export class EditorTiendasComponent implements OnInit {
   faPlus=faPlus;
   farEdit=farEdit;
   farTrashAlt=farTrashAlt;
+
+  plantillas:any=[];
  
   /*Monaco Editor*/
   editorOptions=[{theme:'vs-dark', language:'html'},
@@ -49,14 +52,25 @@ export class EditorTiendasComponent implements OnInit {
   bloqueContenido:any;
   
   archivo:File;
+  plantillaSeleccionada:any;
 
   constructor(private route:ActivatedRoute,
-    private modalService:NgbModal) { 
-    console.log(this.route.snapshot.paramMap.get('idCompany'));
-  }
+    private modalService:NgbModal,
+    private plantillasService:PlantillasService) { 
+    }
 
   ngOnInit(): void {
     console.log(this.route.snapshot.paramMap.get('idPage'));
+    console.log(this.route.snapshot.paramMap.get('idCompany'));
+  
+    this.plantillasService.getTemplates()
+    .subscribe(res => {
+      this.plantillas=res;
+      console.log(this.plantillas)
+    }, error => {
+      console.log(error);
+    })
+
     this.prueba();
     this.bloqueContenido=(<HTMLIFrameElement>document.getElementById('content')).contentWindow.document;
     this.bloqueContenido.open();
@@ -67,7 +81,12 @@ export class EditorTiendasComponent implements OnInit {
   open(content, id){
     this.modalService.open(content, {centered:true});
     this.bloqueSeleccionado=id;
-    console.log(this.bloqueSeleccionado);
+  }
+
+  
+  openTemplate(content, id){
+    this.modalService.open(content, {centered:true});
+    this.bloqueSeleccionado=id;
   }
 
   agregarBloque(){
@@ -152,5 +171,14 @@ export class EditorTiendasComponent implements OnInit {
 
   guardarPagina(){
     console.log(<HTMLDivElement>document.getElementById('content'))
+  }
+
+  usarPlantilla(plantilla){
+    console.log(plantilla)
+    this.plantillaSeleccionada=plantilla;
+    
+    this.bloqueContenido.write(`<style>${plantilla.codigoCSS}</style>`)
+    this.bloqueContenido.getElementById('contenido').innerHTML=plantilla.codigoHTML;
+    this.bloqueContenido.write(`<script>${plantilla.codigoJS}</script>`)
   }
 }

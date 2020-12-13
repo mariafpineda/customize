@@ -146,6 +146,7 @@ p{
     top: 0;
     bottom: 0;
     left: 0;
+    overflow-y: scroll;
     margin: 65px auto auto;
     width: 300px;
     transition: ease 0.25s;
