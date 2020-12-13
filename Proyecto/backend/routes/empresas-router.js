@@ -708,7 +708,8 @@ router.put('/:idBrand/password', async (req, res) => {
                         codigo: req.body.codigo,
                         cssExtra: req.body.css,
                         jsExtra: req.body.js,
-                        paginaPrincipal:req.body.paginaPrincipal
+                        paginaPrincipal:req.body.paginaPrincipal,
+                        visible: true
                     }
                 }
             }
@@ -736,7 +737,12 @@ router.put('/:idBrand/password', async (req, res) => {
             "paginas.$.logotipo": req.body.logotipo,
             "paginas.$.tituloSitio": req.body.titulo,
             "paginas.$.descripcion": req.body.descripcion,
-            "paginas.$.palabrasClave": req.body.palabrasClave
+            "paginas.$.palabrasClave": req.body.palabrasClave,
+            "paginas.$.codigo": req.body.codigo,
+            "paginas.$.cssExtra": req.body.css,
+            "paginas.$.jsExtra": req.body.js,
+            "paginas.$.paginaPrincipal":req.body.paginaPrincipal,
+            "paginas.$.visible": req.body.visible
         }
     ).then(result => {
         res.send(result);
@@ -887,6 +893,7 @@ module.exports = router;
 
 function verifyToken(req, res, next){
     if(!req.headers.authorization){
+        console.log("sin autorización");
     }
 
     const token = req.headers.authorization.split(' ')[1];

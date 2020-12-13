@@ -72,7 +72,11 @@ export class EditorTiendasComponent implements OnInit {
 
   agregarBloque(){
     console.log(this.adaptabilidad);
-    this.bloques.push(this.adaptabilidad);
+    this.bloques.push({
+      editorFroala:"",
+      codeHTML:"",
+      codeCSS:"",
+      "adaptabilidad":this.adaptabilidad});
     console.log(this.bloqueContenido.getElementById('contenido'));
     var bloque=`
       <div id="${this.bloques.length}" class="col-xl-${this.adaptabilidad.xl}
@@ -86,11 +90,12 @@ export class EditorTiendasComponent implements OnInit {
   }
 
   editarBloque(index){
-
+    console.log(this.codeCSS);
+    console.log(this.codeHTML)
   }
 
   eliminarBloque(){
-    var bloque=(<HTMLDivElement>document.getElementById(`${this.bloqueSeleccionado}`));
+    var bloque = this.bloqueContenido.getElementById(`${this.bloqueSeleccionado}`);
     bloque.remove();
     this.bloques.splice(this.bloqueSeleccionado-1, 1);
     this.modalService.dismissAll();
@@ -105,21 +110,36 @@ export class EditorTiendasComponent implements OnInit {
   }
 
   actualizarContenido(){
-    var contenido=(<HTMLDivElement>document.getElementById(`${this.bloqueSeleccionado}`));
+    var contenido =this.bloqueContenido.getElementById(`${this.bloqueSeleccionado}`);
     contenido.innerHTML='';
-    contenido.innerHTML+=this.editorContent;
-    contenido.innerHTML+=this.codeHTML;
-    console.log(this.editorContent);
-    console.log(this.codeHTML);
-    console.log(this.archivo);
-    console.log(this.bloqueSeleccionado);
     contenido.removeAttribute("class");
     contenido.removeAttribute("style");
-    contenido.style.height=`${this.adaptabilidad.height}px`;
-    contenido.classList.add(`col-xl-${this.adaptabilidad.xl}`,`col-lg-${this.adaptabilidad.lg}`,`col-md-${this.adaptabilidad.md}`,`col-sm-${this.adaptabilidad.sm}`,`col-${this.adaptabilidad.xs}`);
+    contenido.style.height=`${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.height}px`;
+    contenido.classList.add(`col-xl-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.xl}`,
+    `col-lg-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.lg}`,
+    `col-md-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.md}`,
+    `col-sm-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.sm}`,
+    `col-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.xs}`);
     console.log(contenido);
-    this.bloques[this.bloqueSeleccionado-1]=this.adaptabilidad
-    console.log(this.adaptabilidad);
+    if(this.codeHTML==undefined){
+      this.codeHTML="";
+    }
+    if(this.codeCSS==undefined){
+      this.codeCSS="";
+    }
+    if(this.editorContent==undefined){
+      this.editorContent="";
+    }
+    this.bloques[this.bloqueSeleccionado-1]={
+      adaptabilidad:this.adaptabilidad,
+      editorFroala: this.editorContent,
+      codeHTML:this.codeHTML,
+      codeCSS:this.codeCSS
+    }
+    console.log(this.bloques);
+    this.bloqueContenido.write(`<style>${this.codeCSS}</style>`);
+    this.bloqueContenido.getElementById(this.bloqueSeleccionado).innerHTML+=this.editorContent;
+    this.bloqueContenido.getElementById(this.bloqueSeleccionado).innerHTML+=this.codeHTML;
   }
 
   prueba(){
@@ -128,5 +148,9 @@ export class EditorTiendasComponent implements OnInit {
     console.log(codigo);
     var res = codigo.replace("${prueba}", `${prueba}`)
     console.log(res);
+  }
+
+  guardarPagina(){
+    console.log(<HTMLDivElement>document.getElementById('content'))
   }
 }

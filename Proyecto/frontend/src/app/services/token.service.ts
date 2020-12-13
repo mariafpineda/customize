@@ -18,18 +18,30 @@ export class TokenService implements HttpInterceptor{
 
 //Para añadir cabezera a petición
   intercept(req, next){
+    var tokenizeReq;
     if(this.usuariosService.getToken()!=null){
       this.token=this.usuariosService.getToken();
+       tokenizeReq = req.clone({
+        setHeaders:{
+          Authorization: `Bearer ${this.token}`
+        }
+      });
     } else if(this.adminsService.getToken()!=null){
       this.token=this.adminsService.getToken();
+        tokenizeReq = req.clone({
+        setHeaders:{
+          Authorization: `Bearer ${this.token}`
+        }
+      });
     } else{
       this.token=this.empresasService.getToken();
+        tokenizeReq = req.clone({
+        setHeaders:{
+          Authorization: `Bearer ${this.token}`
+        }
+      });
     }
-    const tokenizeReq = req.clone({
-      setHeaders:{
-        Authorization: `Bearer ${this.token}`
-      }
-    });
+    
     return next.handle(tokenizeReq);
   }
 

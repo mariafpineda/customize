@@ -17,7 +17,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
             <div ngbDropdown class="d-inline-block ml-auto ">
-                <button class="btn btn-outline-dark save-btn">Guardar</button>
+                <button class="btn btn-outline-dark save-btn" (click)="guardarPagina()">Guardar</button>
             </div>
         </li>
       </ul>
@@ -153,19 +153,6 @@
           </ng-template>
         </li>
         <li [ngbNavItem]="3" class="custom-li">
-          <a ngbNavLink class="custom-link">Imagen</a>
-          <ng-template ngbNavContent>
-              <p class="card-text">Puedes agregar una imagen de fondo a tu bloque de contenido aquí.</p>
-              <div class="d-flex" style="justify-content: center;">
-                <input class="d-none" type="file" #fileInput (change)="onFileSelected($event)">
-                <img src="/assets/img/no-image.png" width="200" (click)="fileInput.click()">
-              </div>
-              <div style="text-align: center;">
-                <button type="button" class="btn btn-outline-dark" (click)="fileInput.click()">Seleccionar imagen</button>
-              </div>
-          </ng-template>
-        </li>
-        <li [ngbNavItem]="4" class="custom-li">
           <a ngbNavLink class="custom-link">Adaptabilidad</a>
           <ng-template ngbNavContent>
             <div class="card">
@@ -215,7 +202,7 @@
       
       <div [ngbNavOutlet]="nav" class="mt-2"></div>
       
-      
+
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="actualizarContenido()">Guardar</button>
