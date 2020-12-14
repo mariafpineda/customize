@@ -98,7 +98,7 @@
                 </button>
               </p>
               <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed2" style="height: 300px; overflow-y: scroll;">
-                <div class="card mb-3" *ngIf="plantillaSeleccionada">
+                <div class="card mb-3" *ngIf="plantillaSeleccionada.length!=0">
                   <div class="card-body d-flex">
                     <label for="" class="form-label mb-auto mt-auto">Plantilla {{plantillaSeleccionada.tituloTema}}</label>
                     <div class="ml-auto">
@@ -228,11 +228,11 @@
           <ng-template ngbNavContent>
             <p class="card-text">Puedes editar los estilos actuales de la plantilla, cambiar colores y agregar contenido en JavaScript.</p> 
             <hr>
-            <h5>HTML</h5>
-            <ngx-monaco-editor class="htmlPart" [options]="editorOptions[0]" [(ngModel)]="codeHTML">
-            </ngx-monaco-editor>
             <h5>CSS</h5>
-            <ngx-monaco-editor class="htmlPart" [options]="editorOptions[1]" [(ngModel)]="codeCSS">
+            <ngx-monaco-editor class="htmlPart" [options]="editorOptions[1]" [(ngModel)]="plantillaSeleccionada.codigoCSS">
+            </ngx-monaco-editor>
+            <h5>JS</h5>
+            <ngx-monaco-editor class="htmlPart" [options]="editorOptions[2]" [(ngModel)]="plantillaSeleccionada.codigoJS">
             </ngx-monaco-editor>
                  
           </ng-template>
@@ -245,17 +245,17 @@
 
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="actualizarContenido()">Guardar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="actualizarPlantilla()">Guardar</button>
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
     </div>
   </ng-template>
 
   <ng-template #deleteBlockPlantilla let-modal>
     <div class="modal-body">
-      ¿Está seguro/a de eliminar este bloque de contenido?
+      ¿Está seguro/a de eliminar esta plantilla?
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="eliminarBloque()">Eliminar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="eliminarPlantilla()">Eliminar</button>
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
     </div>
   </ng-template>

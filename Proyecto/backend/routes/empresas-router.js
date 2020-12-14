@@ -818,27 +818,6 @@ router.put('/:idBrand/password', async (req, res) => {
         });
     });
 
-//Update source code
-/*
-    router.post('/:idBrand/paginas/:idPage/codigo', verifyToken, function (req, res) {
-    empresas.update(
-        {
-            _id: req.params.idBrand,
-            "paginas._id": mongoose.Types.ObjectId(req.params.idPage)
-        },
-        {
-            "paginas.$.codigo": req.body.codigo,
-            "paginas.$.cssExtra": req.body.css,
-            "paginas.$.jsExtra": req.body.js
-        }
-    ).then(result => {
-        res.send(result);
-        res.end();
-    }).catch(error => {
-        res.send(error);
-        res.end();
-    });
-});*/
 
 //Update plan
     router.post('/:idBrand/plan/:idPlan', verifyToken, function(req, res){

@@ -57,7 +57,7 @@ export class EditorTiendasComponent implements OnInit {
     height:''
   };
   bloqueContenido:any;
-  plantillaSeleccionada:any;
+  plantillaSeleccionada:any=[];
   titulo:String="";
   descripcion:String="";
   paginaPrincipal:Boolean=false;
@@ -88,7 +88,6 @@ export class EditorTiendasComponent implements OnInit {
     this.bloqueContenido.write(`<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">`);
     this.bloqueContenido.write('<div class="container-fluid"><div class="row" id="contenido"></div> </div>');
     
-    
   }
 
   open(content, id){
@@ -114,7 +113,7 @@ export class EditorTiendasComponent implements OnInit {
        this.bloques.push(res[0].paginas[0].codigo);
        this.bloques=this.bloques[0];
        console.log(this.bloques);
-       if(this.bloques.length!=0){
+       if(this.bloques.length!=0 && this.bloques.plantilla==undefined){
         for(let i=0; i<this.bloques.length; i++){
           this.bloqueContenido.write(`<style>${this.bloques[i].codeCSS}</style>`)
           var bloque=`
@@ -129,13 +128,13 @@ export class EditorTiendasComponent implements OnInit {
           this.bloqueContenido.getElementById(`${i+1}`).innerHTML+=this.bloques[i].editorFroala;
           this.bloqueContenido.getElementById(`${i+1}`).innerHTML+=this.bloques[i].codeHTML;
         }
+      } else if(this.bloques.length!=0 && this.bloques.plantilla != undefined){
+        this.usarPlantilla(this.bloques.plantilla);
       }
     }, error => {
       console.log(error);
     }
    )
-   console.log(this.bloques);
-   //this.bloques.push(this.pagina[0].paginas[0].codigo);
   }
   
   openTemplate(content, id){
@@ -144,6 +143,9 @@ export class EditorTiendasComponent implements OnInit {
   }
 
   agregarBloque(){
+    if(this.plantillaSeleccionada.length!=0){
+      this.eliminarPlantilla();
+    }
     this.bloques.push({
       editorFroala:"",
       codeHTML:"",
@@ -158,7 +160,6 @@ export class EditorTiendasComponent implements OnInit {
       </div>
     `
     this.bloqueContenido.getElementById('contenido').innerHTML+=(bloque);
-    console.log(this.bloques)
   }
 
   editarBloque(index){
@@ -192,15 +193,6 @@ export class EditorTiendasComponent implements OnInit {
     `col-md-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.md}`,
     `col-sm-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.sm}`,
     `col-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.xs}`);
-    if(this.codeHTML==undefined){
-      this.codeHTML="";
-    }
-    if(this.codeCSS==undefined){
-      this.codeCSS="";
-    }
-    if(this.editorContent==undefined){
-      this.editorContent="";
-    }
     this.bloques[this.bloqueSeleccionado-1]={
       adaptabilidad:this.adaptabilidad,
       editorFroala: this.editorContent,
@@ -208,39 +200,53 @@ export class EditorTiendasComponent implements OnInit {
       codeCSS:this.codeCSS,
       codeJS:this.codeJS
     }
-    console.log(this.bloques);
     this.bloqueContenido.write(`<style>${this.codeCSS}</style>`);
     this.bloqueContenido.getElementById(this.bloqueSeleccionado).innerHTML+=this.editorContent;
     this.bloqueContenido.getElementById(this.bloqueSeleccionado).innerHTML+=this.codeHTML;
   }
 
-  /*prueba(){
-    var prueba="Probando"
-    var codigo="Hola, ${prueba}"
-    console.log(codigo);
-    var res = codigo.replace("${prueba}", `${prueba}`)
-    console.log(res);
-  }*/
-
   usarPlantilla(plantilla){
-    console.log(plantilla)
-    this.bloques.push(plantilla);
+    console.log(plantilla);
+    this.bloques=[];
     this.plantillaSeleccionada=plantilla;
     this.bloqueContenido.write(`<style>${plantilla.codigoCSS}</style>`)
     this.bloqueContenido.getElementById('contenido').innerHTML=plantilla.codigoHTML;
     this.bloqueContenido.write(`<script>${plantilla.codigoJS}</script>`)
   }
 
+  eliminarPlantilla(){
+    this.plantillaSeleccionada=[];
+    this.bloqueContenido.getElementById('contenido').innerHTML='';
+    this.modalService.dismissAll();
+  }
+
+  actualizarPlantilla(){
+    this.bloqueContenido.write(`<style>${this.plantillaSeleccionada.codigoCSS}</style>`)
+    this.bloqueContenido.write(`<script>${this.plantillaSeleccionada.codigoJS}</script>`)
+  }
+
   guardarPagina(){
     console.log(<HTMLDivElement>document.getElementById('content'));
-   
-    var data={
-      titulo:this.titulo,
-      descripcion:this.descripcion,
-      codigo:this.bloques,
-      paginaPrincipal:this.paginaPrincipal,
-      visible: this.visibilidad
-    };
+    var data;
+    if(this.bloques!=0){
+      console.log(this.bloques);
+      data={
+        titulo:this.titulo,
+        descripcion:this.descripcion,
+        codigo:this.bloques,
+        paginaPrincipal:this.paginaPrincipal,
+        visible: this.visibilidad
+      };
+    } else{
+      console.log(this.plantillaSeleccionada);
+        data={
+        titulo:this.titulo,
+        descripcion:this.descripcion,
+        codigo:{plantilla: this.plantillaSeleccionada},
+        paginaPrincipal:this.paginaPrincipal,
+        visible: this.visibilidad
+      };
+    }
     console.log(data);
     this.empresasService.updatePage(this.route.snapshot.paramMap.get('idCompany'),
     this.route.snapshot.paramMap.get('idPage'),
