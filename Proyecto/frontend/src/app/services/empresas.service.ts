@@ -59,6 +59,8 @@ export class EmpresasService {
     return this.httpClient.get(this.url+`/${id}/plan`);
   }
 
+  // Banco de imágenes, video y archivos.
+
   getImages(id):Observable<any>{
     return this.httpClient.get(this.url+`/${id}/imagenes`);
   }
@@ -111,6 +113,8 @@ export class EmpresasService {
     return this.httpClient.delete(this.url+`/${idCompany}/eliminarArchivo/${idFile}`);
   }
 
+  // Categorías
+
   getCategories(id):Observable<any>{
     return this.httpClient.get(this.url+`/${id}/categorias`)
   }
@@ -146,6 +150,10 @@ export class EmpresasService {
   getPages(id):Observable<any>{
     return this.httpClient.get(this.url+`/${id}/paginas`);
   }
+
+  getPage(idCompany, idPage):Observable<any>{
+    return this.httpClient.get(this.url+`/${idCompany}/paginas/${idPage}`);
+  }
   
   addPage(id, data):Observable<any>{
     return this.httpClient.post(this.url+`/${id}/nuevaPagina`, data);
@@ -153,5 +161,9 @@ export class EmpresasService {
 
   deletePage(idCompany, idPage):Observable<any>{
     return this.httpClient.delete(this.url+`/${idCompany}/eliminarPagina/${idPage}`);
+  }
+
+  updatePage(idCompany, idPage, data):Observable<any>{
+    return this.httpClient.post(this.url+`/${idCompany}/paginas/${idPage}`, data);
   }
 }

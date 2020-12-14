@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { faBars, faChevronDown, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute, Router } from '@angular/router';
+import { faArrowLeft, faBars, faChevronDown, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faEdit as farEdit, faTrashAlt as farTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlantillasService } from 'src/app/services/plantillas.service';
+import { EmpresasService } from 'src/app/services/empresas.service';
 
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget;
@@ -19,11 +20,12 @@ export class EditorTiendasComponent implements OnInit {
   public isSidebarCollapsed=true;
   public isCollapsed=true;
   public isCollapsed2=true;
-  public isCollapsed3=true;
+
   disabled = false;
   faBars=faBars;
   faChevronDown=faChevronDown;
   faPlus=faPlus;
+  faArrowLeft=faArrowLeft;
   farEdit=farEdit;
   farTrashAlt=farTrashAlt;
 
@@ -31,15 +33,19 @@ export class EditorTiendasComponent implements OnInit {
  
   /*Monaco Editor*/
   editorOptions=[{theme:'vs-dark', language:'html'},
-  {theme:'vs-dark', language:'css'}]
+  {theme:'vs-dark', language:'css'},
+  {theme:'vs-dark', language:'javascript'}]
   codeHTML:String=""
-  codeCSS:String;
+  codeCSS:String="";
+  codeJS:String="";
+
  
   /*Froala Editor*/
-  editorContent:String;
+  editorContent:String="";
 
   bloqueSeleccionado:number;
   active=1;
+  pagina:any=[];
   bloques:any=[];
   adaptabilidad={
     xl:'',
@@ -50,13 +56,17 @@ export class EditorTiendasComponent implements OnInit {
     height:''
   };
   bloqueContenido:any;
-  
-  archivo:File;
   plantillaSeleccionada:any;
+  titulo:String="";
+  descripcion:String="";
+  paginaPrincipal:Boolean=false;
+  visibilidad:Boolean=false;
 
   constructor(private route:ActivatedRoute,
     private modalService:NgbModal,
-    private plantillasService:PlantillasService) { 
+    private plantillasService:PlantillasService,
+    private empresasService:EmpresasService,
+    private router:Router) { 
     }
 
   ngOnInit(): void {
@@ -69,9 +79,10 @@ export class EditorTiendasComponent implements OnInit {
       console.log(this.plantillas)
     }, error => {
       console.log(error);
-    })
+    });
+    
+    this.obtenerEmpresa();
 
-    this.prueba();
     this.bloqueContenido=(<HTMLIFrameElement>document.getElementById('content')).contentWindow.document;
     this.bloqueContenido.open();
     this.bloqueContenido.write(`<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">`);
@@ -83,6 +94,19 @@ export class EditorTiendasComponent implements OnInit {
     this.bloqueSeleccionado=id;
   }
 
+  obtenerEmpresa(){
+    this.empresasService.getPage(this.route.snapshot.paramMap.get('idCompany'),
+    this.route.snapshot.paramMap.get('idPage'))
+    .subscribe( res => {
+       this.pagina.push(res[0]);
+       this.bloques.push(res[0].paginas[0].codigo)
+    }, error => {
+      console.log(error);
+    }
+   )
+   console.log(this.bloques);
+   //this.bloques.push(this.pagina[0].paginas[0].codigo);
+  }
   
   openTemplate(content, id){
     this.modalService.open(content, {centered:true});
@@ -90,6 +114,7 @@ export class EditorTiendasComponent implements OnInit {
   }
 
   agregarBloque(){
+    console.log(this.pagina[0].paginas)
     console.log(this.adaptabilidad);
     this.bloques.push({
       editorFroala:"",
@@ -102,10 +127,11 @@ export class EditorTiendasComponent implements OnInit {
       col-lg-${this.adaptabilidad.lg}
       col-md-${this.adaptabilidad.md}
       col-sm-${this.adaptabilidad.sm} 
-      col-${this.adaptabilidad.xs}" style="background-color: red; height:${this.adaptabilidad.height}px">
+      col-${this.adaptabilidad.xs}" style="height:${this.adaptabilidad.height}px">
       </div>
     `
     this.bloqueContenido.getElementById('contenido').innerHTML+=(bloque);
+    console.log(this.bloques)
   }
 
   editarBloque(index){
@@ -120,13 +146,13 @@ export class EditorTiendasComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  onFileSelected(event: HtmlInputEvent):void{
+ /* onFileSelected(event: HtmlInputEvent):void{
     if(event.target.files && event.target.files[0]){
       this.archivo=<File>event.target.files[0];
     }
 
     console.log(this.archivo);
-  }
+  }*/
 
   actualizarContenido(){
     var contenido =this.bloqueContenido.getElementById(`${this.bloqueSeleccionado}`);
@@ -139,7 +165,6 @@ export class EditorTiendasComponent implements OnInit {
     `col-md-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.md}`,
     `col-sm-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.sm}`,
     `col-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.xs}`);
-    console.log(contenido);
     if(this.codeHTML==undefined){
       this.codeHTML="";
     }
@@ -161,24 +186,41 @@ export class EditorTiendasComponent implements OnInit {
     this.bloqueContenido.getElementById(this.bloqueSeleccionado).innerHTML+=this.codeHTML;
   }
 
-  prueba(){
+  /*prueba(){
     var prueba="Probando"
     var codigo="Hola, ${prueba}"
     console.log(codigo);
     var res = codigo.replace("${prueba}", `${prueba}`)
     console.log(res);
-  }
-
-  guardarPagina(){
-    console.log(<HTMLDivElement>document.getElementById('content'))
-  }
+  }*/
 
   usarPlantilla(plantilla){
     console.log(plantilla)
+    this.bloques.push(plantilla);
     this.plantillaSeleccionada=plantilla;
-    
     this.bloqueContenido.write(`<style>${plantilla.codigoCSS}</style>`)
     this.bloqueContenido.getElementById('contenido').innerHTML=plantilla.codigoHTML;
     this.bloqueContenido.write(`<script>${plantilla.codigoJS}</script>`)
   }
+
+  guardarPagina(){
+    console.log(<HTMLDivElement>document.getElementById('content'));
+    var data={
+      titulo:this.titulo,
+      descripcion:this.descripcion,
+      codigo:this.bloques,
+      paginaPrincipal:this.paginaPrincipal,
+      visible: this.visibilidad
+    };
+    console.log(data);
+    this.empresasService.updatePage(this.route.snapshot.paramMap.get('idCompany'),
+    this.route.snapshot.paramMap.get('idPage'),
+    data).subscribe(res=> {
+      console.log(res);
+      this.modalService.dismissAll();
+      this.router.navigate(['/admin-companies/home']);
+    }, error => console.log(error));
+  }
+
+  
 }

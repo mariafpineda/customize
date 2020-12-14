@@ -29,7 +29,7 @@ const routes: Routes = [
   {path:'company/register', component: RegisterBrandComponent},
   {path: 'user/home', component: UsersHomeComponent, canActivate: [AuthGuard], data:{role: 'user'}},
   {path: 'admin/home', component: AdminsHomeComponent, canActivate: [AuthGuard], data:{role: 'admin'}},
-  {path: 'company/home', component: CompaniesHomeComponent, canActivate: [AuthGuard], data:{role: 'company'}},
+  {path: 'admin-companies/home', component: CompaniesHomeComponent, canActivate: [AuthGuard], data:{role: 'company'}},
   {path: 'admin/editor', component:EditorComponent, canActivate:[AuthGuard], data:{role: 'admin'}},
   {path: 'admin-companies/:idCompany/pages/:idPage', component: EditorTiendasComponent, canActivate:[AuthGuard], data:{role:'company'}},
   {path:'**', component: PageNotFoundComponent}

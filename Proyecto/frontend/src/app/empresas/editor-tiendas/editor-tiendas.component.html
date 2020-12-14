@@ -4,7 +4,8 @@
             <fa-icon [icon]="faBars"></fa-icon>
         </span>
       </button>
-    <a class="navbar-brand" href="/company/home">
+    <a class="btn btn-outline-dark back-btn" href="/admin-companies/home"> <fa-icon [icon]="faArrowLeft"></fa-icon> </a>
+    <a class="navbar-brand" href="/admin-companies/home">
         <img src="/assets/img/logo-color-resize.png" alt="" width="150">
     </a>
     <button class="navbar-toggler" type="button" (click)="isMenuCollapsed =! isMenuCollapsed">
@@ -17,7 +18,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
             <div ngbDropdown class="d-inline-block ml-auto ">
-                <button class="btn btn-outline-dark save-btn" (click)="guardarPagina()">Guardar</button>
+                <button class="btn btn-outline-dark save-btn" (click)="open(saveTemplate, '')">Guardar</button>
             </div>
         </li>
       </ul>
@@ -116,21 +117,7 @@
                   </div>
                 </div>
               </div>
-              <p>
-                <button type="button" class="btn collapse-btn" (click)="isCollapsed3 = !isCollapsed3" style="width: 100%;">
-                    <div class="d-flex">
-                        Configuraciones  
-                    <fa-icon [icon]="faChevronDown" class="arrow-icon"></fa-icon></div>
-                </button>
-              </p>
-              <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed3">
-                <div class="card">
-                  <div class="card-body">
-                    You can collapse this card by clicking Toggle
-                  </div>
-                </div>
-              </div>
-
+              
           </div>
       </div>
       <iframe class="content col-xl-9 col-lg-8 col-md-12 ml-auto " id="content" frameborder="0" style="width: 100%;">
@@ -269,6 +256,35 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="eliminarBloque()">Eliminar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>
+
+  <ng-template #saveTemplate let-modal>
+    <div class="modal-body">
+      <div class="mb-12">
+        <label for="staticEmail" class="form-label mb-auto mt-auto">Titulo</label>
+        <input type="text" class="form-control" [(ngModel)]="titulo">
+      </div>
+      <div class="mb-12">
+        <label for="staticEmail" class="form-label mb-auto mt-auto">Descripcion</label>
+        <textarea rows="3" style="width: 100%;" [(ngModel)]="descripcion"></textarea>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="paginaPrincipal">
+        <label class="form-check-label">
+          Página principal
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="visibilidad">
+        <label class="form-check-label">
+          Visible para los clientes
+        </label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="guardarPagina()">Guardar</button>
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
     </div>
   </ng-template>

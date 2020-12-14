@@ -701,7 +701,7 @@ router.put('/:idBrand/password', async (req, res) => {
                         _id : new mongoose.Types.ObjectId(),
                         titulo: req.body.titulo,
                         descripcion: req.body.descripcion,
-                        codigo: req.body.codigo,
+                        codigo: [],
                         paginaPrincipal:req.body.paginaPrincipal,
                         visible: true
                     }
