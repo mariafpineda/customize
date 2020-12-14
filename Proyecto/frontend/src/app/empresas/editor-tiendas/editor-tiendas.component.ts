@@ -93,12 +93,19 @@ export class EditorTiendasComponent implements OnInit {
   }
 
   open(content, id){
+    console.log(this.pagina[0].paginas[0])
+    this.titulo=this.pagina[0].paginas[0].titulo;
+    this.descripcion=this.pagina[0].paginas[0].descripcion;
+    this.paginaPrincipal=this.pagina[0].paginas[0].paginaPrincipal;
+    this.visibilidad=this.pagina[0].paginas[0].visibilidad;
     this.modalService.open(content, {centered:true});
     this.bloqueSeleccionado=id;
-    //this.adaptabilidad=this.bloques[id-1][0].adaptabilidad;
-    this.editorContent=this.bloques[id-1].editorFroala;
-    this.codeHTML=this.bloques[id-1].codeHTML;
-    this.codeCSS=this.bloques[id-1].codeCSS;
+    if(id!=''){
+      this.adaptabilidad=this.bloques[id-1].adaptabilidad;
+      this.editorContent=this.bloques[id-1].editorFroala;
+      this.codeHTML=this.bloques[id-1].codeHTML;
+      this.codeCSS=this.bloques[id-1].codeCSS;
+    }
   }
 
   obtenerEmpresa(){
@@ -202,7 +209,8 @@ export class EditorTiendasComponent implements OnInit {
       adaptabilidad:this.adaptabilidad,
       editorFroala: this.editorContent,
       codeHTML:this.codeHTML,
-      codeCSS:this.codeCSS
+      codeCSS:this.codeCSS,
+      codeJS:this.codeJS
     }
     console.log(this.bloques);
     this.bloqueContenido.write(`<style>${this.codeCSS}</style>`);
@@ -229,6 +237,7 @@ export class EditorTiendasComponent implements OnInit {
 
   guardarPagina(){
     console.log(<HTMLDivElement>document.getElementById('content'));
+   
     var data={
       titulo:this.titulo,
       descripcion:this.descripcion,
