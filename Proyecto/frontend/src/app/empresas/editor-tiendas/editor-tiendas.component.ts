@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faArrowLeft, faBars, faChevronDown, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faEdit as farEdit, faTrashAlt as farTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlantillasService } from 'src/app/services/plantillas.service';
 import { EmpresasService } from 'src/app/services/empresas.service';
-import { ThrowStmt } from '@angular/compiler';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget;
@@ -17,10 +17,12 @@ interface HtmlInputEvent extends Event{
   styleUrls: ['./editor-tiendas.component.css']
 })
 export class EditorTiendasComponent implements OnInit {
+  @ViewChild('prueba') d1:ElementRef;
   public isMenuCollapsed=true;
   public isSidebarCollapsed=true;
   public isCollapsed=true;
   public isCollapsed2=true;
+  safeHtml: SafeHtml;
 
   disabled = false;
   faBars=faBars;
@@ -43,6 +45,8 @@ export class EditorTiendasComponent implements OnInit {
  
   /*Froala Editor*/
   editorContent:String="";
+
+  
 
   bloqueSeleccionado:number;
   active=1;
@@ -67,7 +71,8 @@ export class EditorTiendasComponent implements OnInit {
     private modalService:NgbModal,
     private plantillasService:PlantillasService,
     private empresasService:EmpresasService,
-    private router:Router) { 
+    private router:Router,
+    private sanitizer:DomSanitizer) { 
     }
 
   ngOnInit(): void {
@@ -87,7 +92,12 @@ export class EditorTiendasComponent implements OnInit {
     this.bloqueContenido.open();
     this.bloqueContenido.write(`<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">`);
     this.bloqueContenido.write('<div class="container-fluid"><div class="row" id="contenido"></div> </div>');
-    
+    this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(`<button type="button" id="button" class="btn btn-success" (click)="clickme()">Click me</button>`)
+  
+  }
+
+  ngAfterViewInit(){
+    this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(`<button type="button" id="button" class="btn btn-success" (click)="clickme()">Click me</button>`)
   }
 
   open(content, id){
@@ -257,5 +267,15 @@ export class EditorTiendasComponent implements OnInit {
     }, error => console.log(error));
   }
 
-  
+
+  pruebaConBoton(){
+    var test = this.bloqueContenido.document.getElementById('prueba');
+    test.addEventListener('click', this.clickme())
+    console.log(test);
+  }
+
+  clickme(){
+    console.log("It work!");
+  }
+
 }

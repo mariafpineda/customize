@@ -65,7 +65,7 @@ export class EditorComponent implements OnInit {
     if(this.plantilla.tituloTema == '' || this.plantilla.descripcion == ''){
       this.errorMessage="Todos los campos son obligatorios";
       this.errorBool=true;
-    } else if(this.idPlantilla!=''){
+    } else if(this.idPlantilla!=undefined){
       this.plantillasService.updateTemplate(this.idPlantilla, this.plantilla)
       .subscribe( res => {
           this.successMessage=res.message;
@@ -75,6 +75,7 @@ export class EditorComponent implements OnInit {
           this.errorBool=true;
       })
     }else{
+      console.log(this.plantilla)
       this.plantillasService.addTemplate(this.plantilla)
       .subscribe(
         res=>{

@@ -58,6 +58,7 @@ import 'froala-editor/js/third_party/spell_checker.min';
 import 'froala-editor/js/third_party/embedly.min';
 
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { ConfigGeneralesComponent } from './empresas/config-generales/config-generales.component';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     EditorTiendasComponent,
     InicioTiendasComponent,
     PerfilTiendasComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ConfigGeneralesComponent
   ],
   imports: [
     BrowserModule,
