@@ -77,7 +77,6 @@ export class EditorTiendasComponent implements OnInit {
     this.plantillasService.getTemplates()
     .subscribe(res => {
       this.plantillas=res;
-      console.log(this.plantillas)
     }, error => {
       console.log(error);
     });
@@ -88,12 +87,11 @@ export class EditorTiendasComponent implements OnInit {
     this.bloqueContenido.open();
     this.bloqueContenido.write(`<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">`);
     this.bloqueContenido.write('<div class="container-fluid"><div class="row" id="contenido"></div> </div>');
-    console.log(this.bloques.length, "tamaño bloques");
+    
     
   }
 
   open(content, id){
-    console.log(this.pagina[0].paginas[0])
     this.titulo=this.pagina[0].paginas[0].titulo;
     this.descripcion=this.pagina[0].paginas[0].descripcion;
     this.paginaPrincipal=this.pagina[0].paginas[0].paginaPrincipal;
@@ -112,12 +110,12 @@ export class EditorTiendasComponent implements OnInit {
     this.empresasService.getPage(this.route.snapshot.paramMap.get('idCompany'),
     this.route.snapshot.paramMap.get('idPage'))
     .subscribe( res => {
-      console.log(typeof(res));
        this.pagina.push(res[0]);
-       this.bloques.push(res[0].paginas[0].codigo[0]);
+       this.bloques.push(res[0].paginas[0].codigo);
+       this.bloques=this.bloques[0];
+       console.log(this.bloques);
        if(this.bloques.length!=0){
         for(let i=0; i<this.bloques.length; i++){
-          console.log(this.bloques[i]);
           this.bloqueContenido.write(`<style>${this.bloques[i].codeCSS}</style>`)
           var bloque=`
             <div id="${i+1}" class="col-xl-${this.bloques[i].adaptabilidad.xl}
@@ -146,13 +144,11 @@ export class EditorTiendasComponent implements OnInit {
   }
 
   agregarBloque(){
-    console.log(this.adaptabilidad);
     this.bloques.push({
       editorFroala:"",
       codeHTML:"",
       codeCSS:"",
       "adaptabilidad":this.adaptabilidad});
-    console.log(this.bloqueContenido.getElementById('contenido'));
     var bloque=`
       <div id="${this.bloques.length}" class="col-xl-${this.adaptabilidad.xl}
       col-lg-${this.adaptabilidad.lg}
