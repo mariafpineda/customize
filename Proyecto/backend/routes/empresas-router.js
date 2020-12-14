@@ -54,7 +54,8 @@ var fs = require('fs-extra');
                 videos : [],
                 archivos : [],
                 estado : 'activo',
-                paginas : []
+                paginas : [],
+                configuraciones:[]
             }
         );
         await brand.save();
@@ -698,16 +699,9 @@ router.put('/:idBrand/password', async (req, res) => {
                 $push: {
                     "paginas" : {
                         _id : new mongoose.Types.ObjectId(),
-                        encabezadoGenerico: req.body.encabezado,
-                        piePaginaGenerico: req.body.footer,
-                        favicon: req.body.favicon,
-                        logotipo: req.body.logotipo,
-                        tituloSitio: req.body.titulo,
+                        titulo: req.body.titulo,
                         descripcion: req.body.descripcion,
-                        palabrasClave: req.body.palabrasClave,
                         codigo: req.body.codigo,
-                        cssExtra: req.body.css,
-                        jsExtra: req.body.js,
                         paginaPrincipal:req.body.paginaPrincipal,
                         visible: true
                     }
@@ -731,16 +725,9 @@ router.put('/:idBrand/password', async (req, res) => {
             "paginas._id": mongoose.Types.ObjectId(req.params.idPage)
         },
         {
-            "paginas.$.encabezadoGenerico": req.body.encabezado,
-            "paginas.$.piePaginaGenerico": req.body.footer,
-            "paginas.$.favicon": req.body.favicon,
-            "paginas.$.logotipo": req.body.logotipo,
-            "paginas.$.tituloSitio": req.body.titulo,
+            "paginas.$.titulo": req.body.titulo,
             "paginas.$.descripcion": req.body.descripcion,
-            "paginas.$.palabrasClave": req.body.palabrasClave,
             "paginas.$.codigo": req.body.codigo,
-            "paginas.$.cssExtra": req.body.css,
-            "paginas.$.jsExtra": req.body.js,
             "paginas.$.paginaPrincipal":req.body.paginaPrincipal,
             "paginas.$.visible": req.body.visible
         }
@@ -832,6 +819,7 @@ router.put('/:idBrand/password', async (req, res) => {
     });
 
 //Update source code
+/*
     router.post('/:idBrand/paginas/:idPage/codigo', verifyToken, function (req, res) {
     empresas.update(
         {
@@ -850,7 +838,7 @@ router.put('/:idBrand/password', async (req, res) => {
         res.send(error);
         res.end();
     });
-});
+});*/
 
 //Update plan
     router.post('/:idBrand/plan/:idPlan', verifyToken, function(req, res){
@@ -886,6 +874,84 @@ router.put('/:idBrand/password', async (req, res) => {
         res.send(error);
         res.send();
     })
+});
+
+
+//Add config
+
+router.post('/:idBrand/configuraciones', verifyToken, function(req, res){
+    empresas.update(
+        {
+            _id: req.params.idBrand
+        },
+        {
+            $push: {
+                "configuraciones" : {
+                    encabezadoGenerico: req.body.encabezado,
+                    piePaginaGenerico: req.body.footer,
+                    favicon: req.body.favicon,
+                    logotipo: req.body.logotipo,
+                    tituloSitio: req.body.titulo,
+                    descripcion: req.body.descripcion,
+                    palabrasClave: req.body.palabrasClave,
+                    cssExtra: req.body.css,
+                    jsExtra: req.body.js
+                }
+            }
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
+});
+
+//Update config
+
+router.post('/:idBrand/editarConfiguraciones', verifyToken, function (req, res) {
+    empresas.update(
+        {
+            _id: req.params.idBrand
+        },
+        {
+            "configuraciones[0].encabezadoGenerico": req.body.encabezado,
+            "configuraciones[0].piePaginaGenerico": req.body.footer,
+            "configuraciones[0].favicon": req.body.favicon,
+            "configuraciones[0].logotipo": req.body.logotipo,
+            "configuraciones[0].tituloSitio": req.body.titulo,
+            "configuraciones[0].descripcion": req.body.descripcion,
+            "configuraciones[0].palabrasClave": req.body.palabrasClave,
+            "configuraciones[0].cssExtra": req.body.css,
+            "configuraciones[0].jsExtra": req.body.js
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
+});
+
+//Get config
+
+router.get('/:idBrand/configuraciones', verifyToken, function(req, res){
+    empresas.update(
+        {
+            _id: req.params.idBrand
+        },
+        {
+           configuraciones:true
+        }
+    ).then(result => {
+        res.send(result);
+        res.end();
+    }).catch(error => {
+        res.send(error);
+        res.end();
+    });
 });
 
 
