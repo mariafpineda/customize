@@ -5,6 +5,7 @@ import { faEdit as farEdit, faTrashAlt as farTrashAlt } from '@fortawesome/free-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlantillasService } from 'src/app/services/plantillas.service';
 import { EmpresasService } from 'src/app/services/empresas.service';
+import { ThrowStmt } from '@angular/compiler';
 
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget;
@@ -86,20 +87,44 @@ export class EditorTiendasComponent implements OnInit {
     this.bloqueContenido=(<HTMLIFrameElement>document.getElementById('content')).contentWindow.document;
     this.bloqueContenido.open();
     this.bloqueContenido.write(`<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">`);
-    this.bloqueContenido.write('<div class="container-fluid"><div class="row" id="contenido"></div> </div>')
+    this.bloqueContenido.write('<div class="container-fluid"><div class="row" id="contenido"></div> </div>');
+    console.log(this.bloques.length, "tamaño bloques");
+    
   }
 
   open(content, id){
     this.modalService.open(content, {centered:true});
     this.bloqueSeleccionado=id;
+    //this.adaptabilidad=this.bloques[id-1][0].adaptabilidad;
+    this.editorContent=this.bloques[id-1].editorFroala;
+    this.codeHTML=this.bloques[id-1].codeHTML;
+    this.codeCSS=this.bloques[id-1].codeCSS;
   }
 
   obtenerEmpresa(){
     this.empresasService.getPage(this.route.snapshot.paramMap.get('idCompany'),
     this.route.snapshot.paramMap.get('idPage'))
     .subscribe( res => {
+      console.log(typeof(res));
        this.pagina.push(res[0]);
-       this.bloques.push(res[0].paginas[0].codigo)
+       this.bloques.push(res[0].paginas[0].codigo[0]);
+       if(this.bloques.length!=0){
+        for(let i=0; i<this.bloques.length; i++){
+          console.log(this.bloques[i]);
+          this.bloqueContenido.write(`<style>${this.bloques[i].codeCSS}</style>`)
+          var bloque=`
+            <div id="${i+1}" class="col-xl-${this.bloques[i].adaptabilidad.xl}
+            col-lg-${this.bloques[i].adaptabilidad.lg}
+            col-md-${this.bloques[i].adaptabilidad.md}
+            col-sm-${this.bloques[i].adaptabilidad.sm} 
+            col-${this.bloques[i].adaptabilidad.xs}" style="height:${this.bloques[i].adaptabilidad.height}px">
+            </div>
+          `
+          this.bloqueContenido.getElementById('contenido').innerHTML+=(bloque);
+          this.bloqueContenido.getElementById(`${i+1}`).innerHTML+=this.bloques[i].editorFroala;
+          this.bloqueContenido.getElementById(`${i+1}`).innerHTML+=this.bloques[i].codeHTML;
+        }
+      }
     }, error => {
       console.log(error);
     }
@@ -114,7 +139,6 @@ export class EditorTiendasComponent implements OnInit {
   }
 
   agregarBloque(){
-    console.log(this.pagina[0].paginas)
     console.log(this.adaptabilidad);
     this.bloques.push({
       editorFroala:"",
