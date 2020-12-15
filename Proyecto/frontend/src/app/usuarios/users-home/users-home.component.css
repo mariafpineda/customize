@@ -1,0 +1,10 @@
+.btn-outline-primary{
+    border: 1px solid #00bbee;
+    color: #00bbee;
+    margin-left: 10px;
+}
+
+.btn-outline-primary:hover{
+    color: white;
+    background-color: #00bbee;
+}

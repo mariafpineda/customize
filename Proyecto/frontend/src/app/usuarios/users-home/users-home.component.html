@@ -1,1 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand">
+        <img src="/assets/img/loco-white-resize.png" width="130">
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" [ngbCollapse]="isMenuCollapsed">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link">Inicio <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Mis compras</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="button"> <fa-icon [icon]="faShoppingCart"></fa-icon> </button>
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="button" (click)="logout()"> <fa-icon [icon]="faSignOutAlt"></fa-icon> </button>
+    </form>
+    </div>
+  </nav>
 
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 mt-4 " [ngClass]="{'visible': regionVisible=='empresas', 'noVisible': regionVisible != 'empresas'}">
+            <h3>Estas son las empresas que tenemos para tí</h3>
+        <div class="col-xl-3 mt-4" *ngFor="let empresa of empresas">
+            <div class="card">
+                <img [src]="'http://localhost:8888/'+empresa.configuraciones[0].logotipo" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{empresa.configuraciones[0].tituloSitio}}</h5>
+                  <p class="card-text">{{empresa.configuraciones[0].descripcion}}</p>
+                  <div style="text-align: right;">
+                    <a class="btn btn-outline-primary" (click)="verProductos(empresa._id)">Ver productos</a>
+                  </div>
+                </div>
+              </div>
+        </div>
+        </div>
+        <div class="col-xl-12 mt-4" [ngClass]="{'visible': regionVisible=='productos', 'noVisible': regionVisible != 'productos'}">
+            <h3>Productos</h3>
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mb-3 mt-3" *ngFor="let producto of productos">
+                    <div class="card">
+                        <img [src]="'http://localhost:8888/'+producto.imagen" class="card-img-top" height="300px">
+                        <div class="card-body">
+                          <h5 class="card-title"> {{producto.nombreProducto}} </h5>
+                          <p class="card-text"> <strong>L {{producto.precio}}</strong></p>
+                          <div style="text-align: right;">
+                            <a class="btn btn-outline-primary ml-auto" (click)="agregarCarrito(producto)">Agregar al carrito</a>
+                          </div>
+                          
+                        </div>
+                      </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</div>
