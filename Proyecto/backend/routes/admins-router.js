@@ -53,7 +53,7 @@ router.post("/signin", async (req, res) => {
     });
 
 //Read admins
-    router.get('/', verifyToken, function(req, res){
+    router.get('/', function(req, res){
         admins.find({},{})
         .then(result => {
             res.send(result);

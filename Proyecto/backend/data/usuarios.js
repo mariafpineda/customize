@@ -6,24 +6,7 @@ db.usuarios.insertMany([
         correoUsuario: 'mpineda@prueba.com',
         contraseniaUsuario : 'prueba.456',
         genero : 'Femenino',
-        compras: [
-        {
-            _id : ObjectId(),
-            "articulos" : [
-                {
-                    nombreProducto: 'Producto 1',
-                    cantidad : 1,
-                    precio: 15.5
-                },
-                {
-                    nombreProducto: 'Producto 2',
-                    cantidad : 4,
-                    precio: 20
-                }
-            ],
-            totalCompra : 95.5
-        }
-        ]
+        compras: []
     }, 
     { nombreUsuario: 'Juan',
         apellidoUsuairo: 'Perez',
@@ -32,25 +15,7 @@ db.usuarios.insertMany([
         correoUsuario: 'jperez@prueba.com',
         contraseniaUsuario : 'prueba.456',
         genero : 'Masculino',
-        compras: [
-            {
-                _id : ObjectId(),
-                "articulos" : [
-                {
-                    nombreProducto: 'Producto 1',
-                    cantidad : 1,
-                    precio: 15.5
-                },
-                {
-                    nombreProducto: 'Producto 2',
-                    cantidad : 4,
-                    precio: 20
-                }
-                ],
-                totalCompra : 95.5
-            }
-            
-        ]
+        compras: []
            
     },  
     { nombreUsuario: 'Jorge',

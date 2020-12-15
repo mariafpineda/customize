@@ -15,7 +15,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { AuthGuard } from './auth.guard'
 import { EditorComponent } from './admins/editor/editor.component';
-import { PerfilTiendasComponent } from './empresas/perfil-tiendas/perfil-tiendas.component';
 import { EditorTiendasComponent } from './empresas/editor-tiendas/editor-tiendas.component';
 
 const routes: Routes = [
