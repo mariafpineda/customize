@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { faCog, faShoppingCart, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+import { faShoppingCart, faSignOutAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EmpresasService } from 'src/app/services/empresas.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
@@ -12,18 +13,22 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 export class UsersHomeComponent implements OnInit {
   faShoppingCart=faShoppingCart;
   faSignOutAlt=faSignOutAlt;
+  faTimes=faTimes;
 
   isMenuCollapsed=true;
 
   empresas:any=[];
   productos:any=[];
   compras:any=[];
+  carrito:any=[];
+  totalCompra:number=0;
 
   regionVisible="empresas";
 
   constructor(private empresasService:EmpresasService,
     private usuariosService:UsuariosService,
-    private route:Router) { }
+    private route:Router,
+    private modalService:NgbModal) { }
 
   ngOnInit(): void {
 
@@ -41,6 +46,17 @@ export class UsersHomeComponent implements OnInit {
     this.obtenerProductos(id);
   }
 
+  obtenerLS(){
+    this.compras=[];
+    if(localStorage.getItem('carrito')!= null){
+      this.carrito=[JSON.parse(localStorage.getItem('carrito'))];
+    }
+    for(let i=0; i<this.carrito[0].length;i++){
+      console.log(typeof(this.carrito[0][i]))
+      this.compras.push(this.carrito[0][i]);
+    }
+  }
+
   obtenerProductos(id){
     this.empresasService.getProducts(id)
     .subscribe(res => {
@@ -52,6 +68,12 @@ export class UsersHomeComponent implements OnInit {
     })
   }
 
+  open(content){
+    this.obtenerLS();
+    this.modalService.open(content, {centered:true});
+    
+  }
+
   logout(){
     localStorage.removeItem('idUser');
     localStorage.removeItem('token');
@@ -59,15 +81,23 @@ export class UsersHomeComponent implements OnInit {
   }
 
   agregarCarrito(producto){
-    var carrito;
-    console.log(producto);
+    var carrito=[producto]
+    var nuevoCarrito=producto;
     if(localStorage.getItem('carrito')==null){
-      localStorage.setItem('carrito', producto);
-    } else {
-      carrito=localStorage.getItem('carrito');
-      carrito.push(producto);
-      localStorage.setItem('carrito', carrito);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+    } else{
+      carrito = JSON.parse(localStorage.getItem('carrito'));
+      carrito.push(nuevoCarrito);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
     }
+  }
+
+  borrar(i){
+    var carrito = JSON.parse(localStorage.getItem('carrito'));
+    carrito.splice(i, 1);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    this.obtenerLS()
+
   }
 
 }

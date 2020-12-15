@@ -16,7 +16,7 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="button"> <fa-icon [icon]="faShoppingCart"></fa-icon> </button>
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="button" (click)="open(carrito)"> <fa-icon [icon]="faShoppingCart"></fa-icon> </button>
         <button class="btn btn-outline-primary my-2 my-sm-0" type="button" (click)="logout()"> <fa-icon [icon]="faSignOutAlt"></fa-icon> </button>
     </form>
     </div>
@@ -61,3 +61,27 @@
         </div>
     </div>
 </div>
+
+<ng-template #carrito let-modal>
+    <div class="mb-2 mt-2 ml-4">
+        <h3>Tu carrito</h3>
+    </div>
+    <div *ngIf="compras.length!=0">
+        <div class="card mb-3 ml-4 mr-4" *ngFor="let cart of compras; index as i">
+            <div class="card-body d-flex">
+                <img [src]="'http://localhost:8888/'+cart.imagen" alt="" width="50">
+                <div class="ml-2">
+                    <label for="" class="form-label mb-auto mt-auto"> {{cart.nombreProducto}} </label> <br>
+                    <label for="" class="form-label mb-auto mt-auto"> Precio: <strong>L {{cart.precio}}</strong></label>
+                </div>
+              <div class="ml-auto">
+                <button type="button" class="btn btn-outline-danger" (click)="borrar(i)"> <fa-icon [icon]="faTimes"></fa-icon> </button>
+              </div>
+            </div>
+          </div>
+          <hr>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Procesar compra</button>
+    </div>
+  </ng-template>
