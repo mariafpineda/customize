@@ -166,4 +166,19 @@ export class EmpresasService {
   updatePage(idCompany, idPage, data):Observable<any>{
     return this.httpClient.post(this.url+`/${idCompany}/paginas/${idPage}`, data);
   }
+
+  //Configuraciones 
+
+  getConfig(idCompany):Observable<any>{
+    return this.httpClient.get(this.url+`/${idCompany}/config`);
+  }
+
+  addConfig(idCompany, data):Observable<any>{
+    return this.httpClient.post(this.url+`/${idCompany}/configuraciones`, data);
+  }
+
+  updateConfig(idCompany, data):Observable<any>{
+    return this.httpClient.post(this.url+`/${idCompany}/editarConfiguraciones`, data)
+  }
+
 }

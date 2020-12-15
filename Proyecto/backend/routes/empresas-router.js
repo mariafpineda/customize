@@ -55,7 +55,7 @@ var fs = require('fs-extra');
                 archivos : [],
                 estado : 'activo',
                 paginas : [],
-                configuraciones:[]
+                configuraciones: []
             }
         );
         await brand.save();
@@ -865,16 +865,16 @@ router.post('/:idBrand/configuraciones', verifyToken, function(req, res){
         },
         {
             $push: {
+
                 "configuraciones" : {
                     encabezadoGenerico: req.body.encabezado,
+                    encabezadoVisible: req.body.encabezadoBool,
                     piePaginaGenerico: req.body.footer,
+                    piePagineVisible:req.body.footerBool,
                     favicon: req.body.favicon,
                     logotipo: req.body.logotipo,
                     tituloSitio: req.body.titulo,
-                    descripcion: req.body.descripcion,
-                    palabrasClave: req.body.palabrasClave,
-                    cssExtra: req.body.css,
-                    jsExtra: req.body.js
+                    descripcion: req.body.descripcion
                 }
             }
         }
@@ -895,15 +895,17 @@ router.post('/:idBrand/editarConfiguraciones', verifyToken, function (req, res) 
             _id: req.params.idBrand
         },
         {
-            "configuraciones[0].encabezadoGenerico": req.body.encabezado,
-            "configuraciones[0].piePaginaGenerico": req.body.footer,
-            "configuraciones[0].favicon": req.body.favicon,
-            "configuraciones[0].logotipo": req.body.logotipo,
-            "configuraciones[0].tituloSitio": req.body.titulo,
-            "configuraciones[0].descripcion": req.body.descripcion,
-            "configuraciones[0].palabrasClave": req.body.palabrasClave,
-            "configuraciones[0].cssExtra": req.body.css,
-            "configuraciones[0].jsExtra": req.body.js
+            configuraciones:{
+                "encabezadoGenerico": req.body.encabezado,
+                "encabezadoVisible": req.body.encabezadoBool,
+                "piePaginaGenerico": req.body.footer,
+                "piePagineVisible":req.body.footerBool,
+                "favicon": req.body.favicon,
+                "logotipo": req.body.logotipo,
+                "tituloSitio": req.body.titulo,
+                "descripcion": req.body.descripcion
+            }
+            
         }
     ).then(result => {
         res.send(result);
@@ -916,8 +918,8 @@ router.post('/:idBrand/editarConfiguraciones', verifyToken, function (req, res) 
 
 //Get config
 
-router.get('/:idBrand/configuraciones', verifyToken, function(req, res){
-    empresas.update(
+router.get('/:idBrand/config', verifyToken, function(req, res){
+    empresas.find(
         {
             _id: req.params.idBrand
         },

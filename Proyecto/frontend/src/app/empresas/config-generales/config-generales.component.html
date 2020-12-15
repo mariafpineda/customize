@@ -1,1 +1,83 @@
-<p>config-generales works!</p>
+<div id="content">
+    <h1>Configuraciones</h1>
+    <div>
+        <hr>
+        <h6>Configuraciones generales de mi sitio web</h6>
+        <hr>
+        <div>
+            <div class="config-gen mb-3">
+                <small class="error" *ngIf="errorBool">{{messageInfo}}</small>
+                <small class="success" *ngIf="successBool">{{messageInfo}}</small>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Encabezado genérico</label>
+              <div class="input-group col-sm-8">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Checkbox for following text input" [(ngModel)]="encabezadoBool" [value]="encabezadoBool">
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox" [(ngModel)]="encabezado" [value]="encabezado">
+                    
+                </div>
+                <div class="col-sm-8 ml-auto">
+                    <small>Marca la casilla si quieres que aparezca en tus páginas.</small>
+                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Pie de página genérico</label>
+              <div class="input-group col-sm-8">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <input type="checkbox" aria-label="Checkbox for following text input" [(ngModel)]="piePaginaBool" [value]="piePaginaBool">
+                  </div>
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" [(ngModel)]="piePagina" [value]="piePagina">
+              </div>
+              <div class="col-sm-8 ml-auto">
+                <small>Marca la casilla si quieres que aparezca en tus páginas.</small>
+              </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Nombre del sitio web</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" [(ngModel)]="nombreSitio" [value]="nombreSitio">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Descripción</label>
+                <div class="col-sm-8">
+                  <textarea type="text" class="form-control w-100" rows="2" [(ngModel)]="descripcion" [value]="descripcion"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Subir favicon</label>
+                <div class="input-group col-sm-8">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" (change)="onFaviconSelected($event)">
+                      <label class="custom-file-label" for="inputGroupFile02" [value]="urlFavicon">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text" (click)="subirFavicon()">Upload</span>
+                    </div>
+                </div>
+              </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Subir logotipo</label>
+                <div class="input-group col-sm-8">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" (change)="onLogoSelected($event)">
+                      <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text" (click)="subirLogo()">Upload</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button">
+                <button class="btn btn-outline-dark" (click)="guardarConfiguraciones()" *ngIf="config.length==0">Guardar cambios</button>
+                <button class="btn btn-outline-dark" (click)="actualizarConfiguraciones()" *ngIf="config.length!=0">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+.button{
+    text-align: right;
+}
+
+#content{
+    font-family: 'Raleway medium';
+}
+
+#content h6{
+    text-align: center;
+}
+
+
+h1{
+    font-family: 'Raleway semibold';
+    color: #00bbee;
+}
+
+h6{
+    font-family: 'Raleway semibold';
+}
+
+.config-gen{
+    text-align: center;
+}
+
+.btn-outline-dark{
+    border: 1px solid #00bbee;
+    color: #00bbee;
+}
+
+.btn-outline-dark:hover{
+    border: 1px solid #00bbee;
+    color: white;
+    background-color: #00bbee;
+}
