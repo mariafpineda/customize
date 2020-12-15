@@ -44,6 +44,7 @@ export class ProductosComponent implements OnInit {
   }
 
   open(content, id){
+    this.ngOnInit();
     this.modalService.open(content, {centered:true});
     if(id!=''){
       this.productoSeleccionado=id;

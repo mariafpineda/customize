@@ -28,6 +28,7 @@ export class CategoriasComponent implements OnInit {
   }
 
   open(content){
+    this.ngOnInit();
     this.modalService.open(content, {centered:true});
   }
 

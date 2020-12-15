@@ -48,16 +48,15 @@ export class TiendasComponent implements OnInit {
     } else{
       var data={
         encabezado: "",
+        encabezadoBool:true,
         footer: "",
+        footerBool:true,
         favicon: "",
         logotipo: "",
         titulo: "",
         descripcion: "",
-        palabrasClave: "",
-        codigo: "",
-        css: "",
-        js: "",
-        paginaPrincipal: ""
+        paginaPrincipal: true,
+        visible:true
       }
       this.empresasService.addPage(this.empresaLoggeada, data)
       .subscribe(() => {

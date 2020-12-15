@@ -1,22 +1,22 @@
 db.shortcuts.insertMany([
     {
         tipo: 'login',
-        plantilla: ""
+        plantilla: []
     },
     {
         tipo: 'galeria',
-        plantilla: ""
+        plantilla: []
     },
     {
         tipo: 'productos',
-        plantilla: "",
+        plantilla: [],
     },
     {
         tipo: 'enlace',
-        plantilla: ""
+        plantilla: []
     },
     {
         tipo: 'imagen',
-        plantilla: ''
+        plantilla: []
     }
 ]);

@@ -4,6 +4,6 @@ db.admins.insertMany([
         apellidoAdmin : 'Pineda',
         correoAdmin : 'mpineda@admin.com',
         contraseniaAdmin : 'admin.456',
-        estado: 'activo'
+        estado: 'default'
     }
 ]);

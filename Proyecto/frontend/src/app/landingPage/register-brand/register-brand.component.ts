@@ -57,7 +57,7 @@ export class RegisterBrandComponent implements OnInit {
         res=> {
           localStorage.setItem('token', res.token);
           localStorage.setItem('idBrand', res.idBrand);
-          this.router.navigate(['/company/home']);
+          this.router.navigate(['/admin-companies/home']);
         },
         error => {
           this.errorMessage=error.error.message;

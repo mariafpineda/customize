@@ -6,6 +6,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlantillasService } from 'src/app/services/plantillas.service';
 import { EmpresasService } from 'src/app/services/empresas.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
+import { regExpEscape } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { ShortcutsService } from 'src/app/services/shortcuts.service';
 
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget;
@@ -17,12 +19,17 @@ interface HtmlInputEvent extends Event{
   styleUrls: ['./editor-tiendas.component.css']
 })
 export class EditorTiendasComponent implements OnInit {
-  @ViewChild('prueba') d1:ElementRef;
   public isMenuCollapsed=true;
   public isSidebarCollapsed=true;
   public isCollapsed=true;
   public isCollapsed2=true;
-  safeHtml: SafeHtml;
+
+  //prueba="{'prueba':dasdas}"
+  regexJSON= new RegExp('\{.*\:.*\}');
+  regexTexto= new RegExp('^[a-z0-9-]+');
+  //test2= this.prueba.match(this.regex);
+  //test = this.regex.test(this.prueba);
+
 
   disabled = false;
   faBars=faBars;
@@ -44,7 +51,7 @@ export class EditorTiendasComponent implements OnInit {
 
  
   /*Froala Editor*/
-  editorContent:String="";
+  editorContent:string="";
 
   
 
@@ -67,18 +74,21 @@ export class EditorTiendasComponent implements OnInit {
   paginaPrincipal:Boolean=false;
   visibilidad:Boolean=false;
 
+  productos:any=[];
+  categorias:any=[];
+
   constructor(private route:ActivatedRoute,
     private modalService:NgbModal,
     private plantillasService:PlantillasService,
     private empresasService:EmpresasService,
     private router:Router,
-    private sanitizer:DomSanitizer) { 
+    private shortcutsService:ShortcutsService) { 
     }
 
   ngOnInit(): void {
     console.log(this.route.snapshot.paramMap.get('idPage'));
     console.log(this.route.snapshot.paramMap.get('idCompany'));
-  
+    
     this.plantillasService.getTemplates()
     .subscribe(res => {
       this.plantillas=res;
@@ -86,18 +96,35 @@ export class EditorTiendasComponent implements OnInit {
       console.log(error);
     });
     
+
     this.obtenerEmpresa();
+    this.obtenerProductos();
+    this.obtenerCategorias();
 
     this.bloqueContenido=(<HTMLIFrameElement>document.getElementById('content')).contentWindow.document;
     this.bloqueContenido.open();
     this.bloqueContenido.write(`<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">`);
     this.bloqueContenido.write('<div class="container-fluid"><div class="row" id="contenido"></div> </div>');
-    this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(`<button type="button" id="button" class="btn btn-success" (click)="clickme()">Click me</button>`)
+   
   
   }
 
   ngAfterViewInit(){
-    this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(`<button type="button" id="button" class="btn btn-success" (click)="clickme()">Click me</button>`)
+   
+  }
+
+  obtenerProductos(){
+    this.empresasService.getProducts(localStorage.getItem('idBrand'))
+    .subscribe(res => {
+      console.log(res[0].productos);
+    }, error => console.log(error));
+  }
+
+  obtenerCategorias(){
+    this.empresasService.getCategories(localStorage.getItem('idBrand'))
+    .subscribe(res => {
+      console.log(res.categorias);
+    }, error => console.log(error));
   }
 
   open(content, id){
@@ -184,35 +211,29 @@ export class EditorTiendasComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
- /* onFileSelected(event: HtmlInputEvent):void{
-    if(event.target.files && event.target.files[0]){
-      this.archivo=<File>event.target.files[0];
-    }
-
-    console.log(this.archivo);
-  }*/
-
   actualizarContenido(){
     var contenido =this.bloqueContenido.getElementById(`${this.bloqueSeleccionado}`);
-    contenido.innerHTML='';
-    contenido.removeAttribute("class");
-    contenido.removeAttribute("style");
-    contenido.style.height=`${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.height}px`;
-    contenido.classList.add(`col-xl-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.xl}`,
-    `col-lg-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.lg}`,
-    `col-md-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.md}`,
-    `col-sm-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.sm}`,
-    `col-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.xs}`);
-    this.bloques[this.bloqueSeleccionado-1]={
-      adaptabilidad:this.adaptabilidad,
-      editorFroala: this.editorContent,
-      codeHTML:this.codeHTML,
-      codeCSS:this.codeCSS,
-      codeJS:this.codeJS
-    }
-    this.bloqueContenido.write(`<style>${this.codeCSS}</style>`);
-    this.bloqueContenido.getElementById(this.bloqueSeleccionado).innerHTML+=this.editorContent;
-    this.bloqueContenido.getElementById(this.bloqueSeleccionado).innerHTML+=this.codeHTML;
+      contenido.innerHTML='';
+      contenido.removeAttribute("class");
+      contenido.removeAttribute("style");
+      contenido.style.height=`${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.height}px`;
+      contenido.classList.add(`col-xl-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.xl}`,
+      `col-lg-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.lg}`,
+      `col-md-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.md}`,
+      `col-sm-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.sm}`,
+      `col-${this.bloques[this.bloqueSeleccionado-1].adaptabilidad.xs}`);
+      this.bloques[this.bloqueSeleccionado-1]={
+        adaptabilidad:this.adaptabilidad,
+        editorFroala: this.editorContent,
+        codeHTML:this.codeHTML,
+        codeCSS:this.codeCSS,
+        codeJS:this.codeJS
+      }
+      this.bloqueContenido.write(`<style>${this.codeCSS}</style>`);
+      this.bloqueContenido.getElementById(this.bloqueSeleccionado).innerHTML+=this.editorContent;
+      this.bloqueContenido.getElementById(this.bloqueSeleccionado).innerHTML+=this.codeHTML;
+
+    
   }
 
   usarPlantilla(plantilla){
